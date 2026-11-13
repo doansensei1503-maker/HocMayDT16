@@ -1,0 +1,4 @@
+column,unique,duplicate_rows,missing
+Customer Id,20652,159867,0
+Order Customer Id,20652,159867,0
+Order Item Id,180519,0,0

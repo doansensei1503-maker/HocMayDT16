@@ -1,0 +1,15 @@
+﻿__pycache__/
+.pytest_cache/
+.venv/
+data/raw/*
+!data/raw/README.md
+data/processed/*
+results/runs/
+results/models/*
+*.joblib
+*.log
+*.aux
+*.out
+*.toc
+.env
+kaggle.json

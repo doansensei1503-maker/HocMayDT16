@@ -1,0 +1,34 @@
+|--- categorical__Shipping Mode_Standard Class <= 0.50
+|   |--- categorical__Shipping Mode_Same Day <= 0.50
+|   |   |--- categorical__Shipping Mode_First Class <= 0.50
+|   |   |   |--- categorical__Order Country_El Salvador <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Order Country_El Salvador >  0.50
+|   |   |   |   |--- class: 0
+|   |   |--- categorical__Shipping Mode_First Class >  0.50
+|   |   |   |--- categorical__Type_TRANSFER <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Type_TRANSFER >  0.50
+|   |   |   |   |--- class: 1
+|   |--- categorical__Shipping Mode_Same Day >  0.50
+|   |   |--- numeric__order_hour <= 0.03
+|   |   |   |--- class: 0
+|   |   |--- numeric__order_hour >  0.03
+|   |   |   |--- categorical__Type_TRANSFER <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Type_TRANSFER >  0.50
+|   |   |   |   |--- class: 1
+|--- categorical__Shipping Mode_Standard Class >  0.50
+|   |--- categorical__Order State_Managua <= 0.50
+|   |   |--- categorical__Order State_México <= 0.50
+|   |   |   |--- categorical__Order Country_Nigeria <= 0.50
+|   |   |   |   |--- class: 0
+|   |   |   |--- categorical__Order Country_Nigeria >  0.50
+|   |   |   |   |--- class: 1
+|   |   |--- categorical__Order State_México >  0.50
+|   |   |   |--- class: 1
+|   |--- categorical__Order State_Managua >  0.50
+|   |   |--- numeric__order_hour <= -0.41
+|   |   |   |--- class: 0
+|   |   |--- numeric__order_hour >  -0.41
+|   |   |   |--- class: 1

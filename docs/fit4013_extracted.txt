@@ -1,0 +1,458 @@
+HƯỚNG DẪN THỰC HIỆN BÀI TẬP LỚN
+HỌC PHẦN NHẬP MÔN HỌC MÁY
+Năm học 2026–2027
+ThS. Lê Thị Thùy Trang
+1 Mục tiêu của bài tập lớn
+1.1 Về mặt kiến thức
+Sinh viên vận dụng các kiến thức đã học trong học phần để xây dựng một quy trình học máy hoàn
+chỉnh, từ khám phá dữ liệu, tiền xử lý, lựa chọn đặc trưng, huấn luyện mô hình đến đánh giá và
+phân tích kết quả.
+Sinh viên cần thể hiện được khả năng:
+• Khám phá và phân tích dữ liệu (Exploratory Data Analysis – EDA), phát hiện dữ liệu thiếu, dữ
+liệu bất thường và các vấn đề có thể ảnh hưởng đến mô hình.
+• Thực hiện các bước tiền xử lý phù hợp với từng loại dữ liệu: dữ liệu văn bản, dữ liệu ảnh hoặc
+dữ liệu dạng bảng.
+• Lựa chọn và áp dụng các thuật toán đã học trong học phần như K-Nearest Neighbors (K-NN),
+Naive Bayes, Cây quyết định (Decision Tree) và K-means.
+• Lựa chọn độ đo đánh giá phù hợp với bài toán phân loại, hồi quy hoặc phân cụm; phân tích kết
+quả thay vì chỉ báo cáo một giá trị độ chính xác.
+• So sánh các phương án xử lý dữ liệu, đặc trưng hoặc mô hình và giải thích nguyên nhân dẫn
+đến sự khác biệt về kết quả.
+Các đề tài được xây dựng trong ba nhóm ứng dụng chính:
+• Xử lý Ngôn ngữ Tự nhiên: phân loại cảm xúc, phát hiện tin giả, lọc tin nhắn rác, phân loại
+chủ đề văn bản.
+• Thị giác Máy tính: nhận dạng chữ số, nhận dạng biển báo giao thông, phân loại ảnh hoa.
+• Dữ liệu dạng bảng: dự đoán trong giáo dục, kinh doanh, tài chính, y tế, chuỗi cung ứng và
+phân khúc khách hàng.
+1.2 Về mặt kỹ năng
+Bài tập lớn giúp sinh viên rèn luyện các kỹ năng cốt lõi của một quy trình phân tích dữ liệu và học
+máy:
+• Tiền xử lý dữ liệu, lựa chọn đặc trưng và xây dựng pipeline học máy có thể tái tạo.
+• Thiết kế thí nghiệm, thay đổi tham số và so sánh mô hình một cách có hệ thống.
+• Đọc và diễn giải các chỉ số đánh giá, ma trận nhầm lẫn, biểu đồ và các trường hợp dự đoán sai.
+• Làm việc nhóm, quản lý mã nguồn bằng GitHub, phân chia nhiệm vụ và theo dõi quá trình thực
+hiện.
+• Viết báo cáo khoa học bằng LATEX, trình bày kết quả và bảo vệ lựa chọn kỹ thuật của nhóm.
+1
+2 Yêu cầu chung
+Sinh viên làm việc theo nhóm từ 2 đến 4 thành viên. Đề tài bài tập lớn do giảng viên chỉ định theo
+danh sách ở Phần 3, 4 và 5 của tài liệu này.
+Nhóm sử dụng đúng bộ dữ liệu được chỉ định. Trường hợp muốn thay đổi bộ dữ liệu hoặc thay đổi
+cách đặt bài toán, nhóm cần trao đổi và được giảng viên đồng ý trước khi thực hiện.
+Các yêu cầu chung đối với sản phẩm:
+• Thực hiện đầy đủ quy trình từ dữ liệu thô đến kết quả đánh giá cuối cùng; không chỉ chạy một
+mô hình có sẵn hoặc sao chép một notebook mẫu.
+• Mỗi nhóm cần có một phương án baseline làm mốc so sánh, có thể là mô hình với cấu hình
+mặc định hoặc một cách xử lý dữ liệu đơn giản, hợp lý với bài toán.
+• Với bài toán học có giám sát, nhóm cần thực hiện ít nhất hai phương án thử nghiệm có ý
+nghĩa. Ưu tiên so sánh hai thuật toán đã học khi phù hợp. Nếu đặc thù dữ liệu khiến việc áp
+dụng một thuật toán không hợp lý, nhóm có thể so sánh hai cách biểu diễn/tiền xử lý khác nhau
+nhưng phải giải thích rõ lý do.
+• Với bài toán K-means, nhóm cần giải thích cách lựa chọn số cụm, đánh giá chất lượng phân
+cụm và mô tả ý nghĩa của các cụm thu được.
+• Dữ liệu huấn luyện và dữ liệu kiểm thử phải được tách đúng quy trình. Các bước học tham số
+từ dữ liệu (chuẩn hóa, vector hóa, chọn đặc trưng, v.v.) phải được học trên tập huấn luyện để
+hạn chế data leakage.
+• Các tham số quan trọng, cách chia dữ liệu và giá trị random_state (khi có) cần được ghi rõ để
+kết quả có thể tái tạo.
+• Nhóm phải phân tích kết quả, nêu được hạn chế và các trường hợp mô hình hoạt động chưa tốt;
+không đánh giá mô hình chỉ dựa trên Accuracy.
+• Tất cả thành viên phải hiểu và giải thích được pipeline, mã nguồn và kết quả của nhóm. Phần
+nội dung mà thành viên không giải thích được khi bảo vệ có thể không được công nhận trong
+đánh giá.
+2.1 Quy trình học máy tổng quát
+Quy trình thực hiện bài tập lớn tuân theo các bước tổng quát trong Hình 1.
+Data Source
+Nguồn
+dữ liệu
+EDA
+Khám phá
+dữ liệu
+Preprocessing
+Tiền xử lý
+Feature /
+Representation
+Model
+Huấn luyện
+Evaluation
+Đánh giá
+Error
+Analysis
+Phân tích lỗi
+Conclusion
+Kết luận
+Figure 1: Sơ đồ quy trình học máy tổng quát cho bài tập lớn.
+1. Data Source – Nguồn dữ liệu
+• Đối với bài toán xử lý ngôn ngữ tự nhiên: văn bản và nhãn.
+2
+• Đối với bài toán thị giác máy tính: ảnh và nhãn lớp.
+• Đối với dữ liệu dạng bảng: các cột số, cột phân loại và biến mục tiêu; riêng bài toán phân
+cụm không có nhãn mục tiêu sử dụng trong quá trình huấn luyện.
+2. EDA – Khám phá và phân tích dữ liệu
+• Kiểm tra kích thước, cấu trúc, kiểu dữ liệu, dữ liệu thiếu và dữ liệu trùng lặp.
+• Phân tích phân phối của nhãn hoặc biến mục tiêu.
+• Trực quan hóa các đặc trưng và mối quan hệ quan trọng để hình thành giả thuyết ban đầu
+về dữ liệu.
+3. Preprocessing – Tiền xử lý dữ liệu
+• Văn bản: chuẩn hóa chữ thường, xử lý ký tự đặc biệt, khoảng trắng, stopword hoặc các
+bước chuyên biệt phù hợp với bộ dữ liệu.
+• Ảnh: resize, chuẩn hóa giá trị pixel, chuyển ảnh xám khi phù hợp.
+• Dữ liệu bảng: xử lý dữ liệu thiếu, mã hóa biến phân loại và chuẩn hóa đặc trưng số khi
+thuật toán yêu cầu.
+4. Feature / Representation – Biểu diễn và lựa chọn đặc trưng
+• Văn bản: Bag-of-Words hoặc TF-IDF là các phương pháp chính; phương pháp biểu diễn
+nâng cao có thể được thực hiện như phần mở rộng.
+• Ảnh: sử dụng pixel sau chuẩn hóa hoặc đặc trưng cổ điển như HOG; có thể thử PCA để
+giảm chiều khi cần.
+• Dữ liệu bảng: lựa chọn đặc trưng phù hợp, tạo đặc trưng mới có lý giải và loại bỏ các trường
+thông tin gây rò rỉ nhãn nếu có.
+5. Model – Huấn luyện mô hình
+• Lựa chọn các thuật toán đã học phù hợp với bài toán.
+• Ghi lại các siêu tham số quan trọng và thực hiện một số thử nghiệm thay đổi tham số.
+• Có thể sử dụng GridSearchCV hoặc phương pháp tương đương để hỗ trợ tìm tham số nếu
+nhóm giải thích được phạm vi tìm kiếm và tiêu chí lựa chọn.
+6. Evaluation and Results – Đánh giá và kết quả
+• Phân loại: Accuracy, Precision, Recall, F1-score, Confusion Matrix; có thể bổ sung ROC-
+AUC nếu phù hợp.
+• Hồi quy: MAE, MSE/RMSE, R2.
+• Phân cụm: Inertia/WCSS, Silhouette Score và phân tích đặc điểm của từng cụm.
+• Trình bày bảng và biểu đồ so sánh kết quả giữa các phương án thử nghiệm.
+7. Error Analysis – Phân tích lỗi
+• Xác định các lớp hoặc nhóm mẫu mà mô hình thường dự đoán sai.
+• Phân tích một số trường hợp cụ thể và đưa ra giả thuyết về nguyên nhân.
+• Liên hệ kết quả với đặc điểm dữ liệu, bước tiền xử lý và giả định của thuật toán.
+2.2 Nội dung báo cáo
+Báo cáo bắt buộc phải gồm đầy đủ các phần sau và được trình bày theo đúng thứ tự:
+3
+1. Đặt vấn đề và phân tích yêu cầu
+• Bối cảnh và mục tiêu: giới thiệu bài toán, đối tượng cần dự đoán hoặc phân tích và ý
+nghĩa của bài toán.
+• Phân tích dữ liệu (EDA): mô tả nguồn dữ liệu, cấu trúc dữ liệu, phân phối nhãn/biến mục
+tiêu, dữ liệu thiếu, bất thường và các trực quan hóa cần thiết.
+2. Thiết kế giải pháp và quy trình học máy
+• Trình bày sơ đồ hoặc mô tả pipeline của nhóm từ dữ liệu thô đến kết quả cuối cùng.
+• Mô tả các bước làm sạch, mã hóa, chuẩn hóa và lựa chọn/trích xuất đặc trưng.
+• Nêu rõ cách chia dữ liệu train/test hoặc train/validation/test và cách hạn chế data leakage.
+• Mô tả các thuật toán được lựa chọn, các tham số quan trọng và lý do lựa chọn.
+3. Phân tích mã nguồn và chức năng
+• Mô tả cấu trúc chương trình, các notebook/module chính và chức năng của từng phần.
+• Không chèn toàn bộ mã nguồn vào báo cáo; chỉ trình bày các đoạn mã quan trọng khi cần
+giải thích thuật toán hoặc quy trình.
+4. Thử nghiệm và kết quả
+• Trình bày thiết lập thí nghiệm: cách chia dữ liệu, tham số, đặc trưng sử dụng và tiêu chí
+đánh giá.
+• Nêu rõ phương án baseline và sử dụng baseline làm mốc khi thảo luận kết quả.
+• Lập bảng kết quả cho các mô hình/phương án khác nhau.
+• Trực quan hóa các kết quả cần thiết như Confusion Matrix, biểu đồ so sánh metric, Elbow
+curve hoặc biểu đồ Silhouette.
+5. Thảo luận và so sánh
+• So sánh ưu, nhược điểm của các phương án đã thử nghiệm.
+• Phân tích tại sao một mô hình hoặc một cách tiền xử lý hoạt động tốt hơn trong bài toán
+cụ thể.
+• Phân tích các dự đoán sai, các lớp khó phân biệt hoặc các cụm chưa rõ ràng.
+• Nêu các hạn chế của dữ liệu và của giải pháp hiện tại.
+6. Tổng kết và hướng phát triển
+• Tóm tắt kết quả chính của bài tập lớn.
+• Nêu hướng cải tiến có thể thực hiện nếu có thêm dữ liệu, thời gian hoặc tài nguyên tính
+toán.
+2.3 Hình thức báo cáo và nộp bài
+Sản phẩm nộp bài của mỗi nhóm gồm:
+• Báo cáo: viết bằng LATEX và nộp bản PDF hoàn chỉnh theo template của học phần.
+• Mã nguồn: lưu trên repository GitHub do giảng viên chỉ định hoặc repository được thống nhất
+với giảng viên.
+4
+Repository tối thiểu gồm: README.md, mã nguồn/notebook, tệp khai báo thư viện (ví dụrequirements.txt
+hoặc environment.yml nếu có), thư mục báo cáo và hướng dẫn chạy chương trình. Không bắt buộc
+đưa các bộ dữ liệu có dung lượng lớn lên repository; nhóm ghi rõ nguồn và đường dẫn tải dữ liệu
+trong README.md.
+Các thành viên cần có đóng góp thể hiện qua lịch sử commit và có khả năng giải thích phần công
+việc mình thực hiện khi bảo vệ bài tập lớn.
+Sử dụng công cụ AI: Sinh viên được phép sử dụng các công cụ AI để hỗ trợ tìm hiểu, gợi ý mã
+nguồn, kiểm tra lỗi hoặc cải thiện cách trình bày. Tuy nhiên, nhóm phải chịu trách nhiệm về tính
+đúng đắn của nội dung, hiểu và giải thích được mã nguồn/kết quả đã nộp. Nhóm cần khai báo ngắn
+gọn cách đã sử dụng AI trong phụ lục báo cáo hoặc tệp AI_USAGE.md trong repository.
+2.4 Điểm thưởng
+Sinh viên có thể nhận điểm thưởng khi thực hiện tốt các nội dung mở rộng sau:
+1. GUI/ứng dụng demo: xây dựng được giao diện hoặc ứng dụng sử dụng mô hình đã huấn
+luyện. Điểm cộng từ 0.5 đến 1.0 điểm tùy mức độ hoàn thiện, tính đúng đắn và khả năng sử
+dụng thực tế.
+2. Khả năng tái tạo: repository có cấu trúc rõ ràng, hướng dẫn chạy đầy đủ, khai báo môi
+trường/thư viện, và có thể chạy lại pipeline từ dữ liệu đến kết quả. Có thể được cộng tối đa 0.5
+điểm.
+3. Kỹ thuật mở rộng: embeddings, PCA nâng cao, mô hình pre-trained, ensemble hoặc deploy-
+ment có thể được xem xét cộng tối đa 0.5 điểm nếu được lựa chọn có lý do, có thí nghiệm
+so sánh và nhóm giải thích được kết quả. Việc chỉ gọi một thư viện hoặc mô hình có sẵn mà
+không phân tích sẽ không được tính điểm thưởng.
+Lưu ý: Điểm thưởng không thay thế các yêu cầu bắt buộc của bài tập lớn. Tổng điểm bài tập lớn
+sau khi cộng thưởng không vượt quá 10 điểm.
+2.5 Rubric đánh giá bài tập lớn A3
+Rubric dưới đây được sử dụng để đánh giá bài tập lớn A3 và đồng thời làm căn cứ tổng hợp minh
+chứng cho các chỉ báo PI6.2 và PI6.3. Trong A3, PI6.2 chiếm 60% trọng số đo và PI6.3 chiếm 40%
+trọng số đo. Điểm của bài tập lớn được tính theo các tiêu chí có trọng số; tiêu chí về liêm chính học
+thuật và sử dụng AI là điều kiện/điểm trừ, không đo PI trực tiếp.
+5
+Tiêu chí / Trọng số 0–<5
+Yếu
+5–<7
+Trung bình
+7–<8
+Khá
+8–<9
+Giỏi
+9–10
+Xuất sắc
+Xác định bài toán, dữ liệu và
+nguồn dữ liệu – 10%
+CLO5 – PI6.2
+Bài toán/dataset không rõ hoặc
+không phù hợp; thiếu nguồn dữ liệu.
+Mô tả được bài toán và dataset
+nhưng mục tiêu còn chung.
+Mục tiêu, dữ liệu, biến đầu vào/đầu
+ra rõ.
+Bài toán có ý nghĩa ứng dụng;
+nguồn dữ liệu/giấy phép tương đối
+minh bạch.
+Bài toán phù hợp bối cảnh, nguồn
+dữ liệu minh bạch, nêu rõ giả định
+và giới hạn.
+Tiền xử lý và fea-
+ture/representation – 15%
+CLO1, CLO5 – PI6.2
+Không xử lý dữ liệu hoặc xử lý sai
+làm hỏng kết quả.
+Có tiền xử lý cơ bản nhưng thiếu giải
+thích.
+Pipeline preprocessing hợp lý; xử lý
+được lỗi chính.
+Feature/representation phù hợp, có
+giải thích quyết định kỹ thuật.
+Tiền xử lý tối ưu cho bài toán, minh
+chứng rõ tác động tới mô hình.
+Xây dựng pipeline mô hình – 20%
+CLO2, CLO4, CLO5 – PI6.2
+Code không chạy hoặc không có mô
+hình hợp lệ.
+Có mô hình chạy được nhưng
+pipeline còn rời rạc.
+Pipeline rõ: split, train, predict; mô
+hình chạy ổn định.
+Repo/notebook tái lập tốt, cấu hình
+mô hình rõ.
+Pipeline hoàn chỉnh, có tổ chức code
+tốt, dễ mở rộng/tái sử dụng.
+Đánh giá và so sánh kết quả – 20%
+CLO3, CLO5 – PI6.3
+Không có metric hoặc metric không
+phù hợp.
+Có metric cơ bản nhưng chưa phân
+tích.
+Metric phù hợp; có bảng/biểu đồ so
+sánh kết quả.
+Phân tích kết quả có căn cứ, nhận
+diện hạn chế mô hình.
+Đánh giá toàn diện, so sánh hợp
+lý, đề xuất cải thiện dựa trên bằng
+chứng.
+Diễn giải kết quả và khuyến nghị
+ứng dụng – 15%
+CLO3, CLO4, CLO5 – PI6.3
+Không giải thích được kết quả hoặc
+khuyến nghị không liên quan.
+Có nhận xét mô hình ở mức mô tả. Giải thích được metric/biểu đồ và lỗi
+mô hình chính.
+Khuyến nghị ứng dụng/cải thiện rõ,
+phù hợp bối cảnh.
+Diễn giải thuyết phục, khuyến nghị
+có căn cứ và khả năng áp dụng.
+Tái lập, repo, log và quản lý nhóm
+– 10%
+CLO5 – PI6.2
+Thiếu repo/log hoặc không rõ đóng
+góp cá nhân.
+Có repo/notebook cơ bản nhưng
+thiếu README hoặc log.
+Repo có README, log chạy và
+phân công nhóm.
+Repo sạch, commit/log minh bạch,
+dễ kiểm chứng đóng góp cá nhân.
+Quản lý nhóm tốt, evidence đầy đủ,
+cấu trúc repo chuyên nghiệp và tái
+lập cao.
+Báo cáo, slide, demo/vấn đáp –
+10%
+CLO5 – PI6.3
+Trình bày rời rạc; demo không chạy
+hoặc không trả lời được.
+Trình bày đủ ý chính; demo/vấn đáp
+còn hạn chế.
+Báo cáo/slide rõ, demo được sản
+phẩm chính.
+Trình bày mạch lạc, trả lời được câu
+hỏi kỹ thuật/chuyên môn.
+Trình bày thuyết phục, demo ổn
+định, thể hiện làm chủ sản phẩm.
+Liêm chính học thuật và sử dụng
+AI
+Điều kiện/điểm trừ; không đo PI
+trực tiếp
+Sao chép, không khai báo nguồn/AI
+hoặc không giải trình được sản
+phẩm.
+Có khai báo tối thiểu nhưng chưa
+đầy đủ.
+Trích nguồn chính và khai báo AI ở
+mức chấp nhận được.
+Trích nguồn, log và phân công
+tương đối minh bạch.
+Minh bạch nguồn dữ
+liệu/code/prompt, giải trình nhất
+quán khi vấn đáp.
+6
+Cách sử dụng rubric:
+• Điểm A3 được chấm theo bảy tiêu chí có trọng số, tổng trọng số bằng 100%.
+• Mức mô tả trong rubric là căn cứ xác định chất lượng sản phẩm và mức độ làm chủ của nhóm;
+giảng viên có thể chấm điểm cụ thể trong khoảng điểm tương ứng với mức đạt được.
+• Với bài toán phân cụm, các mô tả như split/train/predict được hiểu tương ứng theo pipeline
+không giám sát: chuẩn bị dữ liệu, chuẩn hóa/biểu diễn, fit mô hình, lựa chọn số cụm, đánh giá
+và diễn giải cụm.
+• Điểm nhóm có thể được điều chỉnh ở phần trình bày/vấn đáp hoặc quản lý nhóm khi minh chứng
+đóng góp cá nhân và khả năng giải trình cho thấy mức độ tham gia giữa các thành viên không
+tương đương.
+• Nếu có vi phạm liêm chính học thuật, sao chép hoặc sử dụng AI nhưng không khai báo/không
+giải trình được sản phẩm, giảng viên áp dụng điều kiện hoặc điểm trừ theo quy định của học
+phần và Nhà trường.
+3 Nhóm đề tài Xử lý ngôn ngữ tự nhiên
+3.1 Quy trình thực hiện chung
+Đối với các đề tài thuộc nhóm xử lý ngôn ngữ tự nhiên, quy trình xây dựng dự án gồm các bước
+sau:
+1. Khám phá dữ liệu
+• Kiểm tra cấu trúc dữ liệu, số lượng mẫu và các trường văn bản/nhãn.
+• Phân tích phân phối nhãn và độ dài văn bản.
+• Trực quan hóa phân phối lớp để kiểm tra mất cân bằng dữ liệu.
+2. Tiền xử lý văn bản
+• Chuẩn hóa chữ thường khi phù hợp; xử lý dấu câu, ký tự đặc biệt và khoảng trắng thừa.
+• Xem xét stopword, chữ số, URL hoặc các thành phần đặc thù của dữ liệu.
+• Không loại bỏ thông tin một cách máy móc; nhóm cần giải thích các bước tiền xử lý có thể
+làm mất thông tin hữu ích.
+3. Vector hóa văn bản
+• Thử nghiệm Bag-of-Words (CountVectorizer).
+• Thử nghiệm TF-IDF.
+• So sánh một số cấu hình như unigram/bigram, min_df, max_df hoặc số lượng đặc trưng.
+• Sentence Embeddings hoặc các biểu diễn nâng cao là phần mở rộng, không thay thế yêu
+cầu cốt lõi BoW/TF-IDF.
+4. Huấn luyện mô hình
+• Multinomial Naive Bayes là mô hình phù hợp để thử nghiệm với đặc trưng đếm/TF-IDF.
+• Nhóm lựa chọn thêm ít nhất một thuật toán đã học khác khi phù hợp để thực hiện so sánh.
+5. Đánh giá và phân tích kết quả
+7
+• Sử dụng Accuracy, Precision, Recall, F1-score và Confusion Matrix.
+• Phân tích các lớp thường bị nhầm lẫn và một số văn bản mô hình dự đoán sai.
+• So sánh ảnh hưởng của phương pháp vector hóa và tham số đến kết quả.
+3.2 Danh sách đề tài
+Đề tài 1: Phân loại cảm xúc từ phản hồi của sinh viên. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 2: Phát hiện tin tức giả mạo. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 3: Phân loại tin nhắn rác. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 4: Phân loại chủ đề bài báo. Sinh viên tải tập dữ liệu tại đây.
+4 Nhóm đề tài Thị giác máy tính
+4.1 Quy trình thực hiện chung
+1. Khám phá dữ liệu
+• Kiểm tra cách tổ chức dữ liệu, số lượng ảnh, số lớp và phân phối nhãn.
+• Kiểm tra kích thước, số kênh màu và trực quan hóa một số ảnh mẫu của từng lớp.
+2. Tiền xử lý ảnh
+• Resize về kích thước thống nhất và chuẩn hóa giá trị pixel.
+• Chuyển sang grayscale nếu màu sắc không phải thông tin quan trọng của bài toán.
+• Nếu sử dụng tăng cường dữ liệu, nhóm cần giải thích phép biến đổi nào hợp lý với dữ liệu
+và không làm thay đổi nhãn.
+3. Biểu diễn đặc trưng ảnh
+• Baseline: vector pixel sau khi resize/normalize.
+• Thử nghiệm HOG hoặc một đặc trưng cổ điển phù hợp.
+• Có thể sử dụng PCA để giảm số chiều và phân tích ảnh hưởng tới tốc độ/hiệu năng.
+• Transfer Learning hoặc mô hình pre-trained được xem là phần mở rộng, không thay thế
+phần so sánh bằng các thuật toán đã học.
+4. Huấn luyện mô hình
+• Sử dụng K-NN và/hoặc Cây quyết định trên các biểu diễn đặc trưng đã xây dựng.
+• Thử nghiệm một số giá trị tham số quan trọng như k, metric của K-NN, max_depth hoặc
+criterion của Cây quyết định.
+5. Đánh giá và phân tích kết quả
+• Sử dụng Accuracy, Precision, Recall, F1-score và Confusion Matrix.
+• Phân tích lớp dễ nhầm lẫn, ảnh bị dự đoán sai và ảnh hưởng của phương pháp biểu diễn
+đặc trưng.
+8
+4.2 Danh sách đề tài
+Đề tài 5: Nhận dạng chữ số viết tay. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 6: Nhận dạng biển báo giao thông. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 7: Phân loại hoa. Sinh viên tải tập dữ liệu tại đây.
+5 Nhóm đề tài Dữ liệu dạng bảng
+5.1 Quy trình thực hiện chung
+Đối với các đề tài thuộc nhóm dữ liệu dạng bảng (Tabular Data), nhóm cần đặc biệt chú ý đến EDA,
+tiền xử lý dữ liệu, lựa chọn đặc trưng và nguy cơ rò rỉ dữ liệu.
+1. Khám phá và phân tích dữ liệu (EDA)
+• Kiểm tra số lượng mẫu, số lượng đặc trưng, kiểu dữ liệu và ý nghĩa của từng cột.
+• Phân tích biến mục tiêu: phân phối lớp đối với phân loại hoặc phân phối giá trị đối với hồi
+quy.
+• Với đặc trưng số: thống kê mô tả, histogram, box plot và phát hiện ngoại lệ.
+• Với đặc trưng phân loại: tần suất các giá trị và biểu đồ cột.
+• Phân tích dữ liệu thiếu, dữ liệu trùng lặp, tương quan giữa các biến số và các cột có khả
+năng gây data leakage.
+2. Tiền xử lý và kỹ thuật đặc trưng
+Sinh viên thực hiện và so sánh tối thiểu hai cấu hình xử lý dữ liệu từ cùng một dữ liệu thô.
+Luồng A: Pipeline cơ bản
+• Xử lý dữ liệu thiếu bằng phương pháp có lý giải.
+• Mã hóa đặc trưng phân loại bằng One-Hot Encoding, Ordinal Encoding hoặc phương pháp
+phù hợp.
+• Chuẩn hóa đặc trưng số khi cần, đặc biệt với K-NN.
+• Loại bỏ các cột định danh hoặc cột gây rò rỉ nhãn.
+Luồng B: Pipeline cải tiến
+• Thử nghiệm một lựa chọn xử lý khác đối với dữ liệu thiếu, mã hóa hoặc chuẩn hóa; hoặc
+• Lựa chọn/loại bỏ đặc trưng dựa trên phân tích dữ liệu; hoặc
+• Tạo thêm một số đặc trưng mới có ý nghĩa và giải thích giả thuyết về lợi ích của chúng.
+Mục tiêu của hai luồng là giúp nhóm trả lời câu hỏi: thay đổi cách chuẩn bị dữ liệu có làm
+thay đổi hiệu quả mô hình hay không, và tại sao?
+3. Huấn luyện mô hình
+• Với bài toán phân loại: lựa chọn ít nhất hai thuật toán phù hợp trong K-NN, Naive Bayes
+và Cây quyết định.
+• Với bài toán hồi quy: có thể sử dụng KNeighborsRegressor và DecisionTreeRegressor nếu
+phù hợp với cách đặt bài toán.
+• Thực hiện thay đổi một số siêu tham số và ghi lại kết quả để phân tích ảnh hưởng.
+9
+4. Đánh giá và phân tích kết quả
+• Phân loại: Accuracy, Precision, Recall, F1-score, Confusion Matrix; với dữ liệu mất cân
+bằng cần ưu tiên các chỉ số phù hợp thay vì chỉ dùng Accuracy.
+• Hồi quy: MAE, RMSE và R2.
+• Lập bảng so sánh giữa Luồng A và Luồng B, giữa các thuật toán và giữa các cấu hình tham
+số.
+5. So sánh và kết luận
+• Phân tích ưu, nhược điểm của từng pipeline và mô hình.
+• Giải thích mối liên hệ giữa đặc điểm dữ liệu và kết quả mô hình.
+• Chỉ ra các trường hợp dự đoán sai quan trọng và tác động của chúng trong bối cảnh bài
+toán.
+Lưu ý riêng cho đề tài hồi quy
+Đối với Đề tài 15, sinh viên đặt bài toán theo hướng hồi quy, sử dụng điểm chất lượng rượu vang
+làm biến mục tiêu. Nhóm cần ưu tiên các độ đo MAE, RMSE và R2, đồng thời phân tích phân phối
+sai số thay vì chuyển bài toán thành phân loại nếu chưa được giảng viên đồng ý.
+Lưu ý riêng cho đề tài phân cụm khách hàng
+Đối với Đề tài 17, sinh viên sử dụng K-means làm thuật toán chính và thực hiện:
+• Lựa chọn các đặc trưng hợp lý cho phân khúc khách hàng và chuẩn hóa dữ liệu trước khi tính
+khoảng cách.
+• Chạy K-means với nhiều giá trị k, sử dụng Elbow và Silhouette Score để hỗ trợ lựa chọn số
+cụm.
+• Trực quan hóa kết quả khi có thể và xây dựng bảng mô tả đặc điểm của từng cụm.
+• Đặt tên/diễn giải các cụm dựa trên đặc điểm dữ liệu, tránh gán ý nghĩa không được dữ liệu hỗ
+trợ.
+5.2 Danh sách đề tài
+Đề tài 8: Dự đoán sinh viên có nguy cơ bỏ học. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 9: Dự đoán khách hàng rời bỏ dịch vụ viễn thông. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 10: Dự đoán khách hàng đăng ký tiền gửi ngân hàng. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 11: Đánh giá rủi ro tín dụng khách hàng. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 12: Phát hiện giao dịch thẻ tín dụng gian lận. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 13: Dự đoán nhân viên có khả năng nghỉ việc. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 14: Dự đoán khách hàng hủy đặt phòng khách sạn. Sinh viên tải tập dữ liệu tại đây.
+Đề tài 15: Dự đoán điểm chất lượng rượu vang (bài toán hồi quy). Sinh viên tải tập dữ liệu tại
+đây.
+Đề tài 16: Dự đoán đơn hàng có nguy cơ giao trễ trong chuỗi cung ứng. Sinh viên tải tập dữ
+liệu tại đây.
+10
+Đề tài 17: Phân khúc khách hàng bán lẻ dựa trên đặc điểm và hành vi mua sắm. Sinh viên tải
+tập dữ liệu tại đây.
+11
