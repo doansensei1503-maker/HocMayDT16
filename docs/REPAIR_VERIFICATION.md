@@ -40,3 +40,8 @@ Persisted evidence verification and final Git verification are recorded below.
 - Final candidate-file scan: no credential-pattern or email matches; no files >=10 MB.
 - Final Git commit and remote SHA are reported in the delivery response (a commit
   cannot contain its own SHA). No forced push or history rewrite used.
+
+- Actual clean local Git clone at f048570: 13 passed, 1 expected raw-data skip,
+  6 warnings in 61.11 seconds. Includes synthetic end-to-end training/publication.
+  Full private-data retraining in the clean clone was not repeated; real-data
+  reproduction and SHA/split checks were performed in the main workspace.
