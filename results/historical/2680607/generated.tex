@@ -1,0 +1,33 @@
+\paragraph{Phạm vi chạy thực tế} Dữ liệu có 180519 dòng; thí nghiệm dùng 5999 dòng: train 4823, test 1176. Số nhóm tương ứng là 1690 và 423.
+
+\resizebox{\textwidth}{!}{\input{../results/tables/comparison.tex}}
+
+Mô hình chọn trước đánh giá test: tree\_B; CV F1=0.7058. Accuracy=0.7330, Precision=0.8533, Recall=0.6076, F1=0.7098. ROC-AUC=0.7756, PR-AUC=0.7889.
+
+Ma trận nhầm lẫn: TN=478, FP=66, FN=248, TP=384. Không coi recall cao của Dummy (dự đoán tất cả trễ) là bằng chứng mô hình hữu ích.
+
+knn: B−A CV F1=0.0046; test F1=0.0170.
+
+tree: B−A CV F1=0.0316; test F1=0.0410.
+
+Cây mặc định có train F1=0.9994, CV F1=0.6691; chênh lệch lớn gợi ý overfitting. Mô hình chọn có chênh lệch train--CV=0.0079. Một split chưa cho phép kết luận tổng quát.
+
+First Class: 203 dòng, 193 dương, FN=0, FP=10. FNR=0.0000, FPR=1.0000.
+
+Same Day: 71 dòng, 27 dương, FN=0, FP=0. FNR=0.0000, FPR=0.0000.
+
+Second Class: 198 dòng, 158 dương, FN=0, FP=40. FNR=0.0000, FPR=1.0000.
+
+Standard Class: 704 dòng, 254 dương, FN=248, FP=16. FNR=0.9764, FPR=0.0356.
+
+Lỗi tập trung cần được điều tra bằng dữ liệu vận hành; đây là bằng chứng mô tả, không là nguyên nhân đã xác minh. Không điều chỉnh mô hình dựa trên những quan sát test này.
+
+\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/comparison.png}\caption{So sánh các cấu hình đã định trước.}\end{figure}
+
+\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/tree_B_confusion.png}\caption{Ma trận nhầm lẫn của mô hình chọn bằng CV.}\end{figure}
+
+\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/01_classes.png}\caption{Phân bố nhãn trên train.}\end{figure}
+
+\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/05_shipping.png}\caption{Phân bố nhãn theo phương thức giao hàng trên train.}\end{figure}
+
+\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/08_month.png}\caption{Tỷ lệ giao trễ theo tháng tạo đơn trên train.}\end{figure}

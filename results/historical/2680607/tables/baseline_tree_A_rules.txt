@@ -1,0 +1,58 @@
+|--- categorical__Shipping Mode_Standard Class <= 0.50
+|   |--- numeric__Days for shipment (scheduled) <= -1.73
+|   |   |--- categorical__Order Country_Alemania <= 0.50
+|   |   |   |--- categorical__Order Region_South of  USA  <= 0.50
+|   |   |   |   |--- categorical__Order State_Santo Domingo <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 22
+|   |   |   |   |--- categorical__Order State_Santo Domingo >  0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Order Region_South of  USA  >  0.50
+|   |   |   |   |--- categorical__Order State_Carolina del Norte <= 0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categorical__Order State_Carolina del Norte >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- categorical__Order Country_Alemania >  0.50
+|   |   |   |--- class: 1
+|   |--- numeric__Days for shipment (scheduled) >  -1.73
+|   |   |--- numeric__Days for shipment (scheduled) <= -1.01
+|   |   |   |--- categorical__Type_TRANSFER <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Type_TRANSFER >  0.50
+|   |   |   |   |--- categorical__Order State_Castilla-La Mancha <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 11
+|   |   |   |   |--- categorical__Order State_Castilla-La Mancha >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- numeric__Days for shipment (scheduled) >  -1.01
+|   |   |   |--- categorical__Order Country_El Salvador <= 0.50
+|   |   |   |   |--- categorical__Order State_Jorasán Razaví <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 54
+|   |   |   |   |--- categorical__Order State_Jorasán Razaví >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- categorical__Order Country_El Salvador >  0.50
+|   |   |   |   |--- categorical__Type_CASH <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |--- categorical__Type_CASH >  0.50
+|   |   |   |   |   |--- class: 1
+|--- categorical__Shipping Mode_Standard Class >  0.50
+|   |--- categorical__Order State_Java Central <= 0.50
+|   |   |--- categorical__Order State_Managua <= 0.50
+|   |   |   |--- categorical__Order State_Minas Gerais <= 0.50
+|   |   |   |   |--- categorical__Order State_México <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 77
+|   |   |   |   |--- categorical__Order State_México >  0.50
+|   |   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- categorical__Order State_Minas Gerais >  0.50
+|   |   |   |   |--- categorical__Type_PAYMENT <= 0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categorical__Type_PAYMENT >  0.50
+|   |   |   |   |   |--- truncated branch of depth 2
+|   |   |--- categorical__Order State_Managua >  0.50
+|   |   |   |--- categorical__Type_CASH <= 0.50
+|   |   |   |   |--- categorical__Customer Segment_Consumer <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 8
+|   |   |   |   |--- categorical__Customer Segment_Consumer >  0.50
+|   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |--- categorical__Type_CASH >  0.50
+|   |   |   |   |--- class: 1
+|   |--- categorical__Order State_Java Central >  0.50
+|   |   |--- class: 1

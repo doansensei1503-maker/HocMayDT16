@@ -6,7 +6,12 @@ import joblib
 from sklearn.tree import export_text
 from src.data import read_csv, TARGET, GROUP
 from src.reporting import render
-out=sorted(p for p in Path('results/runs').iterdir() if (p/'summary_vi.md').exists())[-1]
+runs=sorted(p for p in Path('results/runs').glob('*')
+            if (p/'summary_vi.md').exists() and (p/'manifest.json').exists()
+            and json.loads((p/'manifest.json').read_text(encoding='utf-8')).get('status')=='COMPLETED')
+if not runs:
+    raise SystemExit('NOT RUN: execute python -m src.run before finalizing evidence')
+out=runs[-1]
 df,_=read_csv('data/raw/DataCoSupplyChainDataset.csv')
 for col in ['Delivery Status','Order Status']:
     pd.crosstab(df[col],df[TARGET]).to_csv(out/'tables'/(col.replace(' ','_')+'_target_crosstab.csv'))
@@ -33,6 +38,7 @@ pd.DataFrame(overlaps).to_csv(out/'tables'/'split_group_overlap_audit.csv',index
 m=json.loads((out/'manifest.json').read_text(encoding='utf-8'))
 Path('results/models').mkdir(parents=True,exist_ok=True)
 shutil.copy2(out/'models'/(m['selected_by_cv']+'.joblib'),'results/models/selected.joblib')
+Path('data/processed').mkdir(parents=True,exist_ok=True)
 shutil.copy2(out/'tables'/'split.csv','data/processed/split.csv')
 render(out)
 print(out)

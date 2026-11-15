@@ -18,13 +18,19 @@ print(df['Late_delivery_risk'].value_counts())
 # Separate audit folder; plots on train only.
 out = Path('results/notebook_eda')
 audit(df, description, out)
-tr, te = split(df)
-plots(df.iloc[tr], out/'figures')''',
+import json
+from src.data import protocol_split
+cfg = json.loads(Path('configs/default.json').read_text(encoding='utf-8-sig'))
+sampled, tr, te = protocol_split(df, cfg)
+plots(sampled.iloc[tr], out/'figures')''',
 '''from src.data import read_csv, validate, split
 from src.pipeline import build
 df, _ = read_csv('data/raw/DataCoSupplyChainDataset.csv')
 validate(df)
-tr, te = split(df)
+import json
+from src.data import protocol_split
+cfg = json.loads(Path('configs/default.json').read_text(encoding='utf-8-sig'))
+sampled, tr, te = protocol_split(df, cfg)
 print('Group-safe split:', len(tr), len(te))
 print(build('A', 'knn'))
 print(build('B', 'tree'))''',

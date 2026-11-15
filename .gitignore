@@ -13,3 +13,11 @@ results/models/*
 *.toc
 .env
 kaggle.json
+
+*.zip
+*.pem
+*.key
+.env.*
+!.env.example
+.ipynb_checkpoints/
+build/

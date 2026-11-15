@@ -1,0 +1,5 @@
+Shipping Mode,n,actual_positive,fn,fp,fn_rate,fp_rate
+First Class,203,193,0,10,0.0,1.0
+Same Day,71,27,0,0,0.0,0.0
+Second Class,198,158,0,40,0.0,1.0
+Standard Class,704,254,248,16,0.9763779527559056,0.035555555555555556

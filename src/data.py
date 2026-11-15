@@ -82,3 +82,16 @@ def feature_audit(df):
             why = 'Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion'
         rows.append({'column':col,'decision':'keep' if keep else 'drop','reason':why,'certainty':'medium' if keep else 'high' if col in FORBIDDEN else 'medium'})
     return pd.DataFrame(rows)
+
+
+SPLIT_PROTOCOL = 'group-subset-v1'
+
+def protocol_split(df, cfg):
+    """Frozen historical protocol: seeded whole-order subset, then group holdout.
+
+    Reproduction requires the same input SHA256, source row order and versions.
+    This is not a fresh unseen test set after historical inspection.
+    """
+    sampled = subset_groups(df, cfg['max_rows'], cfg['seed'])
+    tr, te = split(sampled, cfg['seed'], cfg['test_size'])
+    return sampled, tr, te

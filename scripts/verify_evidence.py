@@ -9,6 +9,7 @@ for path in list(Path('src').glob('*.py'))+list(Path('scripts').glob('*.py')):
     ast.parse(path.read_text(encoding='utf-8-sig'))
 runs=[]
 for out in sorted(Path('results/runs').iterdir()):
+    if not (out/'manifest.json').exists(): continue
     m=json.loads((out/'manifest.json').read_text(encoding='utf-8'))
     if m.get('status')=='COMPLETED': runs.append(out)
 assert runs

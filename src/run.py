@@ -13,7 +13,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.model_selection import GridSearchCV, StratifiedGroupKFold, cross_validate
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report, confusion_matrix, ConfusionMatrixDisplay, roc_auc_score, average_precision_score
-from .data import read_csv, validate, sha256, subset_groups, split, TARGET, GROUP, NUM, CAT
+from .data import read_csv, validate, sha256, TARGET, GROUP, NUM, CAT, protocol_split, SPLIT_PROTOCOL
 from .pipeline import build, grid
 from .audit import audit, plots
 
@@ -34,8 +34,10 @@ def run(cfg):
     persist()
     try:
         quality=audit(df,desc,out)
-        sampled=subset_groups(df,cfg['max_rows'],cfg['seed'])
-        tr,te=split(sampled,cfg['seed'],cfg['test_size'])
+        sampled,tr,te=protocol_split(df,cfg)
+        manifest['split_protocol']=SPLIT_PROTOCOL
+        from .evaluation import representativeness
+        representativeness(df, sampled, out/'tables')
         train,test=sampled.iloc[tr],sampled.iloc[te]
         y=train[TARGET].astype(int); yt=test[TARGET].astype(int)
         manifest.update({'full_rows':len(df),'used_rows':len(sampled),'train_rows':len(train),'test_rows':len(test),'train_groups':train[GROUP].nunique(),'test_groups':test[GROUP].nunique(),'quality':quality,'metric_unit':'order-item','selection_metric':'CV F1 class 1; test never used for selection'})
@@ -69,12 +71,15 @@ def run(cfg):
         # Lock winner before any test predictions. All configurations were predeclared.
         winner=max(candidates,key=lambda x:x[1]['cv_f1'])[1]['name']
         manifest['selected_by_cv']=winner; persist()
+        from .evaluation import time_ablation, order_metrics
+        time_ablation(train, y, cv, candidates, cfg, out/'tables')
         rows=[]
         for pipe,c in candidates:
             start=perf_counter(); pt=pipe.predict(train); c['train_predict_seconds']=perf_counter()-start
             c['train_f1']=f1_score(y,pt,zero_division=0)
             start=perf_counter(); p=pipe.predict(test); prob=pipe.predict_proba(test)[:,1]; c['test_predict_and_probability_seconds']=perf_counter()-start
             c.update({'test_'+k:v for k,v in metrics(yt,p,prob).items()})
+            order_metrics(test, prob, out/'tables'/f'{c["name"]}_order_metrics.json')
             c['train_minus_cv_f1']=c['train_f1']-c['cv_f1']; c['cv_minus_test_f1']=c['cv_f1']-c['test_f1']
             name=c['name']; rows.append(c)
             (out/'tables'/f'{name}_report.json').write_text(json.dumps(classification_report(yt,p,output_dict=True,zero_division=0),indent=2),encoding='utf-8')

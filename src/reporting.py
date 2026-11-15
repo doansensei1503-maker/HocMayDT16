@@ -52,4 +52,5 @@ def render(out):
     text.append('Lỗi tập trung cần được điều tra bằng dữ liệu vận hành; đây là bằng chứng mô tả, không là nguyên nhân đã xác minh. Không điều chỉnh mô hình dựa trên những quan sát test này.')
     for name,caption in [('comparison.png','So sánh các cấu hình đã định trước.'),(m['selected_by_cv']+'_confusion.png','Ma trận nhầm lẫn của mô hình chọn bằng CV.'),('01_classes.png','Phân bố nhãn trên train.'),('05_shipping.png','Phân bố nhãn theo phương thức giao hàng trên train.'),('08_month.png','Tỷ lệ giao trễ theo tháng tạo đơn trên train.')]:
         text.append(r'\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/'+name+r'}\caption{'+caption+r'}\end{figure}')
+    Path('report').mkdir(parents=True, exist_ok=True)
     Path('report/generated.tex').write_text('\n\n'.join(text),encoding='utf-8')

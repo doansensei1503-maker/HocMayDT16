@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETED",
+  "orders": 423,
+  "rule": "mean row probability >= 0.5; equal order weights",
+  "accuracy": 0.5531914893617021,
+  "precision": 0.5531914893617021,
+  "recall": 1.0,
+  "f1": 0.7123287671232876,
+  "confusion_matrix": [
+    [
+      0,
+      189
+    ],
+    [
+      0,
+      234
+    ]
+  ]
+}

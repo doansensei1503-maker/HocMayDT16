@@ -1,0 +1,14 @@
+{
+  "full": {
+    "rows": 180519,
+    "orders": 65752,
+    "mean_items": 2.745452609806546,
+    "max_items": 5
+  },
+  "subset": {
+    "rows": 5999,
+    "orders": 2113,
+    "mean_items": 2.8390913393279695,
+    "max_items": 5
+  }
+}

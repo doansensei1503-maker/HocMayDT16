@@ -23,6 +23,7 @@
     "seaborn": "0.13.2",
     "joblib": "1.6.0"
   },
+  "split_protocol": "group-subset-v1",
   "full_rows": 180519,
   "used_rows": 5999,
   "train_rows": 4823,

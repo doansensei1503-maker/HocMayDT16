@@ -31,3 +31,20 @@ Lệnh execute_notebooks chạy cả bốn notebook; notebook 03 tạo một run
 Khi có XeLaTeX và template chính thức: chuyển nội dung sang template, vào report rồi chạy `xelatex main.tex` hai lần. Slide nguồn ở slides/presentation.tex (biên dịch trong thư mục slides). Chưa xác minh biên dịch PDF vì chưa có compiler/template. Nội dung report/analysis.tex và slide có số liệu của cấu hình 6000 dòng, seed42 hiện tại; nếu đổi cấu hình, phải rà soát/cập nhật các đoạn diễn giải này theo run mới. report/generated.tex và bảng so sánh được sinh tự động.
 
 Kết quả nộp/review an toàn nằm ở results/tables và results/figures. Run riêng trong results/runs chứa split và model để kiểm toán cục bộ, được gitignore. Model không được commit. Khi làm lại với phiên bản code khác, giữ run cũ, hash dữ liệu và commit thật của nhóm; không tạo commit thay đóng góp thành viên.
+
+
+## Repair verification (2026-11-16)
+Protocol `group-subset-v1` is shared by training and EDA notebooks. It retains
+historical subset/split semantics; reproduce with identical CSV hashes, row order,
+config and dependency versions. Original artifacts and notebooks are preserved in
+`results/historical/2680607`. Historical test observations are already known;
+reruns verify reproducibility and are not independent unseen-test evidence.
+
+New aggregate evidence: `sampling_categories.csv`, `sampling_numeric.csv`,
+`sampling_groups.json`, `*_order_metrics.json`, and `time_ablation_cv.csv`.
+Order evaluation averages item probabilities and applies the fixed 0.5 threshold,
+with equal weight per order; inconsistent order targets block that diagnostic.
+The controlled ablation fixes each algorithm's A-selected parameters for A/B on
+the same training CV folds. Its scores are descriptive, with selection optimism;
+they do not establish causal calendar benefits or generalization to future orders.
+See `docs/RUBRIC_EVIDENCE.md` and `docs/DEFENSE_GUIDE.md`.

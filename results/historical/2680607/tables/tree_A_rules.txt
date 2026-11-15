@@ -1,0 +1,49 @@
+|--- categorical__Shipping Mode_Standard Class <= 0.50
+|   |--- numeric__Days for shipment (scheduled) <= -1.73
+|   |   |--- numeric__Order Item Discount Rate <= -1.12
+|   |   |   |--- numeric__Order Item Quantity <= 0.24
+|   |   |   |   |--- class: 0
+|   |   |   |--- numeric__Order Item Quantity >  0.24
+|   |   |   |   |--- class: 0
+|   |   |--- numeric__Order Item Discount Rate >  -1.12
+|   |   |   |--- categorical__Type_CASH <= 0.50
+|   |   |   |   |--- numeric__Order Item Quantity <= -0.45
+|   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |--- numeric__Order Item Quantity >  -0.45
+|   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |--- categorical__Type_CASH >  0.50
+|   |   |   |   |--- class: 1
+|   |--- numeric__Days for shipment (scheduled) >  -1.73
+|   |   |--- numeric__Days for shipment (scheduled) <= -1.01
+|   |   |   |--- categorical__Type_TRANSFER <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- categorical__Type_TRANSFER >  0.50
+|   |   |   |   |--- categorical__Order Region_West of USA  <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 5
+|   |   |   |   |--- categorical__Order Region_West of USA  >  0.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- numeric__Days for shipment (scheduled) >  -1.01
+|   |   |   |--- categorical__Order Country_El Salvador <= 0.50
+|   |   |   |   |--- categorical__Customer Segment_Home Office <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 12
+|   |   |   |   |--- categorical__Customer Segment_Home Office >  0.50
+|   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |--- categorical__Order Country_El Salvador >  0.50
+|   |   |   |   |--- class: 0
+|--- categorical__Shipping Mode_Standard Class >  0.50
+|   |--- categorical__Order State_Managua <= 0.50
+|   |   |--- categorical__Order State_México <= 0.50
+|   |   |   |--- categorical__Order Country_Nigeria <= 0.50
+|   |   |   |   |--- categorical__Type_PAYMENT <= 0.50
+|   |   |   |   |   |--- truncated branch of depth 19
+|   |   |   |   |--- categorical__Type_PAYMENT >  0.50
+|   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |--- categorical__Order Country_Nigeria >  0.50
+|   |   |   |   |--- class: 1
+|   |   |--- categorical__Order State_México >  0.50
+|   |   |   |--- class: 1
+|   |--- categorical__Order State_Managua >  0.50
+|   |   |--- numeric__Order Item Discount Rate <= 0.32
+|   |   |   |--- class: 1
+|   |   |--- numeric__Order Item Discount Rate >  0.32
+|   |   |   |--- class: 1

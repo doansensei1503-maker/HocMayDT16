@@ -1,0 +1,54 @@
+column,dtype,missing,cardinality,source_description
+Type,str,0,4,:  Type of transaction made
+Days for shipping (real),int64,0,7,:  Actual shipping days of the purchased product
+Days for shipment (scheduled),int64,0,4,:  Days of scheduled delivery of the purchased product
+Benefit per order,float64,0,21998,:  Earnings per order placed
+Sales per customer,float64,0,2927,:  Total sales per customer made per customer
+Delivery Status,str,0,4,":  Delivery status of orders: Advance shipping , Late delivery , Shipping canceled , Shipping on time"
+Late_delivery_risk,int64,0,2,":  Categorical variable that indicates if sending is late (1), it is not late (0)."
+Category Id,int64,0,51,:  Product category code
+Category Name,str,0,50,:  Description of the product category
+Customer City,str,0,563,:  City where the customer made the purchase
+Customer Country,str,0,2,:  Country where the customer made the purchase
+Customer Email,str,0,1,:  Customer's email
+Customer Fname,str,0,782,:  Customer name
+Customer Id,int64,0,20652,:  Customer ID
+Customer Lname,str,8,1109,:  Customer lastname
+Customer Password,str,0,1,:  Masked customer key
+Customer Segment,str,0,3,":  Types of Customers: Consumer , Corporate , Home Office"
+Customer State,str,0,46,:  State to which the store where the purchase is registered belongs
+Customer Street,str,0,7458,:  Street to which the store where the purchase is registered belongs
+Customer Zipcode,float64,3,995,:  Customer Zipcode
+Department Id,int64,0,11,:  Department code of store
+Department Name,str,0,11,:  Department name of store
+Latitude,float64,0,11250,:  Latitude corresponding to location of store
+Longitude,float64,0,4487,:  Longitude corresponding to location of store
+Market,str,0,5,":  Market to where the order is delivered : Africa , Europe , LATAM , Pacific Asia , USCA"
+Order City,str,0,3597,:  Destination city of the order
+Order Country,str,0,164,:  Destination country of the order
+Order Customer Id,int64,0,20652,:  Customer order code
+order date (DateOrders),str,0,65752,:  Date on which the order is made
+Order Id,int64,0,65752,:  Order code
+Order Item Cardprod Id,int64,0,118,:  Product code generated through the RFID reader
+Order Item Discount,float64,0,1017,:  Order item discount value
+Order Item Discount Rate,float64,0,18,:  Order item discount percentage
+Order Item Id,int64,0,180519,:  Order item code
+Order Item Product Price,float64,0,75,:  Price of products without discount
+Order Item Profit Ratio,float64,0,162,:  Order Item Profit Ratio
+Order Item Quantity,int64,0,5,:  Number of products per order
+Sales,float64,0,193,:  Value in sales
+Order Item Total,float64,0,2927,:  Total amount per order
+Order Profit Per Order,float64,0,21998,:  Order Profit Per Order
+Order Region,str,0,23,":  Region of the world where the order is delivered :  Southeast Asia ,South Asia ,Oceania ,Eastern Asia, West Asia , West of USA , US Center , West Africa, Central Africa ,North Africa ,Western Europe ,Northern , Caribbean , South America ,East Africa ,Southern Europe , East of USA ,Canada ,Southern Africa , Central Asia ,  Europe , Central America, Eastern Europe , South of  USA "
+Order State,str,0,1089,:  State of the region where the order is delivered
+Order Status,str,0,9,":  Order Status : COMPLETE , PENDING , CLOSED , PENDING_PAYMENT ,CANCELED , PROCESSING ,SUSPECTED_FRAUD ,ON_HOLD ,PAYMENT_REVIEW"
+Order Zipcode,float64,155679,609,NOT MATCHED: manual verification required
+Product Card Id,int64,0,118,:  Product code
+Product Category Id,int64,0,51,:  Product category code
+Product Description,float64,180519,0,:  Product Description
+Product Image,str,0,118,:  Link of visit and purchase of the product
+Product Name,str,0,118,:  Product Name
+Product Price,float64,0,75,:  Product Price
+Product Status,int64,0,1,":  Status of the product stock :If it is 1 not available , 0 the product is available "
+shipping date (DateOrders),str,0,63701,NOT MATCHED: manual verification required
+Shipping Mode,str,0,4,":  The following shipping modes are presented : Standard Class , First Class , Second Class , Same Day"

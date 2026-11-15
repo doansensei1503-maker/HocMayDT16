@@ -1,0 +1,14 @@
+{
+  "rows": 180519,
+  "columns": 53,
+  "duplicate_rows": 0,
+  "orders": 65752,
+  "repeated_order_rows": 114767,
+  "orders_with_multiple_rows": 45902,
+  "mixed_label_orders": 0,
+  "class_counts": {
+    "1": 98977,
+    "0": 81542
+  },
+  "policy": "No automatic removal of duplicates, missing values or outliers. Order-item weighting retained."
+}

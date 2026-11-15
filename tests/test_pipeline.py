@@ -67,7 +67,6 @@ def test_smoke_runner_synthetic_only(toy,tmp_path,monkeypatch):
     # Exercises integration, explicitly separate from real dataset experiment.
     from src.run import run
     monkeypatch.chdir(tmp_path)
-    (tmp_path/'report').mkdir()
     toy.to_csv('toy.csv',index=False)
     pd.DataFrame({'FIELDS':toy.columns,'DESCRIPTION':['synthetic test only']*len(toy.columns)}).to_csv('description.csv',index=False)
     out=run({'data':'toy.csv','description':'description.csv','seed':42,'max_rows':None,'test_size':.2,'cv':2,'n_jobs':1})
@@ -88,3 +87,27 @@ def test_cv_groups_do_not_overlap(toy):
     tr,_=split(toy); train=toy.iloc[tr]
     for a,b in StratifiedGroupKFold(3,shuffle=True,random_state=42).split(train,train[TARGET],train[GROUP]):
         assert not set(train.iloc[a][GROUP])&set(train.iloc[b][GROUP])
+
+def test_protocol_repeatability(toy):
+    from src.data import protocol_split
+    cfg={'seed':42,'max_rows':80,'test_size':.2}
+    a,tr,te=protocol_split(toy,cfg)
+    b,x,y=protocol_split(toy,cfg)
+    assert a.index.equals(b.index)
+    np.testing.assert_array_equal(tr,x)
+    np.testing.assert_array_equal(te,y)
+    assert not set(a.iloc[tr][GROUP]) & set(a.iloc[te][GROUP])
+    assert toy[toy[GROUP].isin(a[GROUP])].index.equals(a.index)
+
+
+def test_order_metrics_equal_weights_and_mixed_labels(tmp_path):
+    from src.evaluation import order_metrics
+    d=pd.DataFrame({GROUP:[1,1,1,2],TARGET:[1,1,1,0]})
+    path=tmp_path/'metrics.json'
+    order_metrics(d,np.array([.9,.9,.9,.9]),path)
+    result=json.loads(path.read_text())
+    assert result['orders']==2 and result['accuracy']==.5
+    assert result['confusion_matrix']==[[0,1],[0,1]]
+    d.loc[0,TARGET]=0
+    order_metrics(d,np.ones(4),path)
+    assert json.loads(path.read_text())['status']=='BLOCKED'

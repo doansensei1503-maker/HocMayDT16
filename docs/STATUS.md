@@ -1,3 +1,20 @@
+# Current repair status ? 2026-11-16
+
+Authoritative repair evidence is in REPAIR_VERIFICATION.md. The older session
+record below is retained as history; its statements about no commits or no remote
+are superseded. Correct origin is doansensei1503-maker/HocMayDT16, branch main.
+Verified backup checkpoint: e66ff6b5801b2ea04aabb873b4de0ffcdcf3e357.
+
+Changes: shared versioned subset/split protocol, aligned EDA notebooks, missing
+output-directory fixes, aggregate sampling comparison, equal-order metrics,
+fixed-parameter time-feature training-CV ablation, historical evidence archive.
+Historical test remains observed; no new generalization claim is made.
+
+Still blocked: official template and LaTeX compiler/PDF validation; actual member
+names and contributions must come from the team. No grade guarantee.
+
+---
+
 ﻿# Kiểm toán và trạng thái cuối phiên
 
 ## COMPLETED — đã xác minh bằng thực thi

@@ -1,0 +1,667 @@
+feature,impurity_importance
+categorical__Shipping Mode_Standard Class,0.5734986705901233
+numeric__order_hour,0.17577916394966725
+categorical__Shipping Mode_Same Day,0.1355676687752321
+categorical__Shipping Mode_First Class,0.06235118292251719
+categorical__Order Country_El Salvador,0.012478124081369274
+categorical__Order State_Managua,0.011237151256830457
+categorical__Order State_México,0.010966550720049536
+categorical__Order Country_Nigeria,0.009855026460124225
+categorical__Type_TRANSFER,0.008266461244086714
+numeric__Order Item Quantity,0.0
+numeric__Order Item Product Price,0.0
+numeric__Order Item Discount Rate,0.0
+numeric__order_month,0.0
+numeric__order_weekday,0.0
+categorical__Type_CASH,0.0
+categorical__Order State_Wellington,0.0
+categorical__Shipping Mode_Second Class,0.0
+categorical__Customer Segment_Consumer,0.0
+categorical__Customer Segment_Corporate,0.0
+categorical__Customer Segment_Home Office,0.0
+categorical__Category Name_Accessories,0.0
+categorical__Category Name_As Seen on  TV!,0.0
+categorical__Category Name_Baby ,0.0
+categorical__Category Name_Baseball & Softball,0.0
+categorical__Category Name_Basketball,0.0
+categorical__Category Name_Books ,0.0
+categorical__Category Name_Boxing & MMA,0.0
+categorical__Type_PAYMENT,0.0
+categorical__Category Name_Cameras ,0.0
+categorical__Category Name_Camping & Hiking,0.0
+categorical__Category Name_Cardio Equipment,0.0
+categorical__Category Name_Children's Clothing,0.0
+categorical__Category Name_Cleats,0.0
+categorical__Category Name_Computers,0.0
+categorical__Category Name_Consumer Electronics,0.0
+categorical__Category Name_Crafts,0.0
+categorical__Category Name_DVDs,0.0
+categorical__Category Name_Electronics,0.0
+categorical__Category Name_Fishing,0.0
+categorical__Category Name_Fitness Accessories,0.0
+categorical__Category Name_Garden,0.0
+categorical__Category Name_Girls' Apparel,0.0
+categorical__Category Name_Golf Apparel,0.0
+categorical__Category Name_Golf Balls,0.0
+categorical__Category Name_Golf Gloves,0.0
+categorical__Category Name_Golf Shoes,0.0
+categorical__Category Name_Health and Beauty,0.0
+categorical__Category Name_Hockey,0.0
+categorical__Category Name_Hunting & Shooting,0.0
+categorical__Category Name_Indoor/Outdoor Games,0.0
+categorical__Category Name_Kids' Golf Clubs,0.0
+categorical__Category Name_Lacrosse,0.0
+categorical__Category Name_Men's Clothing,0.0
+categorical__Category Name_Men's Footwear,0.0
+categorical__Category Name_Men's Golf Clubs,0.0
+categorical__Category Name_Music,0.0
+categorical__Category Name_Pet Supplies,0.0
+categorical__Category Name_Shop By Sport,0.0
+categorical__Category Name_Soccer,0.0
+categorical__Category Name_Sporting Goods,0.0
+categorical__Category Name_Strength Training,0.0
+categorical__Category Name_Tennis & Racquet,0.0
+categorical__Category Name_Toys,0.0
+categorical__Category Name_Trade-In,0.0
+categorical__Category Name_Video Games,0.0
+categorical__Category Name_Water Sports,0.0
+categorical__Category Name_Women's Apparel,0.0
+categorical__Category Name_Women's Clothing,0.0
+categorical__Category Name_Women's Golf Clubs,0.0
+categorical__Department Name_Apparel,0.0
+categorical__Department Name_Book Shop,0.0
+categorical__Department Name_Discs Shop,0.0
+categorical__Department Name_Fan Shop,0.0
+categorical__Department Name_Fitness,0.0
+categorical__Department Name_Footwear,0.0
+categorical__Department Name_Golf,0.0
+categorical__Department Name_Health and Beauty ,0.0
+categorical__Department Name_Outdoors,0.0
+categorical__Department Name_Pet Shop,0.0
+categorical__Department Name_Technology,0.0
+categorical__Market_Africa,0.0
+categorical__Market_Europe,0.0
+categorical__Market_LATAM,0.0
+categorical__Market_Pacific Asia,0.0
+categorical__Market_USCA,0.0
+categorical__Order Region_Canada,0.0
+categorical__Order Region_Caribbean,0.0
+categorical__Order Region_Central Africa,0.0
+categorical__Order Region_Central America,0.0
+categorical__Order Region_Central Asia,0.0
+categorical__Order Region_East Africa,0.0
+categorical__Order Region_East of USA,0.0
+categorical__Order Region_Eastern Asia,0.0
+categorical__Order Region_Eastern Europe,0.0
+categorical__Order Region_North Africa,0.0
+categorical__Order Region_Northern Europe,0.0
+categorical__Order Region_Oceania,0.0
+categorical__Order Region_South America,0.0
+categorical__Order Region_South Asia,0.0
+categorical__Order Region_South of  USA ,0.0
+categorical__Order Region_Southeast Asia,0.0
+categorical__Order Region_Southern Africa,0.0
+categorical__Order Region_Southern Europe,0.0
+categorical__Order Region_US Center ,0.0
+categorical__Order Region_West Africa,0.0
+categorical__Order Region_West Asia,0.0
+categorical__Order Region_West of USA ,0.0
+categorical__Order Region_Western Europe,0.0
+categorical__Order Country_Afganistán,0.0
+categorical__Order Country_Alemania,0.0
+categorical__Order Country_Angola,0.0
+categorical__Order Country_Arabia Saudí,0.0
+categorical__Order Country_Argentina,0.0
+categorical__Order Country_Australia,0.0
+categorical__Order Country_Austria,0.0
+categorical__Order Country_Bangladés,0.0
+categorical__Order Country_Barbados,0.0
+categorical__Order Country_Benín,0.0
+categorical__Order Country_Bielorrusia,0.0
+categorical__Order Country_Bolivia,0.0
+categorical__Order Country_Bosnia y Herzegovina,0.0
+categorical__Order Country_Brasil,0.0
+categorical__Order Country_Bulgaria,0.0
+categorical__Order Country_Bélgica,0.0
+categorical__Order Country_Camerún,0.0
+categorical__Order Country_Canada,0.0
+categorical__Order Country_Chile,0.0
+categorical__Order Country_China,0.0
+categorical__Order Country_Colombia,0.0
+categorical__Order Country_Corea del Sur,0.0
+categorical__Order Country_Costa de Marfil,0.0
+categorical__Order Country_Croacia,0.0
+categorical__Order Country_Cuba,0.0
+categorical__Order Country_Dinamarca,0.0
+categorical__Order Country_Ecuador,0.0
+categorical__Order Country_Egipto,0.0
+categorical__Order Country_España,0.0
+categorical__Order Country_Estados Unidos,0.0
+categorical__Order Country_Filipinas,0.0
+categorical__Order Country_Finlandia,0.0
+categorical__Order Country_Francia,0.0
+categorical__Order Country_Georgia,0.0
+categorical__Order Country_Ghana,0.0
+categorical__Order Country_Guatemala,0.0
+categorical__Order Country_Haití,0.0
+categorical__Order Country_Honduras,0.0
+categorical__Order Country_Hungría,0.0
+categorical__Order Country_India,0.0
+categorical__Order Country_Indonesia,0.0
+categorical__Order Country_Irak,0.0
+categorical__Order Country_Irlanda,0.0
+categorical__Order Country_Irán,0.0
+categorical__Order Country_Israel,0.0
+categorical__Order Country_Italia,0.0
+categorical__Order Country_Jamaica,0.0
+categorical__Order Country_Japón,0.0
+categorical__Order Country_Kazajistán,0.0
+categorical__Order Country_Kenia,0.0
+categorical__Order Country_Kirguistán,0.0
+categorical__Order Country_Madagascar,0.0
+categorical__Order Country_Malasia,0.0
+categorical__Order Country_Mali,0.0
+categorical__Order Country_Marruecos,0.0
+categorical__Order Country_Martinica,0.0
+categorical__Order Country_Mozambique,0.0
+categorical__Order Country_Myanmar (Birmania),0.0
+categorical__Order Country_México,0.0
+categorical__Order Country_Nicaragua,0.0
+categorical__Order Country_Noruega,0.0
+categorical__Order Country_Nueva Zelanda,0.0
+categorical__Order Country_Pakistán,0.0
+categorical__Order Country_Panamá,0.0
+categorical__Order Country_Papúa Nueva Guinea,0.0
+categorical__Order Country_Paraguay,0.0
+categorical__Order Country_Países Bajos,0.0
+categorical__Order Country_Perú,0.0
+categorical__Order Country_Polonia,0.0
+categorical__Order Country_Portugal,0.0
+categorical__Order Country_Qatar,0.0
+categorical__Order Country_Reino Unido,0.0
+categorical__Order Country_República Checa,0.0
+categorical__Order Country_República Democrática del Congo,0.0
+categorical__Order Country_República Dominicana,0.0
+categorical__Order Country_Ruanda,0.0
+categorical__Order Country_Rumania,0.0
+categorical__Order Country_Rusia,0.0
+categorical__Order Country_Senegal,0.0
+categorical__Order Country_Singapur,0.0
+categorical__Order Country_Somalia,0.0
+categorical__Order Country_Sri Lanka,0.0
+categorical__Order Country_SudAfrica,0.0
+categorical__Order Country_Sudán,0.0
+categorical__Order Country_Suecia,0.0
+categorical__Order Country_Suiza,0.0
+categorical__Order Country_Tailandia,0.0
+categorical__Order Country_Tanzania,0.0
+categorical__Order Country_Togo,0.0
+categorical__Order Country_Trinidad y Tobago,0.0
+categorical__Order Country_Turkmenistán,0.0
+categorical__Order Country_Turquía,0.0
+categorical__Order Country_Ucrania,0.0
+categorical__Order Country_Uzbekistán,0.0
+categorical__Order Country_Venezuela,0.0
+categorical__Order Country_Vietnam,0.0
+categorical__Order Country_Zambia,0.0
+categorical__Order Country_Zimbabue,0.0
+categorical__Order State_Abruzos,0.0
+categorical__Order State_Adana,0.0
+categorical__Order State_Afyonkarahisar,0.0
+categorical__Order State_Akmola,0.0
+categorical__Order State_Akwa Ibom,0.0
+categorical__Order State_Al Bahr al Ahmar,0.0
+categorical__Order State_Alagoas,0.0
+categorical__Order State_Alejandría,0.0
+categorical__Order State_Alibori,0.0
+categorical__Order State_Alsacia-Champaña-Ardenas-Lorena,0.0
+categorical__Order State_Alta Austria,0.0
+categorical__Order State_Amazonas,0.0
+categorical__Order State_Amberes,0.0
+categorical__Order State_Amur,0.0
+categorical__Order State_Analamanga,0.0
+categorical__Order State_Anambra,0.0
+categorical__Order State_Ancash,0.0
+categorical__Order State_Andalucía,0.0
+categorical__Order State_Andhra Pradesh,0.0
+categorical__Order State_Anhui,0.0
+categorical__Order State_Ankara,0.0
+categorical__Order State_Antalya,0.0
+categorical__Order State_Antioquía,0.0
+categorical__Order State_Anzoátegui,0.0
+categorical__Order State_Apulia,0.0
+categorical__Order State_Aquitania-Lemosín-Poitou-Charentes,0.0
+categorical__Order State_Ardebil,0.0
+categorical__Order State_Arequipa,0.0
+categorical__Order State_Arizona,0.0
+categorical__Order State_Ashanti,0.0
+categorical__Order State_Asjabad,0.0
+categorical__Order State_Assam,0.0
+categorical__Order State_Astaná,0.0
+categorical__Order State_Asturias,0.0
+categorical__Order State_Asunción,0.0
+categorical__Order State_Atacama,0.0
+categorical__Order State_Atlántico,0.0
+categorical__Order State_Atlántida,0.0
+categorical__Order State_Auckland,0.0
+categorical__Order State_Australia Occidental,0.0
+categorical__Order State_Australia del Sur,0.0
+categorical__Order State_Auvernia,0.0
+categorical__Order State_Auvernia-Ródano-Alpes,0.0
+categorical__Order State_Baden-Wurtemberg,0.0
+categorical__Order State_Bagdad,0.0
+categorical__Order State_Bahía,0.0
+categorical__Order State_Baja California,0.0
+categorical__Order State_Baja Sajonia,0.0
+categorical__Order State_Bajo Congo,0.0
+categorical__Order State_Bali,0.0
+categorical__Order State_Bamako,0.0
+categorical__Order State_Bangkok,0.0
+categorical__Order State_Barahona,0.0
+categorical__Order State_Bashkortostán,0.0
+categorical__Order State_Basora,0.0
+categorical__Order State_Bauchi,0.0
+categorical__Order State_Bavaria,0.0
+categorical__Order State_Bay of Plenty,0.0
+categorical__Order State_Benadir,0.0
+categorical__Order State_Bengala Occidental,0.0
+categorical__Order State_Benguela,0.0
+categorical__Order State_Berlín,0.0
+categorical__Order State_Bihar,0.0
+categorical__Order State_Bishkek,0.0
+categorical__Order State_Bogotá,0.0
+categorical__Order State_Bolu,0.0
+categorical__Order State_Bolívar,0.0
+categorical__Order State_Borgoña-Franco Condado,0.0
+categorical__Order State_Brabante Flamenco,0.0
+categorical__Order State_Brabante Septentrional,0.0
+categorical__Order State_Brandenburgo,0.0
+categorical__Order State_Bremen,0.0
+categorical__Order State_Bretaña,0.0
+categorical__Order State_Budapest,0.0
+categorical__Order State_Buenos Aires,0.0
+categorical__Order State_Bursa,0.0
+categorical__Order State_Bélgorod,0.0
+categorical__Order State_Cabo Occidental,0.0
+categorical__Order State_Calabarzón,0.0
+categorical__Order State_California,0.0
+categorical__Order State_Camagüey,0.0
+categorical__Order State_Campania,0.0
+categorical__Order State_Campeche,0.0
+categorical__Order State_Canterbury,0.0
+categorical__Order State_Capital Nacional,0.0
+categorical__Order State_Caquetá,0.0
+categorical__Order State_Carabobo,0.0
+categorical__Order State_Carintia,0.0
+categorical__Order State_Carolina del Norte,0.0
+categorical__Order State_Castilla y León,0.0
+categorical__Order State_Castilla-La Mancha,0.0
+categorical__Order State_Cataluña,0.0
+categorical__Order State_Ceará,0.0
+categorical__Order State_Central,0.0
+categorical__Order State_Centro-Valle de Loira,0.0
+categorical__Order State_Cerdeña,0.0
+categorical__Order State_Chaco,0.0
+categorical__Order State_Chaguanas,0.0
+categorical__Order State_Cheliábinsk,0.0
+categorical__Order State_Chernihiv,0.0
+categorical__Order State_Chhattisgarh,0.0
+categorical__Order State_Chiapas,0.0
+categorical__Order State_Chihuahua,0.0
+categorical__Order State_Chimaltenango,0.0
+categorical__Order State_Chinandega,0.0
+categorical__Order State_Chiriquí,0.0
+categorical__Order State_Chittagong,0.0
+categorical__Order State_Chocó,0.0
+categorical__Order State_Choluteca,0.0
+categorical__Order State_Chongqing,0.0
+categorical__Order State_Cienfuegos,0.0
+categorical__Order State_Ciudad Ho Chi Minh,0.0
+categorical__Order State_Coahuila,0.0
+categorical__Order State_Colima,0.0
+categorical__Order State_Colorado,0.0
+categorical__Order State_Colón,0.0
+categorical__Order State_Connecticut,0.0
+categorical__Order State_Constanza,0.0
+categorical__Order State_Cork,0.0
+categorical__Order State_Corrientes,0.0
+categorical__Order State_Cortés,0.0
+categorical__Order State_Corum,0.0
+categorical__Order State_Cuscatlán,0.0
+categorical__Order State_Célebes Suroriental,0.0
+categorical__Order State_Córdoba,0.0
+categorical__Order State_Daca,0.0
+categorical__Order State_Daejeon,0.0
+categorical__Order State_Daguestán,0.0
+categorical__Order State_Dakar,0.0
+categorical__Order State_Dar es Salaam,0.0
+categorical__Order State_Delaware,0.0
+categorical__Order State_Delta,0.0
+categorical__Order State_Distrito Capital,0.0
+categorical__Order State_Distrito Federal,0.0
+categorical__Order State_Dnipropetrovsk,0.0
+categorical__Order State_Doha,0.0
+categorical__Order State_Donetsk,0.0
+categorical__Order State_Dublín,0.0
+categorical__Order State_Dà Nang,0.0
+categorical__Order State_El Beni,0.0
+categorical__Order State_El Cairo,0.0
+categorical__Order State_Emilia-Romaña,0.0
+categorical__Order State_Enugu,0.0
+categorical__Order State_Escania,0.0
+categorical__Order State_Escocia,0.0
+categorical__Order State_Est,0.0
+categorical__Order State_Estambul,0.0
+categorical__Order State_Estelí,0.0
+categorical__Order State_Estocolmo,0.0
+categorical__Order State_Fars,0.0
+categorical__Order State_Federación de Bosnia y Herzegovina,0.0
+categorical__Order State_Flanders Oriental,0.0
+categorical__Order State_Florida,0.0
+categorical__Order State_Francisco Morazán,0.0
+categorical__Order State_Frisia,0.0
+categorical__Order State_Friuli-Venecia Julia,0.0
+categorical__Order State_Fromager,0.0
+categorical__Order State_Fujian,0.0
+categorical__Order State_Fukuoka,0.0
+categorical__Order State_Gales,0.0
+categorical__Order State_Gauteng,0.0
+categorical__Order State_Georgia,0.0
+categorical__Order State_Goiás,0.0
+categorical__Order State_Gran Accra,0.0
+categorical__Order State_Gran Casablanca,0.0
+categorical__Order State_Gran Valle del Rift,0.0
+categorical__Order State_Granada,0.0
+categorical__Order State_Granma,0.0
+categorical__Order State_Grodno,0.0
+categorical__Order State_Guanajuato,0.0
+categorical__Order State_Guangdong,0.0
+categorical__Order State_Guangxi,0.0
+categorical__Order State_Guantánamo,0.0
+categorical__Order State_Guatemala,0.0
+categorical__Order State_Guayas,0.0
+categorical__Order State_Guerrero,0.0
+categorical__Order State_Guizhou,0.0
+categorical__Order State_Guyarat,0.0
+categorical__Order State_Gómel,0.0
+categorical__Order State_Güeldres,0.0
+categorical__Order State_Hamadán,0.0
+categorical__Order State_Hamburgo,0.0
+categorical__Order State_Harare,0.0
+categorical__Order State_Haryana,0.0
+categorical__Order State_Hawke's Bay,0.0
+categorical__Order State_Hebei,0.0
+categorical__Order State_Heilongjiang,0.0
+categorical__Order State_Henan,0.0
+categorical__Order State_Hesse,0.0
+categorical__Order State_Holanda Meridional,0.0
+categorical__Order State_Holanda Septentrional,0.0
+categorical__Order State_Holguín,0.0
+categorical__Order State_Hormozgán,0.0
+categorical__Order State_Hubei,0.0
+categorical__Order State_Hunan,0.0
+categorical__Order State_Hyogo,0.0
+categorical__Order State_Idaho,0.0
+categorical__Order State_Illinois,0.0
+categorical__Order State_Indiana,0.0
+categorical__Order State_Inglaterra,0.0
+categorical__Order State_Isla de Francia,0.0
+categorical__Order State_Isla de la Juventud,0.0
+categorical__Order State_Islas Baleares,0.0
+categorical__Order State_Jalisco,0.0
+categorical__Order State_Jartum,0.0
+categorical__Order State_Java Central,0.0
+categorical__Order State_Java Occidental,0.0
+categorical__Order State_Java Oriental,0.0
+categorical__Order State_Jerusalén,0.0
+categorical__Order State_Jharkhand,0.0
+categorical__Order State_Jiangsu,0.0
+categorical__Order State_Jiangxi,0.0
+categorical__Order State_Jilin,0.0
+categorical__Order State_Jizán,0.0
+categorical__Order State_Jorasán Razaví,0.0
+categorical__Order State_Juzestán,0.0
+categorical__Order State_Járkov,0.0
+categorical__Order State_Kabul,0.0
+categorical__Order State_Kaduna,0.0
+categorical__Order State_Kalimantan Oriental,0.0
+categorical__Order State_Kaliningrado,0.0
+categorical__Order State_Kanagawa,0.0
+categorical__Order State_Kano,0.0
+categorical__Order State_Karnataka,0.0
+categorical__Order State_Kasai Occidental,0.0
+categorical__Order State_Kasai Oriental,0.0
+categorical__Order State_Katanga,0.0
+categorical__Order State_Katsina,0.0
+categorical__Order State_Kentucky,0.0
+categorical__Order State_Kermanshah,0.0
+categorical__Order State_Khmelnytskyi,0.0
+categorical__Order State_Khulna,0.0
+categorical__Order State_Khánh Hòa,0.0
+categorical__Order State_Kigali,0.0
+categorical__Order State_Kinshasa,0.0
+categorical__Order State_Kostanái,0.0
+categorical__Order State_Kuala Lumpur,0.0
+categorical__Order State_Kütahya,0.0
+categorical__Order State_La Romana,0.0
+categorical__Order State_La Vega,0.0
+categorical__Order State_Lacio,0.0
+categorical__Order State_Lagos,0.0
+categorical__Order State_Languedoc-Rosellón-Mediodía-Pirineos,0.0
+categorical__Order State_Las Tunas,0.0
+categorical__Order State_León,0.0
+categorical__Order State_Liaoning,0.0
+categorical__Order State_Liguria,0.0
+categorical__Order State_Lima (ciudad),0.0
+categorical__Order State_Lisboa,0.0
+categorical__Order State_Lombardía,0.0
+categorical__Order State_Luanda,0.0
+categorical__Order State_Lugansk,0.0
+categorical__Order State_Luisiana,0.0
+categorical__Order State_Lusaka,0.0
+categorical__Order State_Lviv,0.0
+categorical__Order State_Madhya Pradesh,0.0
+categorical__Order State_Madrid,0.0
+categorical__Order State_Magdalena,0.0
+categorical__Order State_Maharashtra,0.0
+categorical__Order State_Équateur,0.0
+categorical__Order State_Manisa,0.0
+categorical__Order State_Maputo,0.0
+categorical__Order State_Marañón,0.0
+categorical__Order State_Marche,0.0
+categorical__Order State_Marlborough,0.0
+categorical__Order State_Marrakech-Tensift-Al Hauz,0.0
+categorical__Order State_Martinica,0.0
+categorical__Order State_Maryland,0.0
+categorical__Order State_Marítima,0.0
+categorical__Order State_Masaya,0.0
+categorical__Order State_Matagalpa,0.0
+categorical__Order State_Matruh,0.0
+categorical__Order State_Mayabeque,0.0
+categorical__Order State_Meca,0.0
+categorical__Order State_Mecklemburgo-Pomerania Occidental,0.0
+categorical__Order State_Medina,0.0
+categorical__Order State_Mendoza,0.0
+categorical__Order State_Menia,0.0
+categorical__Order State_Mequinez-Tafilalet,0.0
+categorical__Order State_Meridional,0.0
+categorical__Order State_Mersin,0.0
+categorical__Order State_Michigan,0.0
+categorical__Order State_Michoacán,0.0
+categorical__Order State_Minas Gerais,0.0
+categorical__Order State_Minnesota,0.0
+categorical__Order State_Miranda,0.0
+categorical__Order State_Misisipi,0.0
+categorical__Order State_Misuri,0.0
+categorical__Order State_Mongolia Interior,0.0
+categorical__Order State_Morelos,0.0
+categorical__Order State_Murcia,0.0
+categorical__Order State_Mérida,0.0
+numeric__Days for shipment (scheduled),0.0
+categorical__Order State_Nairobi,0.0
+categorical__Order State_Namangán,0.0
+categorical__Order State_Namur,0.0
+categorical__Order State_Nariño,0.0
+categorical__Order State_Nayarit,0.0
+categorical__Order State_Nebraska,0.0
+categorical__Order State_Negeri Sembilan,0.0
+categorical__Order State_Nord,0.0
+categorical__Order State_Normandía,0.0
+categorical__Order State_Noroeste,0.0
+categorical__Order State_Norte de Santander,0.0
+categorical__Order State_Norte-Paso de Calais-Picardía,0.0
+categorical__Order State_Northland,0.0
+categorical__Order State_Nueva Gales del Sur,0.0
+categorical__Order State_Nueva Jersey,0.0
+categorical__Order State_Nueva York,0.0
+categorical__Order State_Nuevo Hampshire,0.0
+categorical__Order State_Nuevo León,0.0
+categorical__Order State_Nusa Tenggara Oriental,0.0
+categorical__Order State_Níger,0.0
+categorical__Order State_O'Higgins,0.0
+categorical__Order State_Occidental,0.0
+categorical__Order State_Odisha,0.0
+categorical__Order State_Ohio,0.0
+categorical__Order State_Ondo,0.0
+categorical__Order State_Ontario,0.0
+categorical__Order State_Oregón,0.0
+categorical__Order State_Otago,0.0
+categorical__Order State_Ouest,0.0
+categorical__Order State_Oyo,0.0
+categorical__Order State_Pahang,0.0
+categorical__Order State_Panamá,0.0
+categorical__Order State_Paraná,0.0
+categorical__Order State_Pavlodar,0.0
+categorical__Order State_País Vasco,0.0
+categorical__Order State_Países del Loira,0.0
+categorical__Order State_Pekín,0.0
+categorical__Order State_Pensilvania,0.0
+categorical__Order State_Perak,0.0
+categorical__Order State_Peravia,0.0
+categorical__Order State_Pernambuco,0.0
+categorical__Order State_Piamonte,0.0
+categorical__Order State_Piauí,0.0
+categorical__Order State_Pinar del Río,0.0
+categorical__Order State_Piura,0.0
+categorical__Order State_Podlaquia,0.0
+categorical__Order State_Pomerania,0.0
+categorical__Order State_Porto,0.0
+categorical__Order State_Praga,0.0
+categorical__Order State_Primorje-Gorski Kotar,0.0
+categorical__Order State_Provenza-Alpes-Costa Azul,0.0
+categorical__Order State_Provincia Oriental,0.0
+categorical__Order State_Puebla,0.0
+categorical__Order State_Punyab,0.0
+categorical__Order State_Pwani,0.0
+categorical__Order State_Qom,0.0
+categorical__Order State_Quebec,0.0
+categorical__Order State_Queensland,0.0
+categorical__Order State_Quindío,0.0
+categorical__Order State_Quintana Roo,0.0
+categorical__Order State_Rabat-Salé-Zemur-Zaer,0.0
+categorical__Order State_Rajastán,0.0
+categorical__Order State_Rangún,0.0
+categorical__Order State_Región Capital,0.0
+categorical__Order State_Renania del Norte-Westfalia,0.0
+categorical__Order State_Renania-Palatinado,0.0
+categorical__Order State_Rhode Island,0.0
+categorical__Order State_Riad,0.0
+categorical__Order State_Riau,0.0
+categorical__Order State_Rio Grande do Sul,0.0
+categorical__Order State_Río Grande del Norte,0.0
+categorical__Order State_Río de Janeiro,0.0
+categorical__Order State_Sajonia,0.0
+categorical__Order State_Salta,0.0
+categorical__Order State_San Juan,0.0
+categorical__Order State_San Luis Potosí,0.0
+categorical__Order State_San Miguel,0.0
+categorical__Order State_San Pedro de Macorís,0.0
+categorical__Order State_San Salvador,0.0
+categorical__Order State_Sanliurfa,0.0
+categorical__Order State_Santa Ana,0.0
+categorical__Order State_Santa Catarina,0.0
+categorical__Order State_Santa Caterina,0.0
+categorical__Order State_Santa Fe,0.0
+categorical__Order State_Santander,0.0
+categorical__Order State_Santiago de Chile,0.0
+categorical__Order State_Santiago de Cuba,0.0
+categorical__Order State_Santo Domingo,0.0
+categorical__Order State_Sarre,0.0
+categorical__Order State_Sergipe,0.0
+categorical__Order State_Seúl,0.0
+categorical__Order State_Shaanxi,0.0
+categorical__Order State_Shandong,0.0
+categorical__Order State_Shanghái,0.0
+categorical__Order State_Shanxi,0.0
+categorical__Order State_Shizuoka,0.0
+categorical__Order State_Sichuan,0.0
+categorical__Order State_Sicilia,0.0
+categorical__Order State_Sinaloa,0.0
+categorical__Order State_Sind,0.0
+categorical__Order State_Singapur,0.0
+categorical__Order State_Sivas,0.0
+categorical__Order State_Sofala,0.0
+categorical__Order State_Sofía-Ciudad,0.0
+categorical__Order State_Sonora,0.0
+categorical__Order State_Sonsonate,0.0
+categorical__Order State_Split-Dalmacia,0.0
+categorical__Order State_Stiria,0.0
+categorical__Order State_Sumatra Meridional,0.0
+categorical__Order State_Sumatra Septentrional,0.0
+categorical__Order State_São Paulo,0.0
+categorical__Order State_Tabasco,0.0
+categorical__Order State_Tamaulipas,0.0
+categorical__Order State_Tamil Nadu,0.0
+categorical__Order State_Taranaki,0.0
+categorical__Order State_Tasmania,0.0
+categorical__Order State_Teherán,0.0
+categorical__Order State_Tel Aviv,0.0
+categorical__Order State_Telangana,0.0
+categorical__Order State_Tennessee,0.0
+categorical__Order State_Territorio de la Capital Australiana,0.0
+categorical__Order State_Territorio del Norte,0.0
+categorical__Order State_Texas,0.0
+categorical__Order State_Tianjin,0.0
+categorical__Order State_Tiflis,0.0
+categorical__Order State_Tochigi,0.0
+categorical__Order State_Tokio,0.0
+categorical__Order State_Tolima,0.0
+categorical__Order State_Toscana,0.0
+categorical__Order State_Ulsan,0.0
+categorical__Order State_Umbría,0.0
+categorical__Order State_Utrecht,0.0
+categorical__Order State_Uttar Pradesh,0.0
+categorical__Order State_Uttarakhand,0.0
+categorical__Order State_Uusimaa,0.0
+categorical__Type_DEBIT,0.0
+categorical__Order State_Valle del Cauca,0.0
+categorical__Order State_Van,0.0
+categorical__Order State_Veracruz,0.0
+categorical__Order State_Vest-Agder,0.0
+categorical__Order State_Victoria,0.0
+categorical__Order State_Viena,0.0
+categorical__Order State_Villa Clara,0.0
+categorical__Order State_Virginia,0.0
+categorical__Order State_Vitsyebsk,0.0
+categorical__Order State_Volinia,0.0
+categorical__Order State_Västra Götaland,0.0
+categorical__Order State_Véneto,0.0
+categorical__Order State_Vínnytsia,0.0
+categorical__Order State_Waikato,0.0
+categorical__Category Name_CDs ,0.0
+categorical__Order State_Valenciana,0.0
+categorical__Order State_Wisconsin,0.0
+categorical__Order State_Xinjiang Uygur,0.0
+categorical__Order State_Yakarta,0.0
+categorical__Order State_Yaracuy,0.0
+categorical__Order State_Yazd,0.0
+categorical__Order State_Yogyakarta,0.0
+categorical__Order State_Yoro,0.0
+categorical__Order State_Yucatán,0.0
+categorical__Order State_Zacatecas,0.0
+categorical__Order State_Zagrebacka,0.0
+categorical__Order State_Zhejiang,0.0
+categorical__Order State_Zulia,0.0
+categorical__Order State_Zúrich,0.0
+categorical__Order State_Çanakkale,0.0
+categorical__Order State_Washington,0.0

@@ -1,0 +1,54 @@
+column,decision,reason,certainty
+Type,keep,Assumed available at order creation; verify operational contract,medium
+Days for shipping (real),drop,Outcome or post-order status; unavailable at prediction time,high
+Days for shipment (scheduled),keep,Assumed available at order creation; verify operational contract,medium
+Benefit per order,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Sales per customer,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Delivery Status,drop,Outcome or post-order status; unavailable at prediction time,high
+Late_delivery_risk,drop,Target only; never input,high
+Category Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Category Name,keep,Assumed available at order creation; verify operational contract,medium
+Customer City,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Customer Country,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Customer Email,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Fname,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Lname,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Password,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Segment,keep,Assumed available at order creation; verify operational contract,medium
+Customer State,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Customer Street,drop,"Identifier, personal information or high-cardinality proxy",medium
+Customer Zipcode,drop,"Identifier, personal information or high-cardinality proxy",medium
+Department Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Department Name,keep,Assumed available at order creation; verify operational contract,medium
+Latitude,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Longitude,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Market,keep,Assumed available at order creation; verify operational contract,medium
+Order City,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Country,keep,Assumed available at order creation; verify operational contract,medium
+Order Customer Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+order date (DateOrders),keep,B only: calendar features; raw timestamp excluded,medium
+Order Id,drop,"Identifier, personal information or high-cardinality proxy",high
+Order Item Cardprod Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Order Item Discount,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Item Discount Rate,keep,Assumed available at order creation; verify operational contract,medium
+Order Item Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Order Item Product Price,keep,Assumed available at order creation; verify operational contract,medium
+Order Item Profit Ratio,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Item Quantity,keep,Assumed available at order creation; verify operational contract,medium
+Sales,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Item Total,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Profit Per Order,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Order Region,keep,Assumed available at order creation; verify operational contract,medium
+Order State,keep,Assumed available at order creation; verify operational contract,medium
+Order Status,drop,Outcome or post-order status; unavailable at prediction time,high
+Order Zipcode,drop,"Identifier, personal information or high-cardinality proxy",medium
+Product Card Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Product Category Id,drop,"Identifier, personal information or high-cardinality proxy",medium
+Product Description,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Product Image,drop,"Identifier, personal information or high-cardinality proxy",medium
+Product Name,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Product Price,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+Product Status,drop,Not allowlisted: timing/semantics uncertain or redundant; conservative exclusion,medium
+shipping date (DateOrders),drop,Outcome or post-order status; unavailable at prediction time,high
+Shipping Mode,keep,Assumed available at order creation; verify operational contract,medium

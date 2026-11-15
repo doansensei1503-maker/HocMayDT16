@@ -27,6 +27,7 @@ Baseline là cây mặc định với A; thêm Dummy để kiểm tra mức nề
 Mỗi run lưu hash nguồn, cấu hình, phiên bản, split theo chỉ số dòng, kết quả từng cấu hình CV, thời gian tìm kiếm/fit lại và dự đoán. Accuracy, Precision, Recall, F1, ROC-AUC, PR-AUC, ma trận nhầm lẫn và classification report được tính trực tiếp. Mô hình tốt nhất được xác định bằng CV trước mọi dự đoán test. Các test metric khác chỉ phục vụ so sánh đã định trước.
 \section{Thảo luận và so sánh}
 \input{analysis.tex}
+\IfFileExists{repair_analysis.tex}{\input{repair_analysis.tex}}{}
 Không kết luận nguyên nhân từ tương quan EDA. Chênh lệch train--CV--test và độ lệch chuẩn CV giúp nhận diện dấu hiệu overfitting; không chỉ nhìn Accuracy. So sánh A/B trong cùng thuật toán, cùng split và grid; kết quả không đại diện cho mọi cách chia dữ liệu. K-NN nhạy thang đo và chiều one-hot; cây dễ overfit khi không giới hạn sâu. Đây là đặc tính phương pháp, không thay thế phân tích số liệu thực tế.
 Ví dụ FN/FP chỉ xuất đặc trưng an toàn, không chứa tên, email, địa chỉ hoặc mã khách. Bảng lỗi theo Shipping Mode/Market/Order Region có số lượng và mẫu số lớp dương/âm để tránh so sánh tỷ lệ không cùng mẫu số. Chưa kiểm định calibration, chưa có causal attribution hoặc lợi ích kinh doanh được thử nghiệm. Các trường hợp hủy hoặc nghi gian lận vẫn theo nhãn gốc; cần xem cross-tab trạng thái để hiểu nhãn 0 không đồng nghĩa mọi đơn đã giao đúng hạn.
 \section{Tổng kết và hướng phát triển}
