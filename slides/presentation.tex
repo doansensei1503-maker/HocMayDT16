@@ -31,6 +31,21 @@ Baseline cây mặc định và Dummy. Giới hạn 5999 dòng cùng subset/spli
 Cây B: Accuracy 0.7330, Precision 0.8533, Recall 0.6076, F1 0.7098.\\
 Metric theo dòng; chưa có khoảng tin cậy hoặc xác suất hiệu chuẩn.
 \end{frame}
+\begin{frame}{Đánh giá theo đơn và phạm vi}
+Gộp xác suất dòng bằng trung bình; ngưỡng cố định 0.5, mỗi đơn có trọng số bằng nhau.
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+Mô hình & Accuracy & Precision & Recall & F1 \\
+\hline
+tree\_B & 0.7258 & 0.8554 & 0.6068 & 0.7100 \\
+Dummy & 0.5532 & 0.5532 & 1.0000 & 0.7123 \\
+\hline
+\end{tabular}
+\end{center}
+Dummy dự đoán tất cả 423 đơn là trễ nên có Recall=1; F1 cao hơn một chút không đồng nghĩa hữu ích hơn.\\
+Mẫu: 5999/180519 dòng (3.32\%), 2113/65752 đơn (3.21\%). Holdout lịch sử đã quan sát, không phải kiểm chứng độc lập mới.
+\end{frame}
 \begin{frame}{So sánh và overfitting}
 \includegraphics[width=.9\textwidth,height=.65\textheight,keepaspectratio]{../results/figures/comparison.png}
 \end{frame}

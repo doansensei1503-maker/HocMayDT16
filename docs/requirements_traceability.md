@@ -9,7 +9,7 @@ Nguồn ưu tiên: PDF FIT4013 do người dùng cung cấp, đã trích docs/fi
 | 4 baseline, KNN/cây, tham số | src/run.py, configs/default.json | manifest, CV tables, model artifacts |
 | 5 metric, overfit, FN/FP | src/run.py, reporting.py | classification reports, confusion, error tables, summary_vi.md |
 | 6 cấu trúc, notebook | README, src, notebooks, requirements | kiểm tra cây thư mục và chạy notebook |
-| 7 sáu phần LaTeX | report/main.tex | PDF BLOCKED nếu thiếu compiler/template |
+| 7 sáu phần LaTeX | report/main.tex | Sáu phần có trong source; PDF = PENDING do thiếu `infwarerr.sty`, template chính thức chưa có |
 | 8 kiểm thử | tests/test_pipeline.py | log pytest; synthetic smoke tách khỏi chạy thật |
 | 9 demo | Không ưu tiên | NOT RUN; chỉ tùy chọn khi lõi đạt |
 | 10 minh bạch | AI_USAGE, STATUS, manifest | không giả tên/metric/commit |
@@ -22,7 +22,7 @@ Nguồn ưu tiên: PDF FIT4013 do người dùng cung cấp, đã trích docs/fi
 | Đánh giá và so sánh | 20% | comparison, classification report, confusion |
 | Diễn giải và khuyến nghị | 15% | summary_vi, error tables; cần nhóm rà soát nội dung báo cáo |
 | Tái lập, repo, log và nhóm | 10% | requirements, scripts, manifest; BLOCKED: đóng góp thành viên thật/GitHub do nhóm bổ sung |
-| Báo cáo, slide, demo/vấn đáp | 10% | main.tex, slides/outline; template/PDF/slide hoàn chỉnh còn thiếu |
+| Báo cáo, slide, demo/vấn đáp | 10% | main.tex, slides/outline; PDF và slide chưa biên dịch/kiểm tra; template chính thức và thông tin nhóm còn thiếu |
 | Liêm chính AI | điều kiện | AI_USAGE, nguồn, giới hạn |
 
 Có file không đồng nghĩa đạt rubric; không bảo đảm điểm 9–10. Phiên bản đầu phải được kiểm thử và ghi trạng thái sau chạy.

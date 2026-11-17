@@ -1,8 +1,8 @@
 \paragraph{Phạm vi chạy thực tế} Dữ liệu có 180519 dòng; thí nghiệm dùng 5999 dòng: train 4823, test 1176. Số nhóm tương ứng là 1690 và 423.
 
-\resizebox{\textwidth}{!}{\input{../results/tables/comparison.tex}}
+\begin{table}[!htbp]\centering\resizebox{\textwidth}{!}{\input{../results/tables/comparison.tex}}\caption{So sánh metric theo dòng của các cấu hình trên CV và tập kiểm tra lịch sử.}\label{tab:model-comparison}\end{table}
 
-Mô hình chọn trước đánh giá test: tree\_B; CV F1=0.7058. Accuracy=0.7330, Precision=0.8533, Recall=0.6076, F1=0.7098. ROC-AUC=0.7756, PR-AUC=0.7889.
+Mô hình chọn trước đánh giá test: tree\_B; CV F1=0.7058, cao nhất trong sáu cấu hình được báo cáo. Việc chọn dựa trên CV trước khi đánh giá holdout. Accuracy=0.7330, Precision=0.8533, Recall=0.6076, F1=0.7098. ROC-AUC=0.7756, PR-AUC=0.7889.
 
 Ma trận nhầm lẫn: TN=478, FP=66, FN=248, TP=384. Không coi recall cao của Dummy (dự đoán tất cả trễ) là bằng chứng mô hình hữu ích.
 
@@ -22,12 +22,32 @@ Standard Class: 704 dòng, 254 dương, FN=248, FP=16. FNR=0.9764, FPR=0.0356.
 
 Lỗi tập trung cần được điều tra bằng dữ liệu vận hành; đây là bằng chứng mô tả, không là nguyên nhân đã xác minh. Không điều chỉnh mô hình dựa trên những quan sát test này.
 
-\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/comparison.png}\caption{So sánh các cấu hình đã định trước.}\end{figure}
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/comparison.png}\caption{So sánh các cấu hình mô hình theo CV và tập kiểm tra.}\label{fig:comparison}\end{figure}
 
-\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/tree_B_confusion.png}\caption{Ma trận nhầm lẫn của mô hình chọn bằng CV.}\end{figure}
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/baseline_tree_A_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: Baseline cây quyết định với luồng A.}\label{fig:confusion-baseline}\end{figure}
 
-\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/01_classes.png}\caption{Phân bố nhãn trên train.}\end{figure}
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/dummy_A_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: Baseline Dummy với luồng A.}\label{fig:confusion-dummy}\end{figure}
 
-\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/05_shipping.png}\caption{Phân bố nhãn theo phương thức giao hàng trên train.}\end{figure}
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/knn_A_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: K-NN với luồng A.}\label{fig:confusion-knn-a}\end{figure}
 
-\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/08_month.png}\caption{Tỷ lệ giao trễ theo tháng tạo đơn trên train.}\end{figure}
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/knn_B_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: K-NN với luồng B.}\label{fig:confusion-knn-b}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/tree_A_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: Cây quyết định với luồng A.}\label{fig:confusion-tree-a}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/tree_B_confusion.png}\caption{Ma trận nhầm lẫn theo dòng: Cây quyết định với luồng B. Mô hình được chọn bằng CV.}\label{fig:confusion-tree-b}\label{fig:selected-confusion}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/01_classes.png}\caption{Phân bố nhãn trên tập huấn luyện.}\label{fig:eda-classes}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/02_missing.png}\caption{Tỷ lệ giá trị thiếu của các đặc trưng được khảo sát trên tập huấn luyện.}\label{fig:eda-missing}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/03_numeric_hist.png}\caption{Phân bố các đặc trưng số trên tập huấn luyện.}\label{fig:eda-numeric}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/04_boxplot.png}\caption{Biểu đồ hộp của các đặc trưng số trên tập huấn luyện.}\label{fig:eda-boxplot}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/05_shipping.png}\caption{Phân bố nhãn theo phương thức giao hàng trên tập huấn luyện.}\label{fig:eda-shipping}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/06_regions.png}\caption{Phân bố đơn hàng theo vùng trên tập huấn luyện.}\label{fig:eda-regions}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/07_correlation.png}\caption{Tương quan giữa các đặc trưng số được khảo sát trên tập huấn luyện.}\label{fig:eda-correlation}\end{figure}
+
+\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/08_month.png}\caption{Tỷ lệ giao trễ theo tháng tạo đơn trên tập huấn luyện.}\label{fig:eda-month}\end{figure}

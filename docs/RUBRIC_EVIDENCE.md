@@ -1,35 +1,37 @@
 # FIT4013 report requirements and evidence
 
-Source of required report structure: the course instructions extracted to
-`docs/fit4013_extracted.txt`, section 2.2. The report must use these six
-sections in this exact order. The evidence below is from existing project
-artifacts; it is not a new experiment or independent validation.
+The official six-section sequence is from `docs/fit4013_extracted.txt`,
+section 2.2. Results below are preserved project evidence, not new training or
+independent validation. Source locations are cited for review.
 
-| Required section | Evidence in report | Supported findings / limits |
+| Required section | Evidence | Findings and limits |
 |---|---|---|
-| 1. Đặt vấn đề và phân tích yêu cầu | `report/main.tex`, section 1 | DataCo source, prediction timing, target definition, row/order unit, dataset dimensions, class counts and missingness. Missing fields are excluded; label 0 includes canceled orders. |
-| 2. Thiết kế giải pháp và quy trình học máy | `report/main.tex`, section 2; `configs/default.json`; `src/pipeline.py` | Group split and CV, leakage controls, allowlist, A/B features, algorithms and search ranges. Results apply to a bounded random group split, not future or unseen-customer generalization. |
-| 3. Phân tích mã nguồn và chức năng | `report/main.tex`, section 3; `src/`; `notebooks/`; `docs/REPAIR_VERIFICATION.md` | Module/notebook responsibilities and historical test evidence (14 passed in the workspace; 13 passed and 1 expected private-data skip in a clean export). Tests were not rerun for this update. |
-| 4. Thử nghiệm và kết quả | `report/main.tex`, section 4; `report/generated.tex`; `results/tables/comparison.csv`; `results/figures/` | Real-data baseline and A/B results, CV/test metrics and confusion matrices. 5999-row subset; the holdout is already observed and is not fresh independent evidence. |
-| 5. Thảo luận và so sánh | `report/analysis.tex`; `report/repair_analysis.tex`; `report/main.tex`, section 5 | Error denominators and model tradeoffs, order-level metrics, sampling differences and fixed-parameter calendar ablation. Descriptive only; selection optimism, one known split, no causal or future-generalization claim. |
-| 6. Tổng kết và hướng phát triển | `report/main.tex`, section 6 | Summarizes historical row- and order-level outcomes, highlights Standard Class false negatives and lists further validation. No deployment-readiness claim. |
+| 1. Đặt vấn đề và phân tích yêu cầu | `report/main.tex`, section 1; `report/analysis.tex` | DataCo source, target/timing, row/order distinction, dimensions, label counts, missing values and canceled-order caveat. |
+| 2. Thiết kế giải pháp và quy trình học máy | `report/main.tex`, section 2; `configs/default.json`; `src/pipeline.py` | Group split and CV, leakage controls, allowlist, A/B pipelines, baseline and search ranges. Does not test temporal or unseen-customer generalization. |
+| 3. Phân tích mã nguồn và chức năng | `report/main.tex`, section 3; `src/`; `notebooks/`; `docs/REPAIR_VERIFICATION.md` | Responsibilities of modules/notebooks and previously recorded tests (14 passed in the main workspace; clean export: 13 passed, 1 expected private-data skip). Not rerun for this update. |
+| 4. Thử nghiệm và kết quả | `report/generated.tex`; `results/tables/comparison.csv`; `results/figures/` | Six pre-existing model/flow rows, CV and historical holdout row metrics, confusion matrices for all six configurations, model comparison and all eight existing EDA figures. 5999 rows (3.32% of data); the holdout is already observed. |
+| 5. Thảo luận và so sánh | `report/analysis.tex`; `report/repair_analysis.tex`; `results/tables/*_order_metrics.json`; `results/tables/time_ablation_cv.csv` | Explains group-level averaging, Dummy's slightly higher equal-order F1 despite predicting all positive, the fixed-parameter CV ablation and Standard Class false negatives. Descriptive only; no causal, operational or future-generalization claim. |
+| 6. Tổng kết và hướng phát triển | `report/main.tex`, section 6 | Summarizes historical results, highlights the severe Standard Class recall limitation and lists further validation. No deployment-readiness claim. |
 
-## Submission blockers
+## Current artifact status
 
-- **Template/PDF: BLOCKED.** The official course template was not supplied or
-  found in the repository. XeLaTeX, pdfLaTeX, latexmk and Tectonic were not
-  available on PATH or the checked standard Windows install paths. No PDF was
-  compiled or visually inspected. `report/main.tex` is prepared source, not a
-  claim of template compliance or successful compilation.
-- **Team details: BLOCKED.** Verified member names and actual contributions
-  have not been supplied. Add them only after confirmation; do not fabricate
-  names, contributions or commit history.
-- **Repository approval: CONFIRM.** The current remote is
-  `doansensei1503-maker/HocMayDT16`; the team must ensure it is approved by the
-  instructor.
-- **Historical test status.** Test outcomes in
-  `docs/REPAIR_VERIFICATION.md` and this map are prior evidence. No fresh
-  independent validation is claimed.
+- **PDF: PENDING.** MiKTeX 25.12 and XeLaTeX are installed in the user profile,
+  but the first report build stopped at missing `infwarerr.sty`. No PDF was
+  generated or visually inspected. No further installation or compilation is
+  being attempted per the user's instruction.
+- **Official template: BLOCKED.** The official course template is not available
+  in the repository or provided materials. `report/main.tex` is provisional,
+  not template-compliant by claim.
+- **Team information: PENDING.** Verified member names, student IDs and actual
+  contributions are absent. Do not fabricate them or infer roles from Git
+  authorship.
+- **Slides: SOURCE UPDATED; PDF PENDING.** `slides/presentation.tex` now includes
+  historical equal-order metrics and sample coverage. It has not been compiled
+  or visually reviewed.
+- **Repository: CONFIRM.** The configured remote is
+  `doansensei1503-maker/HocMayDT16`; confirm instructor approval.
 
-No grade is promised. Passing a rubric evidence map does not replace checking
-the compiled PDF, official template, team contribution evidence or oral defense.
+Build instructions and preflight checks are in `README.md` and
+`scripts/build_report.ps1`. The script does not invoke MiKTeX package
+installation. Complete `docs/FINAL_SUBMISSION_CHECKLIST.md` before submission.
+No grade is promised.

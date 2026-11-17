@@ -43,14 +43,41 @@ def render(out):
     for path in (out/'figures').glob('*.png'): shutil.copy2(path,public_figs/path.name)
     shutil.copy2(out/'manifest.json',public_tables/'experiment_manifest.json')
     (public_tables/'summary_vi.md').write_text(summary,encoding='utf-8')
-    text=[f'\\paragraph{{Phạm vi chạy thực tế}} Dữ liệu có {m["full_rows"]} dòng; thí nghiệm dùng {m["used_rows"]} dòng: train {m["train_rows"]}, test {m["test_rows"]}. Số nhóm tương ứng là {m["train_groups"]} và {m["test_groups"]}.',r'\resizebox{\textwidth}{!}{\input{../results/tables/comparison.tex}}',f'Mô hình chọn trước đánh giá test: {esc(m["selected_by_cv"])}; CV F1={winner.cv_f1:.4f}. Accuracy={winner.test_accuracy:.4f}, Precision={winner.test_precision:.4f}, Recall={winner.test_recall:.4f}, F1={winner.test_f1:.4f}. ROC-AUC={winner.test_roc_auc:.4f}, PR-AUC={winner.test_pr_auc:.4f}.',f'Ma trận nhầm lẫn: TN={tn}, FP={fp}, FN={fn}, TP={tp}. Không coi recall cao của Dummy (dự đoán tất cả trễ) là bằng chứng mô hình hữu ích.']
+    text=[f'\\paragraph{{Phạm vi chạy thực tế}} Dữ liệu có {m["full_rows"]} dòng; thí nghiệm dùng {m["used_rows"]} dòng: train {m["train_rows"]}, test {m["test_rows"]}. Số nhóm tương ứng là {m["train_groups"]} và {m["test_groups"]}.',r'\begin{table}[!htbp]\centering\resizebox{\textwidth}{!}{\input{../results/tables/comparison.tex}}\caption{So sánh metric theo dòng của các cấu hình trên CV và tập kiểm tra lịch sử.}\label{tab:model-comparison}\end{table}',f'Mô hình chọn trước đánh giá test: {esc(m["selected_by_cv"])}; CV F1={winner.cv_f1:.4f}, cao nhất trong sáu cấu hình được báo cáo. Việc chọn dựa trên CV trước khi đánh giá holdout. Accuracy={winner.test_accuracy:.4f}, Precision={winner.test_precision:.4f}, Recall={winner.test_recall:.4f}, F1={winner.test_f1:.4f}. ROC-AUC={winner.test_roc_auc:.4f}, PR-AUC={winner.test_pr_auc:.4f}.',f'Ma trận nhầm lẫn: TN={tn}, FP={fp}, FN={fn}, TP={tp}. Không coi recall cao của Dummy (dự đoán tất cả trễ) là bằng chứng mô hình hữu ích.']
     for pair in pairs: text.append(esc(pair))
     baseline=d.set_index('name').loc['baseline_tree_A']
     text.append(f'Cây mặc định có train F1={baseline.train_f1:.4f}, CV F1={baseline.cv_f1:.4f}; chênh lệch lớn gợi ý overfitting. Mô hình chọn có chênh lệch train--CV={winner.train_minus_cv_f1:.4f}. Một split chưa cho phép kết luận tổng quát.')
     for group,row in errors.iterrows():
         text.append(f'{esc(group)}: {int(row.n)} dòng, {int(row.actual_positive)} dương, FN={int(row.fn)}, FP={int(row.fp)}. FNR={row.fn_rate:.4f}, FPR={row.fp_rate:.4f}.')
     text.append('Lỗi tập trung cần được điều tra bằng dữ liệu vận hành; đây là bằng chứng mô tả, không là nguyên nhân đã xác minh. Không điều chỉnh mô hình dựa trên những quan sát test này.')
-    for name,caption in [('comparison.png','So sánh các cấu hình đã định trước.'),(m['selected_by_cv']+'_confusion.png','Ma trận nhầm lẫn của mô hình chọn bằng CV.'),('01_classes.png','Phân bố nhãn trên train.'),('05_shipping.png','Phân bố nhãn theo phương thức giao hàng trên train.'),('08_month.png','Tỷ lệ giao trễ theo tháng tạo đơn trên train.')]:
-        text.append(r'\begin{figure}[ht]\centering\includegraphics[width=.9\textwidth]{../results/figures/'+name+r'}\caption{'+caption+r'}\end{figure}')
+    figures=[('comparison.png','So sánh các cấu hình mô hình theo CV và tập kiểm tra.','fig:comparison')]
+    confusion_models=[
+        ('baseline_tree_A','Baseline cây quyết định với luồng A.','fig:confusion-baseline'),
+        ('dummy_A','Baseline Dummy với luồng A.','fig:confusion-dummy'),
+        ('knn_A','K-NN với luồng A.','fig:confusion-knn-a'),
+        ('knn_B','K-NN với luồng B.','fig:confusion-knn-b'),
+        ('tree_A','Cây quyết định với luồng A.','fig:confusion-tree-a'),
+        ('tree_B','Cây quyết định với luồng B.','fig:confusion-tree-b'),
+    ]
+    for model_name,description,label in confusion_models:
+        if model_name == m['selected_by_cv']:
+            description += ' Mô hình được chọn bằng CV.'
+            figures.append((model_name+'_confusion.png','Ma trận nhầm lẫn theo dòng: '+description,label+'|fig:selected-confusion'))
+        else:
+            figures.append((model_name+'_confusion.png','Ma trận nhầm lẫn theo dòng: '+description,label))
+    figures.extend([
+        ('01_classes.png','Phân bố nhãn trên tập huấn luyện.','fig:eda-classes'),
+        ('02_missing.png','Tỷ lệ giá trị thiếu của các đặc trưng được khảo sát trên tập huấn luyện.','fig:eda-missing'),
+        ('03_numeric_hist.png','Phân bố các đặc trưng số trên tập huấn luyện.','fig:eda-numeric'),
+        ('04_boxplot.png','Biểu đồ hộp của các đặc trưng số trên tập huấn luyện.','fig:eda-boxplot'),
+        ('05_shipping.png','Phân bố nhãn theo phương thức giao hàng trên tập huấn luyện.','fig:eda-shipping'),
+        ('06_regions.png','Phân bố đơn hàng theo vùng trên tập huấn luyện.','fig:eda-regions'),
+        ('07_correlation.png','Tương quan giữa các đặc trưng số được khảo sát trên tập huấn luyện.','fig:eda-correlation'),
+        ('08_month.png','Tỷ lệ giao trễ theo tháng tạo đơn trên tập huấn luyện.','fig:eda-month'),
+    ])
+    for name,caption,label in figures:
+        labels=label.split('|')
+        label_text=''.join(r'\label{'+item+r'}' for item in labels)
+        text.append(r'\begin{figure}[!htbp]\centering\includegraphics[width=.90\textwidth,height=.42\textheight,keepaspectratio]{../results/figures/'+name+r'}\caption{'+caption+r'}'+label_text+r'\end{figure}')
     Path('report').mkdir(parents=True, exist_ok=True)
     Path('report/generated.tex').write_text('\n\n'.join(text),encoding='utf-8')

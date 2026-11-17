@@ -45,3 +45,37 @@ Persisted evidence verification and final Git verification are recorded below.
   6 warnings in 61.11 seconds. Includes synthetic end-to-end training/publication.
   Full private-data retraining in the clean clone was not repeated; real-data
   reproduction and SHA/split checks were performed in the main workspace.
+
+## 2026-11-17 report completion update
+
+- Readiness changes preserve all experiment artifacts and historical outcomes;
+  no training, EDA, notebook execution or test suite was rerun.
+- Confirmed the six required section headings and order against the FIT4013
+  instructions. Report source now includes all 15 existing report figures
+  (eight train-only EDA figures, six model confusion matrices and one model
+  comparison), plus the existing comparison table and documented order/ablation
+  tables. Figure/table paths, labels, citation keys and cross-references passed
+  static checks.
+- Rechecked `comparison.csv`, `tree_B_order_metrics.json` and
+  `dummy_A_order_metrics.json` against report metrics. Stored results remain:
+  tree_B row F1=0.7098 and equal-order F1=0.7100; Dummy equal-order F1=0.7123
+  because it predicts every order positive. The 5999-row (3.32%) sample,
+  historical holdout reuse, canceled-label caveat and Standard Class false
+  negatives are explicitly described.
+- Verified the Mendeley Data DOI metadata via DataCite: Fabian Constante is the
+  creator; Fernando Silva and António Pereira appear as contributors. Corrected
+  the bibliography to avoid listing contributors as co-creators. Confirmed the
+  Kaggle page title and uploader metadata via its public API.
+- Installed MiKTeX 25.12 in the current user's profile; XeLaTeX starts. The
+  first report compile stopped at missing `infwarerr.sty`. MiKTeX offered only
+  Admin scope in its package prompt; that install was canceled. Per the user's
+  subsequent instruction, no further Console interaction, installation or PDF
+  compilation was attempted. PDF remains PENDING; no output PDF is claimed.
+- Added `scripts/build_report.ps1` with syntax validation, input/package
+  preflight, two-pass XeLaTeX, logs and output checks. It stops before invoking
+  XeLaTeX if the known missing package is unresolved; it does not install
+  packages or open MiKTeX Console.
+- Static checks passed for the report-generator Python syntax, PowerShell build
+  script syntax, six-section order, citations, labels/cross-references, all 15
+  image paths, table/figure environments and stored metric consistency. No
+  fresh ML tests were run.

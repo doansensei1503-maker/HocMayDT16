@@ -1,37 +1,69 @@
-\subsection{Repair diagnostics: fixed protocol and equal order weights}
-The versioned protocol \texttt{group-subset-v1} now drives training and EDA.
-Historical artifacts are preserved separately. The already observed holdout is
-reused only for reproduction and descriptive evaluation, not new tuning.
-The subset contains 5999 of 180519 rows and 2113 of 65752 orders.
-The largest absolute category-proportion difference across the audited features
-and target is 0.0227 (Customer Segment).
-These marginal checks do not establish unbiased sampling.
+\subsection{Tính đại diện của mẫu và đánh giá theo đơn}
+Protocol \texttt{group-subset-v1} lấy 5999/180519 dòng (3.32\%) và
+2113/65752 đơn (3.21\%). Số dòng trung bình mỗi đơn là 2.839 trong mẫu,
+so với 2.745 trong toàn bộ dữ liệu. Sai khác biên lớn nhất trong các tỷ lệ
+đã kiểm tra là 0.0227 ở Customer Segment. Đây là kiểm tra mô tả một số phân
+phối biên, không chứng minh mẫu không chệch hay đại diện cho mọi quan hệ dữ liệu.
+Do chỉ sử dụng một phần nhỏ của dữ liệu và một lần chia nhóm, kết quả không
+đủ để khẳng định khả năng tổng quát hóa cho toàn bộ quần thể, khách hàng mới
+hoặc các đơn trong tương lai.
 
-For the selected tree B, equal-order evaluation over 423 orders gives
-Accuracy=0.7258, Precision=0.8554, Recall=0.6068,
-F1=0.7100; TN=165, FP=24, FN=92, TP=142.
-The fixed rule averages item probabilities per order and predicts positive at
-0.5. It differs from row weighting and is not a measured operational benefit.
-
-The controlled calendar ablation uses the same training folds and A-selected
-hyperparameters for both flows. Scores below are training-CV validation scores;
-the CSV's test-prefixed names are sklearn fold-validation names, not holdout scores.
-\begin{center}
-\begin{tabular}{lrr}
-Algorithm & A CV F1 & B CV F1 \\
-knn & 0.6668 & 0.6714 \\
-tree & 0.6741 & 0.6904 \\
+Để tránh các dòng của cùng đơn nằm ở cả train và test, split và CV đều gom
+theo Order Id. Ngoài metric theo dòng, xác suất dòng được lấy trung bình trong
+mỗi đơn và phân lớp tại ngưỡng cố định 0.5; mỗi đơn có trọng số như nhau.
+Bảng~\ref{tab:order-metrics} dùng holdout lịch sử đã quan sát, chỉ là chẩn đoán bổ sung, không
+dùng để chọn mô hình.
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Mô hình & Accuracy & Precision & Recall & F1 \\
+\midrule
+tree\_B & 0.7258 & 0.8554 & 0.6068 & 0.7100 \\
+dummy\_A & 0.5532 & 0.5532 & 1.0000 & 0.7123 \\
+\bottomrule
 \end{tabular}
-\end{center}
-The tree's independently tuned B score also reflects a different depth choice;
-the fixed-parameter comparison separates that change from adding calendar inputs.
-Because parameters were selected on these folds, these are descriptive diagnostics
-with selection optimism, not causal effects or independent generalization evidence.
+\caption{Metric lịch sử theo đơn trên 423 đơn của holdout.}\label{tab:order-metrics}
+\end{table}
+Ma trận nhầm lẫn theo đơn của tree\_B là TN=165, FP=24, FN=92, TP=142.
+Dummy dự đoán tất cả 423 đơn là dương (TN=0, FP=189, FN=0, TP=234), nên Recall bằng 1
+và F1 nhỉnh hơn tree\_B dù Accuracy và Precision thấp hơn đáng kể. F1 đơn lẻ
+không phản ánh chi phí cảnh báo hoặc hữu ích vận hành; vì vậy không kết luận
+Dummy tốt hơn. Tree\_B có Precision cao nhưng Recall thấp hơn: trong đánh giá
+theo dòng, nó bỏ sót 248 trong 632 mẫu dương (FN=248, TP=384).
 
-Standard Class has 248 FN among 254 positive rows (FNR 0.9764), whereas
-First/Second Class have 10/40 FP among 10/40 negative rows respectively.
-The selected tree trades high precision for many missed Standard Class delays.
-Use the exported rules and denominators to describe its behavior; do not infer
-causality or adjust this model against the known holdout.
-Canceled orders retain source labels; target zero does not exclusively denote
-successful on-time delivery. Operational label redesign requires a new protocol.
+\subsection{Đối chiếu luồng đặc trưng và phân tích lỗi}
+Trong chẩn đoán ablation ở Bảng~\ref{tab:calendar-ablation}, giữ nguyên siêu tham số được chọn cho luồng A và
+đánh giá cả hai luồng trên cùng các fold huấn luyện cho kết quả sau:
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Thuật toán & A: CV F1 & B: CV F1 & B--A \\
+\midrule
+K-NN & 0.6668 & 0.6714 & +0.0046 \\
+Cây quyết định & 0.6741 & 0.6904 & +0.0163 \\
+\bottomrule
+\end{tabular}
+\caption{Ablation đặc trưng lịch trên các fold CV huấn luyện với siêu tham số cố định.}\label{tab:calendar-ablation}
+\end{table}
+Các giá trị này là điểm validation của CV huấn luyện dù cột trong tệp CSV
+được đặt tên \texttt{test\_f1}; không phải metric holdout. Siêu tham số được
+chọn trên các fold này nên còn selection optimism. So sánh chỉ mang tính mô
+tả, không chứng minh tác động nhân quả của đặc trưng lịch. Điểm CV của tree\_B
+được chọn trong phép tìm kiếm ban đầu là 0.7058; cấu hình này có thể khác cấu
+hình cố định trong ablation.
+
+Trên holdout lịch sử theo dòng, tree\_B có Precision=0.8533 nhưng Recall=0.6076.
+Điều này cho thấy tỷ lệ cảnh báo đúng cao không đồng nghĩa phát hiện được phần
+lớn đơn trễ. Trong nhóm Standard Class, có 254 mẫu dương và 450 mẫu âm:
+248 FN tương ứng FNR=0.9764; chỉ 6 mẫu dương được phát hiện, còn 16 FP trong
+450 mẫu âm. First Class có 10 FP trên 10 mẫu âm; Second Class có 40 FP trên
+40 mẫu âm. Đây là mô tả trên holdout đã biết, không phải bằng chứng về nguyên
+nhân vận hành và không được dùng để điều chỉnh mô hình.
+Không suy diễn nhân quả từ EDA, độ quan trọng đặc trưng hay các quy tắc cây.
+
+Nhãn 0 của nguồn không đồng nghĩa đơn giao đúng hạn: 7754 dòng có trạng thái
+\textit{Shipping canceled} vẫn mang nhãn 0. Không loại chúng để giữ nguyên định
+nghĩa target hiện tại; nếu thay đổi quần thể hoặc nhãn, cần thỏa thuận và một
+protocol thực nghiệm mới.
