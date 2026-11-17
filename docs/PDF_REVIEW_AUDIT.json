@@ -1,16 +1,17 @@
 {
-  "pdf_sha256": "7471bfb7c1d6f324688a8a262b6d69928906b3424733b205a1b510e665cce191",
+  "pdf_sha256": "8416805cb04842bac17b78ca0f1d8d4dae948a83c7c276c7a498780c20ec24dd",
   "pages": 40,
   "all_pages_rendered": true,
-  "all_pages_visually_reviewed": true,
-  "review_method": "All ten four-page contact sheets viewed, plus all 13 table detail crops at 1.8x; font/header/bounds audits performed separately.",
+  "review_method": "All 13 table detail crops viewed; pages 20/21 viewed after page-break fix. All other pages pixel-identical to previously reviewed PDF outside masked table bounds.",
   "cover_pages_pixel_identical_to_previous_review": [
     1,
     2
   ],
-  "a4_all_pages": true,
-  "fonts_embedded": true,
-  "replacement_characters": false,
-  "typeset_text_outside_page": [],
-  "visual_findings": "13 body tables use bold shaded headers, padded rows, full text width and right-aligned numeric columns. No clipped cells or captions. Covers retain their separate style."
+  "tables_visually_reviewed": 13,
+  "outside_tables_pixel_identical_except_reviewed_pages": [
+    20,
+    21
+  ],
+  "table_cell_text_identical_to_previous": true,
+  "visual_findings": "White table backgrounds, bold black headers, black booktabs rules, no fill/overflow; tests heading kept with its content."
 }

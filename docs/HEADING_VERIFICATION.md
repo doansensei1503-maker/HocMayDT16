@@ -1,3 +1,5 @@
+> Bản hiện hành dùng bảng trắng–đen: xem `MONOCHROME_TABLE_VERIFICATION.md`. Nội dung dưới đây ghi nhận lần chỉnh trước.
+
 > Hồ sơ lần chuẩn hóa heading. PDF hiện hành sau chỉnh bảng: `TABLE_STYLE_VERIFICATION.md`; các JSON audit đã cập nhật theo PDF mới.
 
 # Kiểm chứng heading và hoàn thiện báo cáo — 17/11/2026

@@ -1,4 +1,4 @@
-﻿"""Audit actual PDF table fonts, header fills and layout; no ML execution."""
+"""Audit actual PDF table fonts, monochrome headers and layout; no ML execution."""
 import hashlib
 import json
 import re
@@ -29,18 +29,21 @@ def main():
             assert all(abs(s['size']-13)<.015 and 'TimesNewRoman' in s['font'] for s in cells),number
             assert all(s['bbox'][0]>=70.866-1 and s['bbox'][2]<=538.583+1 for s in cells),(number, cells)
             assert 56 < top < bottom < 785.3,(number,top,bottom)
-            fills = [d['rect'] for d in drawings if d['fill'] and len(d['fill'])==3
-                     and all(abs(a-b)<.003 for a,b in zip(d['fill'],(.902,.925,.945)))
-                     and top < d['rect'].y0 < bottom]
-            assert fills,(number,top)
-            headers = [s for s in cells if any(r.contains(pymupdf.Point((s['bbox'][0]+s['bbox'][2])/2,(s['bbox'][1]+s['bbox'][3])/2)) for r in fills)]
+            table_drawings = [d for d in drawings if top-.1 <= d['rect'].y0 and d['rect'].y1 <= bottom+.1
+                              and d['rect'].x0 >= 70.866-1 and d['rect'].x1 <= 538.583+1]
+            assert not any(d['fill'] is not None for d in table_drawings), (number,'table fill')
+            assert all(d['color'] == (0.0,0.0,0.0) for d in table_drawings if d['type']=='s'), number
+            assert all(s['color']==0 for s in cells), (number,'nonblack text')
+            middle = min(d['rect'].y0 for d in table_drawings if d['type']=='s'
+                         and .5 < d.get('width',0) < .7)
+            headers = [s for s in cells if (s['bbox'][1]+s['bbox'][3])/2 < middle]
             assert headers and all('Bold' in s['font'] for s in headers),number
             captions = [s for s in spans if s['bbox'][3]<=top+1 and re.match(r'^Bảng\s*\d+:',s['text'])]
             assert captions,number
             caption = max(captions,key=lambda s:s['bbox'][1])
             index = int(re.search(r'\d+',caption['text'])[0])
             checked.append({'table':index,'pdf_page':number,'all_cell_text_13pt_times_new_roman':True,
-                            'header_bold_light_fill':True,'inside_text_margins':True,
+                            'header_bold':True,'no_cell_fills':True,'text_and_rules_black':True,'inside_text_margins':True,
                             'bounds_pt':[70.866,round(top,3),538.583,round(bottom,3)]})
     assert sorted(x['table'] for x in checked)==list(range(1,14)),checked
     result={'pdf_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'pages':len(pdf),

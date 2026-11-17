@@ -1,4 +1,16 @@
-# AI_USAGE
+# KHAI BÁO SỬ DỤNG CÔNG CỤ AI
+
+**Học phần:** Nhập môn Học máy – FIT4013
+**Đề tài 16:** Dự đoán đơn hàng có nguy cơ giao trễ trong chuỗi cung ứng
+
+Trong quá trình thực hiện bài tập lớn, nhóm có sử dụng OpenAI Codex để hỗ trợ một số công việc kỹ thuật, bao gồm gợi ý và hiệu chỉnh mã nguồn, kiểm tra lỗi chương trình, hỗ trợ hoàn thiện quy trình thực nghiệm và xử lý các vấn đề về định dạng, biên dịch báo cáo LaTeX.
+
+Nhóm chịu trách nhiệm xem xét các phương án được đề xuất, kiểm tra tính chính xác của chương trình và kết quả thực nghiệm, đồng thời rà soát nội dung báo cáo trước khi nộp.
+
+Việc sử dụng công cụ hỗ trợ không thay thế trách nhiệm học tập của các thành viên. Nhóm chịu trách nhiệm về sản phẩm cuối cùng và có khả năng trình bày, giải thích phương pháp, thuật toán và kết quả thực hiện đề tài.
+
+## Nhật ký sử dụng và bằng chứng
+
 AI (OpenAI Codex) hỗ trợ đọc tài liệu PDF, thiết kế phương pháp chống leakage, tạo mã nguồn, kiểm thử, notebook và bản thảo báo cáo trong phiên làm việc này theo yêu cầu người dùng. Các lệnh chạy và kết quả thực được lưu/ghi nhận trong docs/STATUS.md và results; không coi code được tạo là bằng chứng đã chạy dữ liệu thật. Không tạo tên thành viên, đóng góp hay lịch sử commit. Nhóm phải tự đọc, kiểm chứng và giải thích toàn bộ sản phẩm; bổ sung tên công cụ/phiên bản sử dụng thực tế và sửa đổi do người học thực hiện khi nộp bài. Không dùng AI để sinh nhãn, dữ liệu hay metric giả.
 
 2026-11-16: Codex repaired Git remote synchronization, unified the split protocol, added aggregate sampling/order evaluation and a fixed-parameter training-CV ablation, preserved historical evidence, and ran verification. No team contributions or empirical scores were invented. See docs/REPAIR_VERIFICATION.md for actual execution results and limitations.
@@ -54,3 +66,5 @@ Kiểm tra lại metric từ sáu confusion matrices, kiểm tra đầu ra sinh 
 đối chiếu các số thập phân với bản trước, biên dịch XeLaTeX, xem 40 trang và
 13 ảnh chi tiết bảng, mở PDF mới trong VS Code. Không chạy lại ML/notebook hoặc
 sửa thuật toán, nhãn, mẫu và số liệu. Phân công tiếp tục chờ nhóm xác nhận.
+
+2026-11-17 — Chuyển 13 bảng phần thân sang trắng–đen theo yêu cầu: bỏ tô nền trong nguồn LaTeX và script sinh bảng, giữ header đậm, font 13 pt, kích thước cột, số liệu và caption; chuyển đường kẻ thành đen. Không chạy lại mô hình. Giữ hai bìa và cấu hình heading.

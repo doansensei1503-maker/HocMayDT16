@@ -1,3 +1,5 @@
+> Bản hiện hành dùng bảng trắng–đen: xem `MONOCHROME_TABLE_VERIFICATION.md`. Nội dung dưới đây ghi nhận lần chỉnh trước.
+
 # Kiểm chứng hệ thống bảng biểu — 17/11/2026
 
 PDF: `report/final_report.pdf`, 40 trang A4.

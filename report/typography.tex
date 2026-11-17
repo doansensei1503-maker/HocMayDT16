@@ -50,14 +50,12 @@
 \AddToHook{env/verbatim/begin}{\linespread{1}\selectfont}
 
 % Shared academic table design, loaded after the independently styled covers.
-\definecolor{reportheader}{RGB}{230,236,241}
-\definecolor{reportrule}{RGB}{105,119,130}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcommand{\ReportTableSetup}{%
   \normalfont\rmfamily\linespread{1}\fontsize{13bp}{15.6bp}\selectfont
   \renewcommand{\arraystretch}{1.22}%
   \setlength{\tabcolsep}{6pt}%
   \setlength{\extrarowheight}{1.2pt}%
-  \arrayrulecolor{reportrule}}
+  \arrayrulecolor{black}\color{black}}
 \AddToHook{env/table/begin}{\ReportTableSetup}
 \newcommand{\theadcell}[1]{\textbf{#1}}

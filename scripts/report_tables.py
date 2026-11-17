@@ -24,8 +24,8 @@ def table(name, headers, rows, caption, label, spec, *, best_columns=(), groups=
             r'\caption{' + caption + r'}\label{' + label + '}',
             r'\begin{tabularx}{\linewidth}{' + spec + r'}\toprule']
     if groups:
-        text += [r'\rowcolor{reportheader} ' + groups]
-    text += [r'\rowcolor{reportheader} ' + ' & '.join(r'\theadcell{' + h + '}' for h in headers) + r' \\\midrule']
+        text += [groups]
+    text += [' & '.join(r'\theadcell{' + h + '}' for h in headers) + r' \\\midrule']
     for row in rows:
         cells = []
         for col,value in enumerate(row):

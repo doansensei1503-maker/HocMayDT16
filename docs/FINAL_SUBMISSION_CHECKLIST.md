@@ -64,3 +64,9 @@ Commit SHA và đối chiếu origin/main ghi trong phản hồi bàn giao sau p
 - [x] Giữ nguyên các số metric, thiếu dữ liệu, quy mô mẫu và phân tích lỗi.
 - [x] Đã sửa script sinh bảng, kiểm tra tính lặp ổn định, không chạy ML.
 - [x] Đã xem 40 trang và 13 ảnh bảng; PDF mới mở trong VS Code.
+
+## Bảng trắng–đen hiện hành
+
+- [x] 13 bảng không tô nền, chữ và nét kẻ đen; header đậm, font 13 pt.
+- [x] Script nguồn đã bỏ nền; nội dung ô bảng đối chiếu giống bản trước.
+- [x] PDF 40 trang, đã kiểm tra và mở trong VS Code; xem MONOCHROME_TABLE_VERIFICATION.md.

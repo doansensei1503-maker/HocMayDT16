@@ -1,5 +1,5 @@
 {
-  "pdf_sha256": "7471bfb7c1d6f324688a8a262b6d69928906b3424733b205a1b510e665cce191",
+  "pdf_sha256": "8416805cb04842bac17b78ca0f1d8d4dae948a83c7c276c7a498780c20ec24dd",
   "pages": 40,
   "tables_checked": 13,
   "arraystretch": 1.22,
@@ -9,7 +9,9 @@
       "table": 1,
       "pdf_page": 3,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -22,7 +24,9 @@
       "table": 2,
       "pdf_page": 8,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -35,7 +39,9 @@
       "table": 3,
       "pdf_page": 10,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -48,7 +54,9 @@
       "table": 4,
       "pdf_page": 12,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -61,7 +69,9 @@
       "table": 5,
       "pdf_page": 17,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -74,20 +84,24 @@
       "table": 6,
       "pdf_page": 21,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
-        82.52,
+        123.236,
         538.583,
-        296.246
+        336.962
       ]
     },
     {
       "table": 7,
       "pdf_page": 22,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -100,7 +114,9 @@
       "table": 8,
       "pdf_page": 23,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -113,7 +129,9 @@
       "table": 9,
       "pdf_page": 27,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -126,7 +144,9 @@
       "table": 10,
       "pdf_page": 31,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -139,7 +159,9 @@
       "table": 11,
       "pdf_page": 32,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -152,7 +174,9 @@
       "table": 12,
       "pdf_page": 32,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,
@@ -165,7 +189,9 @@
       "table": 13,
       "pdf_page": 35,
       "all_cell_text_13pt_times_new_roman": true,
-      "header_bold_light_fill": true,
+      "header_bold": true,
+      "no_cell_fills": true,
+      "text_and_rules_black": true,
       "inside_text_margins": true,
       "bounds_pt": [
         70.866,

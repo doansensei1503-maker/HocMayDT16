@@ -61,7 +61,6 @@ kiểm tra bản ghi, còn nhất quán nhãn kiểm tra khả năng tổng hợ
 \begin{table}[!htbp]\centering
 \caption{Các nhóm thông tin trong bộ dữ liệu và cách sử dụng.}\label{tab:data-groups}
 \begin{tabularx}{\linewidth}{p{2.1cm}p{3.3cm}p{1.5cm}p{2.1cm}Y}\toprule
-\rowcolor{reportheader}
 \theadcell{Nhóm thông tin} & \theadcell{Biến minh họa} & \theadcell{Kiểu dữ liệu} & \theadcell{Vai trò} & \theadcell{Ghi chú sử dụng}\\\midrule
 Nhãn và kết quả & Late\_\allowbreak delivery\_\allowbreak risk; Delivery Status; Days for shipping (real) & Số nguyên; chuỗi & Đích dự đoán; trường kết quả & Chỉ nhãn dùng làm đích; trạng thái và số ngày thực tế bị loại khỏi đầu vào.\\[3pt]
 Đơn và sản phẩm & Order Item Quantity; Order Item Product Price; Category Name & Số; chuỗi & Đặc trưng số và phân loại & Có cả chiết khấu và nhóm sản phẩm; một đơn có thể chứa nhiều mặt hàng.\\[3pt]
@@ -100,7 +99,6 @@ protocol đã lưu.
 \begin{table}[!htbp]\centering
 \caption{Giá trị thiếu trên toàn nguồn theo từ điển dữ liệu đã lưu.}\label{tab:missing}
 \begin{tabularx}{\linewidth}{p{3.1cm}p{1.7cm}rrY}\toprule
-\rowcolor{reportheader}
 \theadcell{Thuộc tính} & \theadcell{Kiểu lưu} & \theadcell{Số thiếu} & \theadcell{Tỷ lệ thiếu} & \theadcell{Hướng xử lý}\\\midrule
 Customer Lname & \code{str} & 8 & 0,004\% & Loại thông tin cá nhân khỏi đầu vào.\\[3pt]
 Customer Zipcode & \code{float64} & 3 & 0,002\% & Không nằm trong danh sách đặc trưng cho phép.\\[3pt]

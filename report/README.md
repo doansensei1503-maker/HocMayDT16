@@ -91,11 +91,11 @@ Xem [kiểm chứng heading](../docs/HEADING_VERIFICATION.md) cho bản hiện h
 
 13 bảng phần thân dùng `tabularx` với cột Y co giãn; `ReportTableSetup` trong
 `typography.tex` đặt Times New Roman 13 pt, arraystretch 1,22, đệm cột 6 pt và
-header xám xanh nhạt. `theadcell` dùng chữ đậm. `booktabs` tạo quy tắc ngang,
+header nền trắng, chữ đen. `theadcell` dùng chữ đậm. `booktabs` tạo quy tắc ngang,
 không dùng viền dọc. Style được nạp sau bìa nên không đổi bảng bìa 14 pt.
 
 Năm bảng metric được sinh bởi `scripts/report_tables.py`; không sửa riêng đầu ra
 rồi để script ghi đè. Luồng A/B là cột riêng; cực đại theo cột chỉ được in đậm
 ở bảng metric theo dòng/đơn, không đánh đồng mức khớp train cao với mô hình tốt.
 Chạy thêm `py scripts/verify_report_tables.py` để kiểm tra 13 bảng trong PDF thật.
-Xem [kiểm chứng bảng](../docs/TABLE_STYLE_VERIFICATION.md).
+Xem [kiểm chứng bảng](../docs/MONOCHROME_TABLE_VERIFICATION.md).

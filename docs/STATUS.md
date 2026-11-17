@@ -43,7 +43,7 @@
 ## Cập nhật hệ thống bảng
 
 - Đã thiết kế lại toàn bộ 13 bảng phần thân bằng `tabularx`, `booktabs`, `array`
-  và `xcolor/colortbl`: header nền xám xanh nhạt, đậm, arraystretch 1,22;
+  và `xcolor/colortbl`: header đậm, nền trắng, arraystretch 1,22;
   không viền dọc, số căn phải, chữ dài xuống dòng tự nhiên.
 - Tất cả chữ trong ô bảng đo trực tiếp là Times New Roman 13 pt; caption 13 pt.
   Hai bìa giữ nguyên định dạng riêng, gồm bảng bìa 14 pt.
@@ -98,3 +98,7 @@ Cả 40 trang đã được render/kiểm tra; xem `PDF_REVIEW_AUDIT.json`,
 `REPORT_NAVIGATION_AUDIT.json`, `VIDEO_LAYOUT_AUDIT.json` và
 `COVER_TYPOGRAPHY_AUDIT.json`. VS Code đã mở trực tiếp bản PDF mới nhất bằng
 PDF Preview. Không sửa code ML, dataset, notebook hoặc artifact thực nghiệm.
+
+## Bảng trắng–đen hiện hành
+
+Đã bỏ mọi nền màu ô bảng trong LaTeX và script sinh bảng; chữ/đường kẻ đen, header đậm. Giữ font 13 pt, caption, nhãn và số liệu. Xem `MONOCHROME_TABLE_VERIFICATION.md`; các JSON audit được cập nhật theo PDF mới.
