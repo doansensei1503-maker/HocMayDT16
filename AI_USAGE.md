@@ -9,3 +9,13 @@ reproducible XeLaTeX build script and updated submission documentation/slides.
 No training, holdout tuning, notebook execution or new empirical metric was
 performed for these edits. The team must verify the final wording and disclose
 any additional AI use or human revisions before submission.
+
+2026-11-17 — Hoàn thiện theo yêu cầu báo cáo 35–40 trang: Codex hỗ trợ đọc
+hướng dẫn và mã nguồn, đối chiếu CSV/JSON đã lưu, mở rộng sáu phần tiếng Việt,
+viết công thức và phân tích hạn chế, trích logo nguyên trạng và dựng hai bìa
+với danh tính do người dùng cung cấp. Tạo script sinh bảng không huấn luyện,
+biên dịch XeLaTeX và render PDF để kiểm tra từng trang. Không sinh nhãn hay metric,
+không chạy lại mô hình/notebook/ML tests, không điều chỉnh theo test lịch sử.
+Phân công ghi là đề xuất chưa xác nhận; không giả danh commit của sinh viên.
+Nguồn Mendeley và tài liệu scikit-learn được tra cứu để kiểm tra dẫn nguồn.
+Nhóm vẫn phải kiểm chứng, hiểu, giải trình và xác nhận đóng góp thật trước nộp.

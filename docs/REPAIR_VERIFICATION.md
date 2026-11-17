@@ -79,3 +79,47 @@ Persisted evidence verification and final Git verification are recorded below.
   script syntax, six-section order, citations, labels/cross-references, all 15
   image paths, table/figure environments and stored metric consistency. No
   fresh ML tests were run.
+
+## XeLaTeX build update
+
+- Located MiKTeX 25.12 / MiKTeX-XeTeX 4.16 in the current user's
+  `MiKTeX-New\miktex\bin\x64` directory; `xelatex` was not on PATH. `ltxcmds`
+  was already installed. Installed missing `infwarerr`, `babel-vietnamese`,
+  `geometry`, `booktabs`, `kvsetkeys`, `kvdefinekeys`, `pdfescape`, `hycolor`,
+  `refcount`, `gettitlestring`, `kvoptions`, `stringenc`, `intcalc`, `bitset`,
+  `bigintcalc`, `rerunfilecheck`, `uniquecounter`, `beamer`, `translator` and
+  `amscls` with the official `miktex packages install` CLI only; no interactive
+  MiKTeX Console or installer was used.
+- Built directly with XeLaTeX twice per source, passing
+  `--disable-installer -interaction=nonstopmode -halt-on-error -file-line-error`
+  and outputting to `build/`. Report: `report/build/final_report.pdf`, 12 pages,
+  608152 bytes. Slides: `slides/build/presentation.pdf`, 9 pages, 68476 bytes.
+- The final report was visually checked across all 12 pages, including page 12
+  after a bibliography alignment adjustment. Tables, figures, page breaks and
+  Vietnamese glyphs are visible; Times New Roman fonts are embedded. The slide
+  deck was visually spot-checked, including its opening content and CV-results
+  table, but not every page.
+- PDF text extraction confirmed the expected Vietnamese section headings and
+  bibliography. Both final logs have no unresolved citations/references and no
+  overfull/underfull box warnings. They retain a nonfatal Babel warning that
+  Vietnamese hyphenation patterns were not preloaded; do not claim that
+  hyphenation is configured. The report log confirms 12 pages and the slide log
+  confirms 9 pages.
+- A `kpsewhich` lookup in the existing helper triggered a hidden
+  `miktex-console.exe --hide --check-updates` process. It was stopped by its
+  specific PID; no user-facing Console interaction or package installation was
+  performed through it. Updated `scripts/build_report.ps1` to avoid `kpsewhich`,
+  search the user's MiKTeX program folders, and pass `--disable-installer`.
+- The updated PowerShell helper passed the PowerShell parser syntax check; it
+  was not rerun to avoid duplicating the already verified direct builds.
+- No model training, notebook execution, EDA, ML tests or experiment artifacts
+  were changed or rerun. The PDFs are provisional outputs; the official course
+  template and verified team information remain unavailable.
+
+## Hoàn thiện báo cáo 35–40 trang — 17/11/2026
+
+Các trạng thái PDF 12 trang/tên nhóm chưa có phía trên là lịch sử của bản trước.
+Bản hiện tại có PDF 36 trang và danh tính do người dùng cung cấp; sáu phần được
+mở rộng theo artifact thực. Xem `REPORT_VERIFICATION.md` cho kiểm tra số liệu,
+font, bố cục từng trang và tài liệu tham khảo. Template chính thức vẫn chưa có;
+phân công vẫn là đề xuất chưa xác nhận. Không huấn luyện lại hoặc tạo metric mới.

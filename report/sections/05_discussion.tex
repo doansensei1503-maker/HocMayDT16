@@ -1,0 +1,209 @@
+\partstart{Thảo luận và so sánh}
+\subsection{K-NN và cây quyết định trên dữ liệu hỗn hợp}
+K-NN biểu diễn giả thuyết rằng các đơn gần nhau trong không gian đầu vào
+có xu hướng chung nhãn. Điểm mạnh là không cần định sẵn dạng ranh giới
+tuyến tính. Điểm yếu trong bài toán này là sự gần nhau phụ thuộc mạnh vào
+mã hóa và thang đo. Một không gian nhiều cột one-hot có thể làm khoảng
+cách khó diễn giải về nghiệp vụ; các trường địa lý hiếm còn ít láng giềng
+để tham chiếu đáng tin cậy.
+
+Cây quyết định tìm những điều kiện tách dữ liệu thành nhóm tương đối đồng
+nhất. So với K-NN, đường đi qua các nút dễ đọc hơn và chi phí dự đoán trên
+cây nông ít phụ thuộc số dòng train. Tuy vậy, quy tắc dễ đọc không đồng
+nghĩa đúng nhân quả hay ổn định. Một split nhỏ có thể thay đổi nhánh; cây
+quá sâu có thể khớp những nhóm hiếm và thể hiện khoảng cách train--CV lớn
+như baseline đã quan sát.
+
+Trong thí nghiệm, cây B vượt K-NN B về Precision và Accuracy nhưng Recall
+thấp hơn. Không có thuật toán thắng toàn bộ tiêu chí. Nếu mục tiêu là
+ưu tiên một danh sách ngắn có tỷ lệ đúng cao, hướng đánh đổi của cây B
+đáng khảo sát thêm; nếu mục tiêu là giảm bỏ sót, Recall thấp hiện tại là
+hạn chế rõ. Chưa có yêu cầu nghiệp vụ định lượng để lựa chọn giữa hai
+hướng, nên báo cáo chỉ giữ tiêu chí CV F1 đã định trước.
+
+\subsection{Ảnh hưởng quan sát được của luồng A và B}
+Bổ sung lịch có lợi về F1 trong các so sánh đã lưu, nhưng mức cải thiện
+khác nhau theo thuật toán và cách chọn tham số. K-NN có chênh lệch CV
+0,0046, còn cây tuned có chênh lệch 0,0316. Khi giữ tham số cây A cố định,
+chênh lệch chỉ 0,0163. Vì vậy, không quy toàn bộ mức tăng của cây tuned
+cho ba cột thời gian; một phần so sánh đồng thời thay đổi độ sâu được chọn.
+
+Tháng, thứ, giờ có thể là proxy cho chu kỳ vận hành, cơ cấu dịch vụ hoặc
+giai đoạn thu thập dữ liệu. Đây là các khả năng giải thích cần kiểm chứng,
+không phải nguyên nhân đã xác nhận. Chẳng hạn, giờ đặt đơn quan trọng trong
+cây có thể phản ánh cơ chế dữ liệu riêng của Same Day thay vì một quy luật
+chung cho mọi dịch vụ. Muốn kết luận cần thêm dữ liệu và thí nghiệm được
+định trước, đặc biệt giữ tập tương lai độc lập.
+
+Hai luồng không phải so sánh ``có tiền xử lý'' với ``không tiền xử lý''.
+Cả hai đều có imputation, scaling và one-hot. Do đó, kết quả chỉ hỗ trợ
+đối chiếu biểu diễn A với A cộng lịch, không đo riêng hiệu quả từng phép
+biến đổi. Đây là giới hạn thiết kế cần nêu để tránh mô tả phương pháp
+nhiều hơn bằng chứng thực sự có.
+
+\subsection{Baseline, Dummy và ý nghĩa của F1 cạnh tranh}
+Với tỷ lệ dương $\pi$ và quy tắc luôn dự đoán dương, Precision bằng $\pi$,
+Recall bằng 1, nên
+\begin{equation}
+F_{1,\mathrm{all+}}=\frac{2\pi}{1+\pi}.
+\end{equation}
+Thay $\pi=632/1176$ cho test dòng thu được F1 khoảng 0,6991, đúng với
+Dummy. Đây là hệ quả toán học từ số đếm lớp, không cần mô hình khai thác
+đặc trưng. Vì vậy, một điểm F1 xấp xỉ 0,70 chưa tự chứng minh mô hình
+phân biệt hữu ích trong bài toán này.
+
+Cây B đạt F1 dòng cao hơn Dummy khoảng 0,0107 nhưng Precision tăng từ
+0,5374 lên 0,8533, còn Recall giảm từ 1 xuống 0,6076. Đó là thay đổi
+thực chất về kiểu ra quyết định. Cây chỉ cảnh báo 450/1.176 dòng, trong
+khi Dummy cảnh báo toàn bộ. Tỷ lệ cảnh báo đúng cao hơn có thể giúp hạn
+chế khối lượng xử lý, nhưng 248 FN vẫn là phần rủi ro lớn cần cân nhắc.
+
+Cây baseline cho thấy một kiểu thất bại khác: gần hoàn hảo trên train
+nhưng không vượt Dummy ở CV hoặc test F1. Tuned tree A cải thiện ít so
+với baseline về CV và vẫn dưới Dummy. Như vậy, sử dụng thuật toán có học
+không tự bảo đảm vượt đối chứng không dùng đặc trưng. Việc báo đủ baseline
+là cần thiết để không trình bày metric rời bối cảnh.
+
+\subsection{False Positive và False Negative trong nghiệp vụ}
+FP là cảnh báo cho dòng được nguồn gán âm. Nó có thể dẫn tới cuộc gọi,
+kiểm tra kho hoặc ưu tiên không cần thiết, nhưng dữ liệu không ghi nhận
+biện pháp nào đã được thực hiện. Hơn nữa, nhãn âm còn có đơn hủy, nên
+không mô tả mọi FP là ``đơn đã giao đúng hạn bị báo nhầm''. Đó là lý do
+ngữ nghĩa nhãn ảnh hưởng trực tiếp tới phân tích tác động.
+
+FN là dòng trễ không được cảnh báo. Với cây B, 248 FN trên 632 dòng dương
+tương đương bỏ sót khoảng 39,24\% dòng dương toàn test. Người vận hành
+không nhìn thấy các dòng này trong danh sách cảnh báo. Tuy nhiên, không
+biết một can thiệp sớm có thực sự ngăn trễ hay không, nên không chuyển
+số FN thành số đơn chắc chắn có thể cứu được hoặc thiệt hại tiền cụ thể.
+
+Nếu ký hiệu chi phí một FP là $c_{FP}$ và một FN là $c_{FN}$, một mô hình
+đơn giản cho tổng lỗi là $C=c_{FP}FP+c_{FN}FN$. So cây B với Dummy trên
+test dòng cho
+\begin{equation}
+C_{B}-C_{D}=-478c_{FP}+248c_{FN}.
+\end{equation}
+Trong mô hình chi phí giả định này, B có chi phí thấp hơn khi
+$c_{FN}/c_{FP}<478/248\approx1{,}927$, nếu $c_{FP}>0$. Đây là phép suy
+ra minh họa từ số đếm đã có, không phải kết quả kinh tế được đo. Nó bỏ qua
+chi phí xử lý TP, khả năng can thiệp thành công và phụ thuộc giữa các dòng.
+
+Do nhiều dòng thuộc cùng đơn, chi phí theo dòng có thể tính lặp một hành
+động. Nếu quyết định ở cấp đơn, cần dùng số FP/FN theo đơn và chi phí phù
+hợp cấp đơn. Không chọn tỷ lệ chi phí sau khi thấy kết quả để chứng minh
+mô hình đã tốt. Chi phí và mục tiêu Recall nên được thống nhất trước
+thiết kế validation và lựa chọn ngưỡng tiếp theo.
+
+\subsection{Standard Class là điểm yếu trọng yếu}
+Standard Class chiếm 704/1.176 dòng test và chứa 254 dòng dương. Cây B
+chỉ phát hiện sáu dòng dương của nhóm, bỏ sót 248. Điều này tạo nghịch lý
+bề ngoài: Precision toàn mô hình cao nhưng một dịch vụ chiếm phần lớn
+test gần như không được phát hiện giao trễ. Metric tổng hợp bị chi phối
+bởi việc cây cảnh báo tốt ở các dịch vụ khác.
+
+Tỷ lệ âm cao trong Standard Class khiến quy tắc phần lớn dự đoán âm có
+thể đạt nhiều TN. Đây là giải thích phù hợp với số đếm và cấu trúc cây,
+không khẳng định là nguyên nhân duy nhất của mọi FN. Nhãn của các đơn,
+thời hạn kế hoạch và cách tạo dữ liệu có thể cùng ảnh hưởng. Không có
+bằng chứng ở artifact để kết luận kho, tuyến đường hay nhân viên cụ thể
+gây ra các trường hợp giao trễ này.
+
+Ngược lại, First Class và Second Class có toàn bộ dòng âm bị cảnh báo
+sai trong holdout. Hai nhóm có FPR bằng 1 nhưng mẫu số âm lần lượt chỉ
+10 và 40. Báo cả tử số lẫn mẫu số giúp tránh đọc tỷ lệ như quy luật phổ
+quát. Same Day không lỗi trên 71 dòng vẫn cần kiểm tra ở dữ liệu khác;
+không coi số lỗi bằng 0 ở một mẫu là bằng chứng bảo đảm dịch vụ.
+
+Một hướng nghiên cứu hợp lý là kiểm tra mô hình hoặc tiêu chí validation
+có chú ý Recall từng dịch vụ. Đây là đề xuất tương lai: hiện chưa chạy
+mô hình riêng Standard Class, chưa tối ưu trọng số lớp và chưa chọn
+threshold theo nhóm. Những thay đổi đó cần được thiết kế, fit và lựa chọn
+trên train/validation trước một test độc lập, tránh học lại từ test hiện tại.
+
+\subsection{Diễn giải đặc trưng và quy tắc cây}
+\begin{table}[!htbp]\centering
+\begin{tabular}{lr}\toprule
+Đặc trưng sau tiền xử lý & Importance\\\midrule
+Shipping Mode: Standard Class & 0,5735\\
+Giờ tạo đơn & 0,1758\\
+Shipping Mode: Same Day & 0,1356\\
+Shipping Mode: First Class & 0,0624\\\bottomrule
+\end{tabular}
+\caption{Bốn importance lớn nhất trong cây B theo artifact đã lưu.}\label{tab:importance}
+\end{table}
+Bảng~\ref{tab:importance} cho thấy phần lớn mức giảm impurity gắn với
+Shipping Mode và giờ tạo đơn. Quy tắc xuất bắt đầu bằng chỉ báo Standard
+Class, sau đó có các nhánh Same Day và địa lý. Điều này phù hợp với sự
+khác nhau rõ về hành vi dự đoán giữa nhóm dịch vụ. Importance thuộc từng
+cột one-hot, không phải phép đo nhân quả của toàn trường gốc.
+
+Một phần quy tắc thực trong \code{tree_B_rules.txt} là nhánh Same Day
+so sánh \code{numeric__order_hour <= 0.03}. Giá trị 0,03 nằm trên thang
+StandardScaler, không phải 0,03 giờ trong ngày. Muốn chuyển về giờ gốc
+cần dùng $x=\mu+s z$ với tham số scaler đã fit của đúng mô hình. Báo cáo
+không có đủ các tham số đó trong bảng aggregate để tự thay ngưỡng bằng
+một giờ cụ thể.
+
+Các nhánh có thể chứa điều kiện khác nhau nhưng kết thúc cùng nhãn 1.
+Điều đó không có nghĩa điều kiện hoàn toàn vô dụng: phân bố xác suất ở
+lá có thể khác dù argmax giống nhau. Ngược lại, chỉ xem nhãn ở cây xuất
+không đủ để khẳng định xác suất chính xác. Muốn dùng xác suất làm ưu tiên
+cần kiểm tra calibration và độ ổn định ở dữ liệu độc lập.
+
+\subsection{Đánh giá cấp dòng và cấp đơn}
+Metric dòng trả lời hiệu quả trên một dòng hàng được chọn theo phân phối
+test. Metric đơn trả lời hiệu quả khi mỗi đơn có trọng số ngang nhau.
+Nếu đơn nhiều mặt hàng gặp cùng lỗi, metric dòng có thể khuếch đại trọng
+số của tình huống đó. Chia nhóm giải quyết việc rò rỉ giữa hai tập, nhưng
+không tự thay đổi trọng số metric từ dòng sang đơn.
+
+Trên 423 đơn, cây B có Precision 0,8554, Recall 0,6068 và F1 0,7100;
+Dummy F1 0,7123. Mức chênh nhỏ và thứ tự đảo so với F1 dòng làm rõ việc
+chọn đơn vị đánh giá phải gắn với đơn vị hành động. Không thay tiêu chí
+chọn mô hình sau khi nhìn thấy sự đảo thứ tự. Trong nghiên cứu tiếp theo,
+nếu sản phẩm cảnh báo theo đơn thì metric validation cũng nên được xác
+định ở cấp đơn ngay từ đầu.
+
+Quy tắc trung bình xác suất giả định mọi dòng của đơn có vai trò ngang
+nhau. Một mặt hàng đặc biệt có thể cần cách tổng hợp khác, nhưng dataset
+không cung cấp mục tiêu hành động đủ rõ để chọn quy tắc mới. Không suy
+ra trung bình tốt hơn max hoặc ngược lại khi chưa có thí nghiệm. Phân
+tích hiện tại chỉ kiểm tra một cách tổng hợp đã được lưu trong protocol.
+
+\subsection{Tính đại diện, giới hạn dữ liệu và tổng quát hóa}
+Mẫu 2.113 đơn là phần nhỏ trong 65.752 đơn nguồn. Kiểm tra sampling ghi
+nhận chênh lệch tỷ lệ biên lớn nhất khoảng 0,0227 ở Customer Segment
+trong các danh mục đã khảo sát. Sự gần nhau của một số tỷ lệ không bảo
+đảm quan hệ giữa phương thức giao, vùng, thời gian và nhãn cũng giống
+nhau. Các tổ hợp hiếm có thể còn rất ít hoặc vắng trong mẫu.
+
+Cách chọn tiền tố sau xáo trộn nhóm giữ nguyên đơn nhưng vẫn chịu ràng
+buộc kích thước nhóm và ngân sách. Không gọi nó là mẫu phân tầng theo
+mọi trường hoặc mẫu không chệch đã chứng minh. Một seed duy nhất không
+đo độ nhạy kết quả với việc đơn nào được đưa vào. Lặp lấy mẫu theo nhóm
+có thể cung cấp phân phối metric, nhưng chưa được thực hiện ở đây.
+
+Nguồn lịch sử còn có khác biệt giữa nhãn giao trễ và trạng thái hủy,
+giới hạn về cách ghi timestamp, danh mục địa lý và thời điểm một số trường
+được hình thành. Không có kiểm chứng vận hành để xác nhận các quan hệ
+quan sát được sẽ giữ nguyên ở doanh nghiệp khác. Vì vậy, không dùng từ
+``tổng quát tốt'' chỉ dựa trên một holdout nhóm ngẫu nhiên.
+
+\subsection{Khả năng ứng dụng và những hạn chế còn lại}
+Ở trạng thái hiện tại, sản phẩm phù hợp làm nghiên cứu học phần và bằng
+chứng cho quy trình có kiểm soát. Một ứng dụng thử nghiệm hợp lý trong
+tương lai là chạy song song với quy trình hiện hữu, chỉ ghi cảnh báo để
+đo chất lượng mà chưa tự điều phối. Cần thống nhất thời điểm chấm điểm,
+đơn vị đơn hàng, định nghĩa trễ và mục tiêu phát hiện trước khi triển khai.
+
+Các điều kiện còn thiếu gồm kiểm định thời gian, dữ liệu vận hành độc
+lập, chi phí lỗi, hiệu chuẩn xác suất, khoảng tin cậy theo nhóm và giám
+sát drift. Ngoài ra, nhóm cần xác nhận tính sẵn có của thuộc tính ngay
+tại lúc tạo đơn. Một mô hình chạy đúng pipeline nhưng dùng cột xuất hiện
+muộn hơn giả định vẫn không đáp ứng bài toán cảnh báo sớm.
+
+Không có kết quả nào trong báo cáo chứng minh cảnh báo giúp giảm tỷ lệ
+giao trễ thực tế. Để kiểm tra điều đó cần thiết kế đo tác động can thiệp,
+khác với bài toán đo dự đoán. Việc giữ ranh giới giữa hiệu quả phân loại
+và hiệu quả điều hành giúp các hướng phát triển có tiêu chí kiểm chứng
+rõ ràng, thay vì chỉ đặt mục tiêu nâng thêm vài phần trăm F1.

@@ -1,0 +1,139 @@
+\partstart{Đặt vấn đề và phân tích yêu cầu}
+\subsection{Bối cảnh và động cơ nghiên cứu}
+Trong chuỗi cung ứng, một đơn hàng đi qua nhiều bước từ tiếp nhận, chuẩn bị
+hàng, lựa chọn phương thức vận chuyển đến giao cho khách. Nếu chỉ phát hiện
+chậm giao khi đã vượt thời hạn cam kết, cơ hội điều phối sớm bị thu hẹp.
+Bài toán của đề tài 16 vì vậy tập trung vào cảnh báo nguy cơ: sử dụng các
+thuộc tính có thể biết khi tạo đơn để nhận diện những đơn cần được theo dõi.
+Kết quả phân loại có thể là đầu vào cho nhân viên vận hành xem xét, thay vì
+tự động thay đổi cam kết giao hàng.
+
+Một cảnh báo đúng có thể hỗ trợ ưu tiên kiểm tra tồn kho hoặc rà soát kế
+hoạch vận chuyển. Ngược lại, cảnh báo sai gây thêm khối lượng xử lý, còn bỏ
+sót khiến đơn có vấn đề không được chú ý. Báo cáo không gán giá trị tiền cho
+những tác động này vì dữ liệu hiện có không chứa chi phí can thiệp. Sự hữu
+ích của cảnh báo phải được đánh giá cùng khả năng xử lý của đơn vị vận hành,
+không thể suy ra chỉ từ độ chính xác của mô hình.
+
+Đề tài phù hợp với dữ liệu bảng có cả số và phân loại. K-NN được chọn để
+khảo sát việc dự đoán từ những đơn có đặc trưng tương tự; cây quyết định
+được chọn để khảo sát quy tắc chia nhóm. Hai thuật toán có cách biểu diễn
+ranh giới khác nhau, tạo cơ sở so sánh giữa học dựa trên khoảng cách và học
+dựa trên các điều kiện phân nhánh. Đây cũng là hai phương pháp thuộc phạm
+vi thuật toán học phần quy định \cite{fit}.
+
+\subsection{Mục tiêu, thời điểm dự đoán và phạm vi}
+Biến mục tiêu là \code{Late_delivery_risk}, nhận giá trị 1 nếu nguồn gán
+nguy cơ giao trễ, và 0 cho phần còn lại. Bài toán được phát biểu dưới dạng
+học có giám sát: từ vector đặc trưng $x_i$ của một dòng hàng, ước lượng nhãn
+$\hat y_i\in\{0,1\}$. Mỗi dòng còn gắn với một mã đơn $g_i$; các dòng chung
+mã đơn có thể dùng chung phương thức vận chuyển và thông tin khách hàng.
+
+Thời điểm dự đoán giả định là sau khi đơn được tạo và phương thức giao đã
+được chọn, trước ngày vận chuyển và kết quả giao thực tế. Giả định này quyết
+định các trường được phép làm đầu vào. Nếu doanh nghiệp muốn dự đoán trước
+cả bước lựa chọn phương thức giao, danh sách đặc trưng hiện tại không còn
+phù hợp và phải thiết kế lại bài toán. Tính sẵn có của từng trường cần được
+chủ dữ liệu xác nhận trước ứng dụng.
+
+Mục tiêu thực nghiệm gồm xây dựng quy trình chống rò rỉ, so sánh baseline
+với K-NN và cây quyết định, đối chiếu hai luồng đặc trưng, đồng thời phân
+tích lỗi theo phương thức giao hàng. Phạm vi hiện tại là phân loại nhị phân
+trên dữ liệu lịch sử, không dự báo số ngày trễ, không tối ưu tuyến đường và
+không chứng minh hiệu quả của một biện pháp can thiệp. Đánh giá theo đơn
+được bổ sung để kiểm tra ý nghĩa của đơn vị quan sát.
+
+\subsection{Nguồn và cấu trúc DataCo}
+Theo trang nguồn Mendeley, DataCo bao gồm dữ liệu chuỗi cung ứng dạng bảng
+và dữ liệu truy cập; tệp mô tả biến đi kèm giúp tra cứu ý nghĩa cột
+\cite{dataco}. Đề tài sử dụng bản dữ liệu bảng ở liên kết Kaggle được lưu
+trong manifest, không dùng clickstream và không ghép thêm nguồn ngoài
+\cite{kaggle}. Việc có nhiều loại tệp ở nguồn gốc không có nghĩa tất cả đều
+được đưa vào thực nghiệm.
+
+Kiểm toán toàn bộ CSV ghi nhận 180.519 dòng, 53 cột và 65.752 mã đơn phân
+biệt. Có 45.902 đơn chứa nhiều dòng; số dòng lặp mã đơn là 114.767. Đây là
+cấu trúc đơn--mặt hàng, không phải 114.767 bản ghi lỗi. Không có dòng trùng
+hoàn toàn và không có đơn chứa nhãn mâu thuẫn giữa các dòng, theo
+\code{quality.json}. Hai kiểm tra này có ý nghĩa khác nhau: trùng toàn bộ
+kiểm tra bản ghi, còn nhất quán nhãn kiểm tra khả năng tổng hợp theo đơn.
+
+\begin{table}[!htbp]\centering
+\begin{tabular}{p{5.1cm}p{8.2cm}}\toprule
+Nhóm trường & Ví dụ và vai trò\\\midrule
+Nhãn và kết quả & Late delivery risk; trạng thái giao; số ngày giao thực tế. Chỉ nhãn dùng làm đích, trường kết quả bị loại khỏi đầu vào.\\
+Đơn và sản phẩm & Số lượng, giá sản phẩm, tỷ lệ chiết khấu, nhóm sản phẩm. Một đơn có thể chứa nhiều mặt hàng.\\
+Vận chuyển và thị trường & Phương thức giao, số ngày kế hoạch, vùng và quốc gia nhận đơn.\\
+Định danh và cá nhân & Mã đơn, mã khách, tên, địa chỉ, email. Mã đơn chỉ dùng gom nhóm, thông tin cá nhân không dùng để dự đoán.\\\bottomrule
+\end{tabular}
+\caption{Các nhóm thông tin trong bộ dữ liệu và cách sử dụng.}\label{tab:data-groups}
+\end{table}
+Bảng~\ref{tab:data-groups} cho thấy cùng một CSV có thể chứa cả thông tin
+đầu vào hợp lệ lẫn thông tin hình thành sau kết quả. Vì vậy, đưa toàn bộ cột
+vào mô hình sẽ làm thay đổi ý nghĩa dự báo sớm, ngay cả khi chương trình vẫn
+chạy và metric tăng. Báo cáo dùng danh sách cho phép để kiểm soát vấn đề này.
+
+\subsection{Phân phối nhãn và giới hạn ngữ nghĩa}
+Toàn bộ nguồn có 98.977 dòng dương và 81.542 dòng âm, tỷ lệ dương khoảng
+54,83\%. Hai lớp không mất cân bằng cực đoan, nhưng lớp dương là đa số. Điều
+này khiến chiến lược luôn dự đoán dương có thể đạt Recall bằng 1 và F1 khá
+cao. Baseline Dummy vì thế là đối chứng cần thiết khi đánh giá sự cải thiện.
+Các tỷ lệ trên thuộc toàn bộ nguồn, không phải tỷ lệ riêng của train hay test.
+
+\fig[.65]{01_classes.png}{Phân phối nhãn trên tập huấn luyện sau chia nhóm.}{fig:classes}
+Hình~\ref{fig:classes} dùng dữ liệu huấn luyện; tỷ lệ dương train trong
+artifact là khoảng 53,18\%. Sự khác biệt với tỷ lệ 54,83\% của toàn nguồn
+phù hợp với việc chỉ lấy một tập con theo nhóm. Đây là sai khác mô tả,
+không phải kiểm định xác nhận mẫu đại diện. Test có 632 dòng dương trên
+1.176 dòng và chỉ được dùng đánh giá sau khi khóa lựa chọn mô hình.
+
+Đối chiếu bảng trạng thái gốc cho thấy 7.754 dòng ``Shipping canceled'' vẫn
+thuộc lớp 0; 41.592 dòng giao sớm và 32.196 dòng đúng hạn cũng ở lớp này.
+Bởi vậy, diễn giải nhãn 0 là ``không được nguồn gán giao trễ'' chính xác hơn
+``đã giao thành công đúng hạn''. Không tự loại đơn hủy hoặc tạo lại nhãn vì
+điều đó sẽ đổi quần thể và làm kết quả không còn so sánh trực tiếp được với
+protocol đã lưu.
+
+\subsection{Chất lượng dữ liệu: thiếu, bất thường và trùng lặp}
+\begin{table}[!htbp]\centering
+\begin{tabular}{lrr}\toprule
+Trường & Số thiếu & Tỷ lệ xấp xỉ\\\midrule
+Customer Lname & 8 & 0,004\%\\
+Customer Zipcode & 3 & 0,002\%\\
+Order Zipcode & 155.679 & 86,24\%\\
+Product Description & 180.519 & 100,00\%\\\bottomrule
+\end{tabular}
+\caption{Giá trị thiếu trên toàn nguồn theo từ điển dữ liệu đã lưu.}\label{tab:missing}
+\end{table}
+Bảng~\ref{tab:missing} chỉ liệt kê các cột có thiếu. Tất cả đều bị loại khỏi
+đầu vào; các đặc trưng được chọn không có missing trong kiểm toán nguồn.
+Do vậy, median/mode là cơ chế phòng vệ cho dữ liệu mới, không phải một cải
+tiến đã được chứng minh tạo chênh lệch metric trên tập này. Cột mô tả sản
+phẩm thiếu hoàn toàn cũng không được coi là dữ liệu văn bản có thể khai thác.
+
+Với trường số, kiểm toán sử dụng quy tắc ngoài khoảng
+$[Q_1-1{,}5\,IQR,Q_3+1{,}5\,IQR]$, trong đó $IQR=Q_3-Q_1$. Đây là tiêu
+chí đánh dấu, không là kết luận bản ghi sai. Chẳng hạn, lợi nhuận có 18.942
+giá trị ngoài ngưỡng IQR nhưng trường này đã bị loại vì ngữ nghĩa và thời
+điểm chưa phù hợp. Loại tự động các dòng như vậy có thể vô tình đổi phân
+phối nhãn và làm mất đơn có giá trị kinh doanh đáng quan tâm.
+
+Không phát hiện dòng trùng hoàn toàn nên không có căn cứ chạy khử trùng.
+Các dòng chung mã đơn phải được giữ cùng nhóm khi chia dữ liệu. Ngoài ra,
+CSV được đọc bằng CP1252 trong manifest; giải mã thành công chỉ xác nhận
+cú pháp ký tự, chưa bảo đảm mọi địa danh đúng ngữ nghĩa. Không thay byte lỗi
+bằng ký tự rỗng để làm chương trình chạy, vì có thể gộp nhầm các danh mục.
+
+\subsection{Thuộc tính quan trọng và ý nghĩa cảnh báo sớm}
+Số ngày giao theo kế hoạch mô tả thời hạn cam kết, khác với số ngày giao
+thực tế bị cấm sử dụng. Phương thức giao hàng là đặc trưng đáng khảo sát vì
+liên quan cách tổ chức dịch vụ. Giá, số lượng, chiết khấu và các nhóm thị
+trường có thể phản ánh cấu trúc đơn, nhưng tương quan quan sát được không
+chứng minh nguyên nhân của việc giao trễ. Đặc trưng lịch trong luồng B là
+một giả thuyết về biến thiên vận hành theo thời gian.
+
+Một hệ thống cảnh báo có ích cần đồng thời xác định đúng thời điểm dữ liệu,
+phân biệt nhãn, kiểm soát cảnh báo sai và đánh giá nhóm dễ bị bỏ sót. Vì vậy,
+thành công của đề tài không chỉ là tìm một mô hình có điểm lớn nhất mà còn
+là chỉ ra trường hợp mô hình không đủ tin cậy. Đây là cơ sở để thiết kế
+pipeline và protocol đánh giá trong phần tiếp theo.

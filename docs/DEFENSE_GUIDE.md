@@ -22,5 +22,6 @@
   outcomes other than successful on-time delivery. Check status/target cross-tabs.
 - Limits: one random group holdout, known historical test, 6000-row budget,
   repeated customers/products, no future/customer holdout or calibrated costs.
-- Submission: six sections exist; official template, compiled PDF, real member
-  details/contributions and human review remain necessary.
+- Submission: the provisional report and slide PDFs were compiled; the report
+  was visually checked and the slides spot-checked. The official template,
+  confirmation of actual contributions and final human review remain necessary. Member identities are supplied in the new report.

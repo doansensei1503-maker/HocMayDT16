@@ -1,0 +1,239 @@
+\partstart{Thiết kế giải pháp và quy trình học máy}
+\subsection{Kiến trúc và hợp đồng dữ liệu}
+Giải pháp tách thành bốn lớp: đọc và xác thực dữ liệu; tạo đặc trưng và tiền
+xử lý; lựa chọn mô hình bằng cross-validation; đánh giá và xuất bằng chứng.
+Ranh giới giữa các lớp giúp xác định bước nào học tham số và bước nào chỉ
+kiểm tra hợp đồng. Tên cột, kiểu số, nhãn nhị phân và ngày hợp lệ phải được
+xác thực trước khi huấn luyện. Khi hợp đồng sai, chương trình dừng thay vì
+âm thầm sửa nhãn hoặc bỏ dòng.
+
+\begin{figure}[!htbp]\centering
+\fbox{\begin{minipage}{.88\textwidth}\centering
+CSV và tệp mô tả $\longrightarrow$ Kiểm tra schema, nhãn, nhóm\\[7pt]
+$\downarrow$\\[5pt]
+Lấy mẫu nguyên đơn $\longrightarrow$ Chia train/test theo Order Id\\[7pt]
+$\downarrow$\\[5pt]
+Train: tạo đặc trưng $\to$ tiền xử lý trong fold $\to$ CV và tìm kiếm\\[7pt]
+$\downarrow$\\[5pt]
+Khóa lựa chọn bằng CV $\longrightarrow$ fit lại trên toàn train\\[7pt]
+$\downarrow$\\[5pt]
+Test lịch sử $\longrightarrow$ metric dòng/đơn, lỗi nhóm, bảng và hình
+\end{minipage}}
+\caption{Quy trình thực nghiệm; tập test nằm ngoài bước lựa chọn mô hình.}\label{fig:pipeline}
+\end{figure}
+Trong Hình~\ref{fig:pipeline}, kiểm toán toàn nguồn chỉ xác nhận chất lượng
+và hợp đồng. Các biểu đồ khám phá phục vụ mô hình được dựng trên train sau
+split. Các phép median, mode, scaling và học danh mục đều phải nằm trong
+pipeline được fit lại trong từng fold. Việc chỉ chia train/test mà vẫn học
+tiền xử lý trên toàn nguồn chưa đáp ứng điều kiện độc lập này.
+
+Hàm \code{validate} yêu cầu nhãn chứa đúng hai giá trị số 0 và 1, mã đơn
+không thiếu, trường số không vô hạn và ngày tạo đơn phân tích được. Điều
+kiện hai lớp cũng được kiểm tra sau split và trong từng fold. Điều này ngăn
+việc tính metric trên một tập không còn đủ lớp mà người đọc không biết.
+Các quyết định thay đổi schema cần được thực hiện trước một protocol mới.
+
+\subsection{Lựa chọn đặc trưng và phòng tránh rò rỉ}
+Luồng A giữ bốn trường số: số ngày giao kế hoạch, số lượng mặt hàng, giá sản
+phẩm và tỷ lệ chiết khấu. Chín trường phân loại gồm loại giao dịch, phương
+thức giao, phân khúc khách, nhóm hàng, phòng ban, thị trường, vùng, quốc gia
+và bang của đơn. Ngày tạo đơn chỉ được dùng để trích xuất lịch ở luồng B.
+Mã đơn phục vụ chia nhóm, không được đưa vào vector dự đoán.
+
+\begin{table}[!htbp]\centering\small
+\begin{tabular}{p{5.4cm}p{7.9cm}}\toprule
+Thông tin & Quyết định và lý do\\\midrule
+Delivery Status & Loại: trạng thái kết quả có liên hệ trực tiếp với nhãn.\\
+Days for shipping (real) & Loại: chỉ biết sau vận chuyển, vi phạm thời điểm dự đoán.\\
+Order Status; shipping date & Loại: thông tin sau tạo đơn hoặc thời điểm không bảo đảm.\\
+Order Id và định danh cá nhân & Không làm đầu vào; mã đơn chỉ dùng gom nhóm.\\
+Lợi nhuận, trường không trong allowlist & Loại bảo thủ do thời điểm/ngữ nghĩa chưa được xác nhận hoặc dư thừa.\\
+Ngày tạo đơn & B trích tháng/thứ/giờ; không sử dụng nguyên timestamp.\\\bottomrule
+\end{tabular}
+\caption{Các quyết định phòng rò rỉ trong danh sách đặc trưng.}\label{tab:leakage}
+\end{table}
+Bảng~\ref{tab:leakage} phân biệt việc loại trường có kết quả tương lai với
+việc tránh ghi nhớ định danh. Không phải mọi cột bị loại đều đã được chứng
+minh gây leakage; một số bị loại vì chưa đủ bằng chứng về tính sẵn có.
+\code{feature_audit.csv} lưu cả lý do và mức chắc chắn để không biến lựa
+chọn bảo thủ thành kết luận tuyệt đối về bản chất từng trường.
+
+Ngoài rò rỉ từ cột, các dòng cùng đơn xuất hiện ở hai phía split có thể tạo
+liên hệ rất mạnh giữa train và test. Vì vậy, thiết kế chống leakage phải
+kiểm soát đồng thời nội dung đặc trưng, đơn vị nhóm và nơi fit tiền xử lý.
+Pipeline hỗ trợ kiểm soát phép biến đổi, nhưng không tự sửa một cách chia
+nhóm sai hoặc hợp đồng thời điểm sai \cite{pitfalls}.
+
+\subsection{Lấy mẫu và chia train/test theo đơn}
+Protocol \code{group-subset-v1} tính số dòng từng đơn, xáo trộn thứ tự đơn
+với seed 42 rồi lấy tiền tố có tổng số dòng không vượt ngân sách 6.000.
+Các đơn được giữ nguyên, không cắt lấy vài dòng của đơn cuối. Kết quả thực
+tế là 5.999 dòng thuộc 2.113 đơn. Đây là mẫu theo nhóm có ràng buộc ngân
+sách, không phải 6.000 dòng lấy ngẫu nhiên độc lập.
+
+Sau lấy mẫu, \code{GroupShuffleSplit} tách khoảng 20\% nhóm làm test.
+Với $G_{tr}$ và $G_{te}$ là tập mã đơn hai phía, điều kiện bắt buộc là
+\begin{equation}
+G_{tr}\cap G_{te}=\varnothing.
+\end{equation}
+Kết quả là 1.690 đơn/4.823 dòng train và 423 đơn/1.176 dòng test. Tỷ lệ
+20\% áp dụng ở cấp nhóm; số dòng phụ thuộc kích thước từng đơn nên không
+bắt buộc chia đúng 80/20 theo dòng. Chương trình kiểm tra giao nhóm bằng
+tập hợp, thay vì chỉ dựa vào tên bộ chia \cite{cv}.
+
+Những đơn mới trong test vẫn có thể chia sẻ khách hàng hoặc sản phẩm với
+train. Vì thế, split này trả lời câu hỏi dự đoán đơn chưa thấy trong cùng
+quần thể lịch sử, chưa trả lời câu hỏi khách hàng mới, sản phẩm mới hoặc
+tương lai. Muốn kiểm tra những mục tiêu đó cần định nghĩa nhóm hoặc thứ tự
+thời gian khác và sử dụng dữ liệu đánh giá độc lập.
+
+\subsection{Cross-validation theo nhóm và cách lựa chọn}
+Trong train, \code{StratifiedGroupKFold} với ba fold, shuffle và seed 42
+tạo danh sách cặp chỉ số dùng chung cho mọi ứng viên. Nhóm đơn không bị
+chia cắt và bộ chia cố gắng cân bằng tỷ lệ lớp. Ràng buộc nhóm có ưu tiên,
+nên không yêu cầu tỷ lệ lớp giữa các fold phải bằng tuyệt đối. Mỗi fold
+được kiểm tra có đủ hai lớp và giao nhóm bằng rỗng.
+
+Với cấu hình $\theta$ và $K=3$, điểm lựa chọn là
+\begin{equation}
+\overline F_1(\theta)=\frac{1}{K}\sum_{j=1}^{K}
+F_1\!\left(y_{V_j},\hat f_{\theta,T_j}(X_{V_j})\right),\qquad
+\theta^*=\arg\max_\theta\overline F_1(\theta).
+\end{equation}
+$T_j,V_j$ lần lượt là phần học và validation của fold $j$.
+$\hat f_{\theta,T_j}$ bao gồm cả các phép tiền xử lý fit trên $T_j$.
+F1 được tính cho lớp dương 1. Trung bình F1 từng fold không nhất thiết bằng
+F1 khi gộp mọi dự đoán validation, vì F1 là một tỷ số phi tuyến.
+
+\code{GridSearchCV} sử dụng \code{refit='f1'}: sau khi tìm cấu hình có
+trung bình F1 cao nhất, nó fit lại pipeline trên toàn train. Tên ứng viên
+thắng được lưu vào manifest trước vòng lặp dự đoán test. Test của sáu cấu
+hình được báo cáo để so sánh đã định trước, không dùng để đổi người thắng.
+Các quan sát lỗi test về sau chỉ tạo giả thuyết cho nghiên cứu tiếp theo.
+
+Độ lệch chuẩn CV được lưu để mô tả dao động giữa ba fold, không là khoảng
+tin cậy 95\%. Các fold có dữ liệu huấn luyện chồng lấn và cùng được dùng
+chọn tham số, nên không thể coi ba điểm là ba thí nghiệm hoàn toàn độc lập.
+Điểm CV tốt nhất còn có thể lạc quan do chọn cực đại trên nhiều cấu hình.
+
+\subsection{Tiền xử lý A và B}
+Với cột số $j$, giá trị thiếu được thay bằng median tính trên tập đang fit.
+Sau đó dùng biến đổi $z_{ij}=(x_{ij}-\mu_j)/s_j$, trong đó $\mu_j,s_j$ là
+trung bình và độ lệch chuẩn của tập học tương ứng. Không tính lại các tham
+số này trên validation hay test. Chuẩn hóa giúp những trường khác đơn vị
+không chi phối khoảng cách chỉ vì độ lớn số học.
+
+Với trường phân loại, mode được học trên tập fit; one-hot biến mỗi danh mục
+thành một chỉ báo nhị phân. \code{handle_unknown='ignore'} cho phép xử lý
+danh mục chưa thấy, với các chỉ báo của trường đó bằng 0. Cơ chế này giúp
+duy trì chiều đầu vào nhưng không bảo đảm dự đoán tốt cho danh mục lạ.
+Ma trận thưa giúp hạn chế lưu trữ các số 0 trong không gian nhiều danh mục.
+
+Luồng B giữ toàn bộ đặc trưng A và thêm tháng, thứ trong tuần, giờ tạo đơn.
+Thứ dùng quy ước \code{dayofweek} của pandas: thứ Hai là 0, Chủ nhật là 6.
+Ba trường được đưa vào nhánh số và chuẩn hóa như các trường số khác. Đây
+là biểu diễn tuyến tính của biến lịch; không có mã hóa sin/cos trong code
+hiện tại. Khoảng cách giữa giờ 23 và 0 vì vậy chưa phản ánh tính tuần hoàn.
+
+Hai luồng có chung median, mode, scaling và one-hot; khác biệt trọng tâm
+là ba đặc trưng lịch. Cây cũng sử dụng đầu vào đã scale để giữ cùng cấu
+trúc pipeline. Với phép đổi thang đơn điệu của một trường số, thứ tự quan
+sát được giữ nguyên, nên không gán lợi ích của cây cho StandardScaler khi
+chưa có thí nghiệm tách riêng. Tương tự, không tuyên bố đã đo lợi ích của
+imputation khi các cột đầu vào nguồn không có missing.
+
+\subsection{K-Nearest Neighbors và liên hệ cấu hình}
+K-NN dự đoán từ nhãn của $k$ quan sát gần nhất trong không gian đã tiền xử
+lý. Gọi $\mathcal N_k(x)$ là tập láng giềng của điểm $x$, phiếu cho lớp $c$
+được biểu diễn bằng $\sum_{i\in\mathcal N_k(x)}w_i\mathbf1(y_i=c)$.
+Chế độ uniform đặt $w_i=1$; distance ưu tiên láng giềng gần hơn. Quy tắc
+này giải thích vì sao biểu diễn dữ liệu và thang đo quan trọng đối với
+K-NN \cite{knn}.
+
+Hai khoảng cách được thử trong repository là
+\begin{align}
+d_2(x,z)&=\sqrt{\sum_{j=1}^{p}(x_j-z_j)^2},\\
+d_1(x,z)&=\sum_{j=1}^{p}|x_j-z_j|.
+\end{align}
+$p$ là số chiều sau mã hóa. Một trường phân loại nhiều danh mục tạo nhiều
+chiều one-hot; khi đó độ gần trong không gian mã hóa không nhất thiết là
+độ tương đồng vận hành mà con người mong muốn. Những đơn cùng vùng có thể
+vẫn rất khác về khả năng giao, trong khi một khác biệt danh mục hiếm có
+thể tác động đáng kể tới thứ tự láng giềng.
+
+Không gian tìm kiếm có $k\in\{5,15\}$, uniform/distance và Euclidean/
+Manhattan, tổng cộng tám cấu hình cho mỗi luồng. Giá trị $k$ nhỏ cho phép
+ranh giới linh hoạt nhưng nhạy với cục bộ; tăng $k$ làm trung bình trên
+nhiều quan sát hơn. Không khẳng định $k=15$ tối ưu ngoài phạm vi lưới nhỏ
+này. Kết quả được chọn còn phụ thuộc bộ đặc trưng, split và dữ liệu.
+
+Code đặt \code{algorithm='brute'} và \code{n_jobs=1}. Với $n$ điểm học,
+$m$ điểm cần dự đoán và $p$ chiều, phép tìm kiếm trực tiếp có chi phí tỷ lệ
+xấp xỉ $mnp$ cho tính khoảng cách. Đây là lý do ngân sách dòng được giới
+hạn trong thí nghiệm; báo cáo không suy ra thời gian chạy toàn bộ nguồn
+bằng phép nhân tuyến tính đơn giản vì còn phụ thuộc bộ nhớ và xử lý thưa.
+
+\subsection{Cây quyết định, độ thuần và regularization}
+Cây phân loại chia không gian bằng các điều kiện trên một đặc trưng ở mỗi
+nút. Với tỷ lệ lớp $p_{tc}$ tại nút $t$, hai tiêu chí trong lưới là
+\begin{equation}
+I_G(t)=1-\sum_c p_{tc}^2,\qquad
+I_H(t)=-\sum_c p_{tc}\log_2 p_{tc}.
+\end{equation}
+Quy ước $0\log_2 0=0$. Một phép chia được đánh giá bằng mức giảm độ không
+thuần có trọng số theo số mẫu ở hai nút con. Lá đưa ra nhãn theo phân bố
+lớp của các mẫu tới lá; cây tìm quy tắc phân tách, không trực tiếp tối ưu
+F1 ở từng nút \cite{tree}.
+
+Lưới thử độ sâu tối đa 4, 10 hoặc không giới hạn; số mẫu tối thiểu một lá
+5 hoặc 20; criterion là gini hoặc entropy. Có 12 cấu hình cho mỗi luồng.
+Giới hạn độ sâu và tăng kích thước lá giảm khả năng tạo nhánh rất nhỏ chỉ
+khớp dữ liệu học. Cây baseline dùng mặc định, lá tối thiểu 1 và không chặn
+độ sâu, nên là đối chứng cho tác động của việc kiểm soát độ phức tạp.
+
+Độ quan trọng impurity tổng hợp đóng góp giảm độ không thuần của đặc trưng
+qua các nút, sau chuẩn hóa tổng. Giá trị cao nghĩa là đặc trưng được cây
+dùng mạnh trong cách chia đã học; không phải hệ số nhân quả và không nói
+rằng thay đổi đặc trưng sẽ làm thay đổi kết quả giao. Một đặc trưng có
+importance bằng 0 trong cây nông vẫn có thể hữu ích với mô hình khác.
+
+\subsection{Baseline và thước đo đánh giá}
+Hai mốc so sánh có vai trò riêng. Cây mặc định kiểm tra việc dùng mô hình
+linh hoạt nhưng chưa lựa chọn tham số. Dummy most-frequent học lớp đa số
+trên train, sau đó luôn dự đoán lớp đó. Trong lần chạy này lớp đa số là 1.
+Dummy không sử dụng thông tin đặc trưng để phân biệt các đơn, vì thế một
+mô hình phức tạp không vượt mốc này cần được xem xét thận trọng.
+
+Đặt TP là số dòng trễ được cảnh báo đúng, TN là dòng âm được dự đoán đúng,
+FP là dòng âm bị cảnh báo và FN là dòng trễ bị bỏ sót. Với $N$ dòng test:
+\begin{align}
+\mathrm{Accuracy}&=\frac{TP+TN}{N},&
+\mathrm{Precision}&=\frac{TP}{TP+FP},\\
+\mathrm{Recall}&=\frac{TP}{TP+FN},&
+F_1&=\frac{2TP}{2TP+FP+FN}.
+\end{align}
+Precision diễn tả tỷ lệ đúng trong số cảnh báo; Recall diễn tả phần dương
+được phát hiện. F1 dùng để chọn mô hình trong protocol, nhưng bỏ qua TN và
+không trực tiếp gắn chi phí vận hành. Code dùng \code{zero_division=0}
+để xử lý trường hợp mẫu số bằng 0 một cách xác định.
+
+Ngoài metric nhị phân, ROC-AUC đánh giá khả năng xếp hạng trên nhiều ngưỡng;
+cột \code{pr_auc} trong code thực tế dùng \code{average_precision_score}.
+Average precision là tổng precision có trọng số theo mức tăng recall,
+khác với việc tích phân hình thang đường PR. Báo cáo giữ tên cột artifact
+nhưng diễn giải đúng phép tính để không nhầm hai đại lượng \cite{metrics}.
+Xác suất mô hình chưa được hiệu chuẩn.
+
+\subsection{Đánh giá theo đơn và giả định thực nghiệm}
+Với đơn $g$ chứa $n_g$ dòng, xác suất tổng hợp được định nghĩa
+\begin{equation}
+\bar p_g=\frac{1}{n_g}\sum_{i:g_i=g}p_i,\qquad
+\hat y_g=\mathbf1(\bar p_g\ge0{,}5).
+\end{equation}
+Nhãn của đơn lấy từ nhãn chung sau khi kiểm tra tính nhất quán. Mỗi đơn
+có trọng số bằng nhau khi tính metric. Quy tắc trung bình này đã được lưu
+trong artifact, không được lựa chọn lại để tối đa hóa điểm test.
+
+Thiết kế giả định schema và nhãn ổn định giữa train/test. Seed cố định
+hỗ trợ tái lập, không chứng minh độ ổn định. Thử nghiệm chưa có temporal
+holdout, chi phí lỗi, khoảng tin cậy nhóm hay đánh giá tác động can thiệp.

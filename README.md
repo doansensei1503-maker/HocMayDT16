@@ -1,4 +1,4 @@
-﻿# FIT4013 – Đề tài 16: Dự đoán nguy cơ giao trễ
+# FIT4013 – Đề tài 16: Dự đoán nguy cơ giao trễ
 
 Thời điểm dự đoán: sau khi tạo đơn và chọn phương thức vận chuyển, trước kết quả giao thực tế. Đơn vị mô hình là order-item; đánh giá theo dòng nhưng chia train/test và CV theo Order Id. Không diễn giải metric theo dòng thành hiệu quả theo đơn hàng.
 
@@ -18,7 +18,11 @@ Chỉ chạy lệnh cuối khi có đủ CSV và mô tả trong data/raw. Đọc
 - Tối ưu F1 lớp 1 bằng CV, báo Recall và Precision để cân đối bỏ sót/cảnh báo nhầm. Test chỉ dùng sau khi khóa toàn bộ cấu hình; không xếp hạng để chọn mô hình bằng test. Không chọn threshold từ test.
 - Baseline Decision Tree mặc định + A và Dummy most_frequent. Grid nhỏ cho K-NN (k, weights, metric) và cây (depth, leaf, criterion), không thay bằng mô hình nâng cao.
 
-Các notebook gọi code trong src, không sao chép logic. report/main.tex là nguồn nội dung, chưa phải template chính thức. MiKTeX/XeLaTeX đã được cài trong profile người dùng, nhưng thiếu package `infwarerr.sty`; PDF chưa được tạo hoặc kiểm tra. Không tiếp tục cài package hay biên dịch theo trạng thái hiện tại. Nhóm cần cung cấp template chính thức và tên/thông tin đóng góp thành viên thật trước khi nộp; không tự điền thông tin chưa xác nhận. Dữ liệu thô và artifact có nguy cơ chứa thông tin cá nhân bị gitignore; ví dụ lỗi chỉ xuất đặc trưng an toàn.
+Các notebook gọi code trong src. Báo cáo hoàn chỉnh ở `report/final_report.pdf`
+(36 trang A4), nguồn tại `report/main.tex` và `report/sections/`. Hai bìa có logo
+trích nguyên từ Word và thông tin nhóm do người dùng cung cấp. Chưa có template
+LaTeX chính thức để đối chiếu; phân công là đề xuất chưa xác nhận đóng góp thực tế.
+Không huấn luyện lại khi biên tập báo cáo. Dữ liệu thô/model/split riêng được gitignore.
 
 ## Notebook và báo cáo
 ```
@@ -31,7 +35,7 @@ Lệnh execute_notebooks chạy cả bốn notebook; notebook 03 tạo một run
 ## Build báo cáo và slide
 
 Cần XeLaTeX (MiKTeX hoặc TeX Live) và font Times New Roman; slide dùng thêm
-Arial. Sau khi cài, mở PowerShell mới ở thư mục gốc:
+Arial. Tại thư mục gốc, chạy:
 
 ```powershell
 .\scripts\build_report.ps1
@@ -40,28 +44,26 @@ Arial. Sau khi cài, mở PowerShell mới ở thư mục gốc:
 
 Lệnh thứ nhất tạo `report/final_report.pdf`; lệnh có `-BuildSlides` còn tạo
 `slides/presentation.pdf`. Auxiliary files và log nằm trong `report/build/` và
-`slides/build/`. Script kiểm tra compiler, font, đầu vào và package TeX bắt buộc,
-biên dịch XeLaTeX hai lần, kiểm tra PDF không rỗng và vẫn yêu cầu kiểm tra hình
-ảnh sau build. Nếu thiếu package, script dừng trước XeLaTeX; không tự cài package
-hay mở MiKTeX Console. Các tệp PDF không khẳng định template chính thức đã được
-áp dụng.
+`slides/build/`. Helper tìm XeLaTeX trên PATH hoặc trong thư mục cài MiKTeX của
+người dùng, truyền `--disable-installer` và không gọi `kpsewhich`; package còn
+thiếu được báo trong log thay vì cài tự động. Nếu cần, cài package bằng CLI
+chính thức của MiKTeX. Việc build không xác nhận template chính thức hay thay
+thế việc kiểm tra trực quan.
 
-`report/generated.tex` được sinh bởi `src/reporting.py`; không chạy lại training
-chỉ để build báo cáo. `report/analysis.tex` và slide phản ánh run lịch sử với
-seed 42; nếu đổi cấu hình hoặc dữ liệu, cần rà soát và cập nhật số liệu tương
-ứng theo run mới. Bằng chứng thí nghiệm cũ và giới hạn được ghi trong
-`docs/REPAIR_VERIFICATION.md`.
+Các tệp `report/generated.tex`, `analysis.tex`, `repair_analysis.tex` là nguồn cũ,
+được giữ để truy vết và không còn input vào main. Bảng mới được tạo từ artifact
+sẵn có bằng `py scripts/report_tables.py`, kèm kiểm tra metric; không training.
+Helper chạy XeLaTeX ba lượt. Xem [hướng dẫn báo cáo](report/README.md).
 
 ## Submission readiness
 
-**PDF = PENDING; Official Template = BLOCKED; Team Information = PENDING.**
-The six required report sections and evidence-backed results are in
-`report/main.tex`, but the PDF has not been generated, the official course
-template is unavailable, and verified team names/contributions are missing.
-The installed user-level MiKTeX is missing the required `infwarerr.sty`; package
-installation and further compilation are paused per the current instruction.
-The article source is provisional. See `docs/STATUS.md`,
-`docs/RUBRIC_EVIDENCE.md`, and `docs/FINAL_SUBMISSION_CHECKLIST.md`.
+**PDF = BUILT, 36 pages; Team identity = SUPPLIED; Contributions = PROPOSED;
+Official Template = UNVERIFIED.**
+
+Sáu phần đã hoàn thiện từ kết quả lịch sử. Phải xác nhận phân công/đóng góp thực
+tế, template chính thức, repository được giảng viên chấp thuận và rà soát của
+nhóm trước nộp. Slide 9 trang là bản cũ, chưa cập nhật thông tin nhóm trong
+lần hoàn thiện báo cáo này. Xem `docs/STATUS.md` và checklist.
 
 Kết quả nộp/review an toàn nằm ở results/tables và results/figures. Run riêng trong results/runs chứa split và model để kiểm toán cục bộ, được gitignore. Model không được commit. Khi làm lại với phiên bản code khác, giữ run cũ, hash dữ liệu và commit thật của nhóm; không tạo commit thay đóng góp thành viên.
 

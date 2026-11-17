@@ -13,25 +13,21 @@ independent validation. Source locations are cited for review.
 | 5. Thảo luận và so sánh | `report/analysis.tex`; `report/repair_analysis.tex`; `results/tables/*_order_metrics.json`; `results/tables/time_ablation_cv.csv` | Explains group-level averaging, Dummy's slightly higher equal-order F1 despite predicting all positive, the fixed-parameter CV ablation and Standard Class false negatives. Descriptive only; no causal, operational or future-generalization claim. |
 | 6. Tổng kết và hướng phát triển | `report/main.tex`, section 6 | Summarizes historical results, highlights the severe Standard Class recall limitation and lists further validation. No deployment-readiness claim. |
 
-## Current artifact status
+## Current artifact status — 2026-11-17 completion
 
-- **PDF: PENDING.** MiKTeX 25.12 and XeLaTeX are installed in the user profile,
-  but the first report build stopped at missing `infwarerr.sty`. No PDF was
-  generated or visually inspected. No further installation or compilation is
-  being attempted per the user's instruction.
-- **Official template: BLOCKED.** The official course template is not available
-  in the repository or provided materials. `report/main.tex` is provisional,
-  not template-compliant by claim.
-- **Team information: PENDING.** Verified member names, student IDs and actual
-  contributions are absent. Do not fabricate them or infer roles from Git
-  authorship.
-- **Slides: SOURCE UPDATED; PDF PENDING.** `slides/presentation.tex` now includes
-  historical equal-order metrics and sample coverage. It has not been compiled
-  or visually reviewed.
-- **Repository: CONFIRM.** The configured remote is
-  `doansensei1503-maker/HocMayDT16`; confirm instructor approval.
+- Report: `report/final_report.pdf`, 36 pages A4, three-pass XeLaTeX; full visual
+  review and artifact checks recorded in `docs/REPORT_VERIFICATION.md`.
+- Final content lives in `report/sections/01_problem.tex` through
+  `06_conclusion.tex`; main no longer inputs the older generated/analysis files.
+  Six sections include equations, all 15 existing result images, pipeline diagram,
+  13 tables, order evaluation, ablation and limitations. No retraining was done.
+- Two covers use the unchanged logo extracted from the supplied Word file;
+  identities are supplied and matched. Lecturer matches the course requirements.
+- Actual contributions remain unconfirmed; the assignment table is explicitly
+  proposed. See `TEAM_ASSIGNMENT_PROPOSED.md`.
+- Official LaTeX template is unavailable. Do not claim template compliance.
+- Slides remain a previously built, partially inspected nine-page deck; this
+  report update does not certify the entire deck or update its team identity.
+- Instructor approval of the repository and human final review remain necessary.
 
-Build instructions and preflight checks are in `README.md` and
-`scripts/build_report.ps1`. The script does not invoke MiKTeX package
-installation. Complete `docs/FINAL_SUBMISSION_CHECKLIST.md` before submission.
-No grade is promised.
+See `STATUS.md`, `FINAL_SUBMISSION_CHECKLIST.md`, and `report/README.md`.

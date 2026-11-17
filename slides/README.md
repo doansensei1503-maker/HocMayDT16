@@ -1,4 +1,14 @@
-﻿# Tài liệu trình chiếu
-presentation.tex là nguồn Beamer với kết quả thực nghiệm đã ghi nhận ở cấu hình seed42/max_rows6000; các kết quả là lịch sử, không phải xác nhận độc lập mới. XeLaTeX có trong profile người dùng, nhưng lần biên dịch báo cáo đã dừng do thiếu `infwarerr.sty`; slide chưa được biên dịch hoặc kiểm tra. Không tiếp tục cài package hay biên dịch theo chỉ dẫn hiện tại. Đây không phải template slide chính thức.
+# Tài liệu trình chiếu
 
-Khi package và template được giải quyết, chạy XeLaTeX hai lần trong thư mục slides rồi kiểm tra PDF, bảng và hình. Cần bổ sung tên nhóm đã xác minh và chuẩn bị trả lời câu hỏi trong outline.md. Nếu đổi cấu hình thực nghiệm phải cập nhật số liệu phần chữ; bảng/hình vẫn đọc từ results.
+`presentation.tex` là nguồn Beamer dùng các kết quả lịch sử ở cấu hình
+`seed42/max_rows6000`; không phải xác nhận độc lập mới và không phải template
+slide chính thức. MiKTeX/XeLaTeX đã biên dịch nguồn hai lượt thành
+`build/presentation.pdf` (9 trang). Trang bìa, các slide đầu và bảng kết quả CV
+đã được kiểm tra trực quan; font Arial được nhúng, nhưng chưa thực hiện rà soát
+thủ công toàn bộ deck.
+
+Tên và MSSV đã được cung cấp và điền trong báo cáo 36 trang. Deck này chưa được
+cập nhật nhận diện nhóm trong lần hoàn thiện báo cáo; đóng góp thực tế vẫn cần
+hai thành viên xác nhận.
+Chuẩn bị trả lời câu hỏi trong `outline.md`. Nếu đổi cấu hình thực nghiệm, cần
+cập nhật số liệu phần chữ; bảng/hình vẫn đọc từ `results/`.

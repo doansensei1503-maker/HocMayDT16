@@ -1,0 +1,98 @@
+\partstart{Tổng kết và hướng phát triển}
+\subsection{Các mục tiêu đã thực hiện}
+Đề tài đã xây dựng quy trình phân loại nguy cơ giao trễ trên DataCo theo
+đúng hướng học có giám sát. Dữ liệu được kiểm tra schema, nhãn, missing,
+outlier và cấu trúc đơn nhiều dòng. Danh sách đặc trưng cho phép loại
+thông tin kết quả và định danh khỏi đầu vào. Chia train/test cùng CV theo
+mã đơn hạn chế việc các dòng của cùng một đơn xuất hiện ở cả phần học
+và phần đánh giá.
+
+Hai thuật toán K-NN và cây quyết định được so sánh qua luồng A và B, có
+cây mặc định cùng Dummy làm baseline. Phép lựa chọn dựa trên F1 CV, các
+phép học tiền xử lý nằm trong pipeline, test chỉ đánh giá sau khi khóa
+ứng viên. Repository lưu cấu hình, hash, phiên bản, bảng metric và hình
+để người đọc có thể kiểm tra ngược lại các phát biểu trong báo cáo.
+
+Phân tích không dừng ở metric tổng hợp: báo cáo đối chiếu ma trận nhầm
+lẫn, mức khớp train--CV, ablation lịch, đánh giá theo đơn và lỗi theo
+dịch vụ. Những bước này cho thấy một mô hình có điểm tổng thể cao nhất
+vẫn có thể thiếu phù hợp ở nhóm quan trọng. Đây là kết quả phân tích
+phương pháp, không chỉ là một bảng xếp hạng thuật toán.
+
+\subsection{Kết quả chính và mức độ kết luận}
+Trên mẫu 5.999 dòng, cây B được chọn với độ sâu 4, tối thiểu 20 mẫu/lá,
+gini và ba đặc trưng lịch bổ sung. CV F1 đạt 0,7058, test F1 theo dòng
+0,7098; Precision 0,8533 và Recall 0,6076. Các giá trị này mô tả kết quả
+của đúng một protocol và một tập con, không phải đánh giá trên toàn bộ
+180.519 dòng hay một dữ liệu ngoài độc lập.
+
+K-NN B cải thiện so với A trong kết quả đã lưu, nhưng F1 train gần 1 và
+CV thấp hơn đáng kể cho thấy cần thận trọng về tổng quát hóa. Cây baseline
+cũng có khoảng cách train--CV lớn. Cây B nông có gap nhỏ hơn, song bỏ sót
+248/254 dòng dương Standard Class. Vì vậy, cải thiện về kiểm soát độ phức
+tạp chưa giải quyết được thất bại ở nhóm dịch vụ này.
+
+Dummy đạt F1 dòng 0,6991 và F1 đơn 0,7123 bằng cách dự đoán mọi trường
+hợp dương. Cây B đạt F1 đơn 0,7100, với Precision cao hơn nhưng Recall
+thấp hơn nhiều. Kết quả nhấn mạnh cần đánh giá baseline và đơn vị nghiệp
+vụ ngay từ thiết kế, thay vì coi một ngưỡng F1 tuyệt đối là đủ để kết
+luận mô hình tốt. Hiện chưa có bằng chứng đủ để khuyến nghị tự động ra
+quyết định vận chuyển.
+
+\subsection{Điểm mạnh và hạn chế của quy trình}
+Điểm mạnh là kiểm soát rò rỉ ở nhiều tầng: đặc trưng, nhóm và nơi fit
+tiền xử lý. Sự nhất quán giữa cấu hình, runner và notebook giúp giảm sai
+khác protocol. Manifest và artifact tổng hợp tạo đường truy vết từ số
+liệu đến bảng/hình báo cáo. Các ví dụ lỗi được lọc thông tin cá nhân,
+trong khi dữ liệu thô và model cục bộ không cần đưa vào bản công bố.
+
+Hạn chế quan trọng của dữ liệu là nhãn âm chứa đơn hủy, thời điểm nghiệp
+vụ của một số cột chưa có xác nhận độc lập và nguồn có thể không đại diện
+cho vận hành tương lai. Hạn chế thực nghiệm là lấy một mẫu nhỏ, một seed,
+ba fold và một holdout nhóm ngẫu nhiên. Chưa có khoảng tin cậy theo đơn,
+đánh giá ngoài thời gian hoặc trên doanh nghiệp khác.
+
+Hạn chế mô hình gồm khoảng cách phụ thuộc mã hóa ở K-NN, cây nhạy với
+mẫu và nhóm hiếm, xác suất chưa hiệu chuẩn và các ngưỡng chưa gắn chi
+phí. Không gian tìm kiếm nhỏ cũng giới hạn phạm vi kết luận về siêu
+tham số. Những điểm chưa thực hiện không được mô tả như tính năng đã
+có hoặc như kết quả chắc chắn sẽ cải thiện.
+
+\subsection{Lộ trình phát triển có thể kiểm chứng}
+Ưu tiên đầu tiên là làm rõ hợp đồng dữ liệu: định nghĩa đơn bị trễ,
+cách xử lý đơn hủy, múi giờ và thời điểm có từng thuộc tính. Nếu thay
+nhãn hoặc quần thể, cần lưu phiên bản dữ liệu và protocol mới, không
+ghép trực tiếp metric cũ với metric mới. Việc xác nhận này quyết định
+mô hình đang giải đúng bài toán nghiệp vụ hay chỉ khớp nhãn trong CSV.
+
+Ưu tiên thứ hai là đánh giá tổng quát hóa. Có thể mở rộng mẫu theo ngân
+sách, lặp group split với nhiều seed và bổ sung temporal holdout được
+giữ độc lập. Kết quả nên có khoảng tin cậy bootstrap theo đơn; các dòng
+trong cùng đơn phải đi cùng nhau ở mỗi lần resample. Nếu mục tiêu phục
+vụ khách mới, cần thêm thiết kế tách khách hàng thay vì chỉ tách đơn.
+
+Ưu tiên thứ ba là thiết kế tiêu chí vận hành. Cần xác định mức Recall
+tối thiểu, số cảnh báo có thể xử lý và chi phí FP/FN. Threshold hoặc
+calibration chỉ được học trên validation, không dùng test hiện tại.
+Recall Standard Class cần được theo dõi riêng để tránh mô hình cải
+thiện điểm trung bình nhưng tiếp tục bỏ sót một nhóm lớn.
+
+Sau cùng mới cân nhắc mở rộng biểu diễn hoặc mô hình: mã hóa chu kỳ
+cho biến lịch, đặc trưng vận hành có thời điểm rõ ràng, hay các cấu hình
+kiểm soát lớp và độ phức tạp. Mọi phương án cần đối chứng cùng protocol
+và có ngân sách tính toán ghi rõ. Không mặc định thêm mô hình phức tạp
+sẽ vượt baseline hoặc giải được điểm yếu Standard Class.
+
+\subsection{Điều kiện ứng dụng thực tế}
+Nếu các bước trên đạt yêu cầu, hệ thống có thể được thử ở chế độ chỉ
+ghi nhận, theo dõi schema, tỷ lệ danh mục lạ, phân phối xác suất và metric
+khi nhãn hoàn thiện. Việc đánh giá cần tính độ trễ xuất hiện nhãn, vì
+chưa giao xong không đồng nghĩa không trễ. Một cơ chế ghi nhật ký giúp
+phân biệt thay đổi mô hình với thay đổi cách vận hành.
+
+Để chứng minh lợi ích thực tế, cần đo thêm tác động của quy trình xử lý
+cảnh báo, không chỉ F1. Tỷ lệ cảnh báo đúng, thời gian nhân viên xử lý
+và kết quả sau can thiệp phải được thu thập theo kế hoạch phù hợp. Trong
+phạm vi hiện tại, đóng góp của đề tài là một quy trình có thể kiểm tra,
+các kết quả thực nghiệm được truy vết và nhận diện rõ giới hạn cần
+khắc phục trước khi mở rộng.

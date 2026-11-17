@@ -1,0 +1,189 @@
+\partstart{Phân tích mã nguồn và chức năng}
+\subsection{Tổ chức repository và luồng phụ thuộc}
+Repository tách mã thực thi trong \code{src}, cấu hình trong \code{configs},
+notebook diễn giải trong \code{notebooks}, kiểm thử trong \code{tests},
+kết quả tổng hợp trong \code{results} và báo cáo trong \code{report}.
+Tách biệt này giúp người đọc phân biệt dữ liệu đầu vào, chương trình tạo
+kết quả và tài liệu phân tích. Không dùng ảnh chụp notebook làm nguồn duy
+nhất của metric khi CSV/JSON đã lưu có thể đối chiếu trực tiếp.
+
+\begin{table}[!htbp]\centering\small
+\begin{tabular}{p{3.4cm}p{9.9cm}}\toprule
+Đường dẫn & Vai trò và sản phẩm\\\midrule
+\code{data/raw} & CSV nguồn cục bộ, có hướng dẫn tải; dữ liệu lớn không đưa vào Git.\\
+\raggedright\code{configs/}\newline\code{default.json} & Đường dẫn nguồn, seed, ngân sách dòng, test size, số fold và số tiến trình.\\
+\code{src} & Đọc dữ liệu, pipeline, runner, kiểm toán, đánh giá, xuất báo cáo.\\
+\code{notebooks} & Bốn notebook diễn giải EDA, tiền xử lý, thí nghiệm và phân tích lỗi.\\
+\code{results/runs} & Từng lần chạy: manifest, split, mô hình, bảng và hình; không phải toàn bộ đều công bố.\\
+\code{results/tables} & Bảng tổng hợp đã lọc, metric, audit, sampling và phân tích lỗi.\\
+\code{results/figures} & Hình EDA và đánh giá dùng trong báo cáo.\\
+\code{tests} và \code{docs} & Kiểm thử phần mềm; yêu cầu học phần, bằng chứng và hướng dẫn.\\\bottomrule
+\end{tabular}
+\caption{Cấu trúc và trách nhiệm của các thành phần chính.}\label{tab:repo}
+\end{table}
+Bảng~\ref{tab:repo} cũng cho thấy ranh giới công bố: split chứa chỉ số
+nguồn và mô hình nhị phân được giữ cục bộ, còn bảng aggregate có thể được
+đưa vào báo cáo. Các tệp lịch sử nằm ở thư mục riêng; không trộn metric từ
+hai protocol mà không chỉ rõ nguồn. Run công bố hiện tại được xác định
+bằng manifest và hash dữ liệu.
+
+\subsection{Module data.py: đọc, kiểm tra và chia nhóm}
+Hàm \code{read_csv} lần lượt thử UTF-8 có BOM và CP1252; chỉ chuyển encoding
+khi gặp lỗi giải mã. Nếu không đọc được, chương trình báo lỗi thay vì dùng
+cơ chế bỏ qua byte. Hàm \code{sha256} đọc từng khối byte để tạo dấu vân tay
+tệp, giúp kiểm tra cùng tên CSV có thực sự cùng nội dung hay không.
+
+Các hằng \code{NUM}, \code{CAT}, \code{TARGET}, \code{GROUP} và \code{DATE}
+tạo hợp đồng chung giữa module dữ liệu và pipeline. Nhờ vậy, danh sách
+cột sử dụng không bị viết lại khác nhau giữa notebook và runner. Đầu vào
+thiếu cột bắt buộc sẽ dừng ngay trong \code{validate}; ngày lỗi cũng được
+phát hiện trước khi trích đặc trưng lịch.
+
+Đoạn mã sau có trong \code{src/data.py}, thể hiện kiểm tra điều kiện
+không giao đơn giữa hai tập sau khi bộ chia trả chỉ số:
+\begin{verbatim}
+if set(df.iloc[tr][GROUP]) & set(df.iloc[te][GROUP]):
+    raise AssertionError('Order leakage')
+\end{verbatim}
+Kiểm tra trực tiếp làm rõ điều kiện cần bảo vệ, đồng thời giúp phát hiện
+sai sót khi thay bộ chia. Hàm \code{protocol_split} gói lấy mẫu nguyên đơn
+và split để notebook có thể dùng cùng thứ tự thao tác với runner. Tái lập
+còn cần thứ tự dòng nguồn và phiên bản thư viện, không chỉ cùng seed.
+
+\code{feature_audit} duyệt mọi cột, ghi keep/drop, lý do và độ chắc chắn.
+Điều này giúp truy vết vì sao không dùng một trường có vẻ dự đoán tốt.
+Chẳng hạn, loại trạng thái giao là để giữ đúng mục tiêu dự báo sớm, trong
+khi loại trường không nằm trong allowlist có thể là lựa chọn bảo thủ do
+ngữ nghĩa chưa đủ rõ. Hai lý do cần được phân biệt trong báo cáo.
+
+\subsection{Module pipeline.py: đặc trưng và phép biến đổi}
+\code{SafeFeatures} là transformer theo giao diện estimator của
+scikit-learn. Phương thức fit kiểm tra tên luồng A/B; transform tạo bản sao
+chỉ chứa cột cho phép. Luồng B dùng ngày tạo đơn để bổ sung lịch. Không có
+bước sử dụng nhãn để tạo đặc trưng, và các cột kết quả không đi qua
+transformer này.
+
+\begin{verbatim}
+if self.flow == 'B':
+    dt = pd.to_datetime(X[DATE], errors='raise')
+    out['order_month'] = dt.dt.month
+    out['order_weekday'] = dt.dt.dayofweek
+    out['order_hour'] = dt.dt.hour
+\end{verbatim}
+Đoạn mã cho thấy B không sử dụng thời gian giao thực tế. Tuy nhiên, trích
+đặc trưng lịch đúng cú pháp không tự xác nhận múi giờ hay ý nghĩa vận hành
+của timestamp. Khi dùng dữ liệu ngoài, cần kiểm tra hai khía cạnh đó trước
+khi áp dụng cùng quy tắc. Báo cáo không suy diễn rằng giờ tạo đơn là giờ
+địa phương ở mọi quốc gia.
+
+Hàm \code{build} ghép ba bước có tên features, preprocess và model.
+\code{ColumnTransformer} chuyển nhánh số qua median/scaling, nhánh phân
+loại qua mode/one-hot. Tên tham số tìm kiếm có tiền tố \code{model__},
+giúp thay cấu hình mô hình mà vẫn giữ phép tiền xử lý trong mỗi lần fit.
+Đầu ra thưa được dùng cho cả hai thuật toán để thống nhất cấu trúc.
+
+Hàm \code{grid} trả tám cấu hình K-NN hoặc 12 cấu hình cây. Baseline và
+Dummy bỏ qua grid, nhưng vẫn được cross-validation trên cùng fold. Đây
+là điểm cần lưu ý khi đọc thời gian: thời gian search/refit của mô hình
+tuned gồm nhiều lần fit, không thể so trực tiếp như thời gian một lần
+huấn luyện cây baseline.
+
+\subsection{Module run.py: điều phối thí nghiệm}
+Runner đọc cấu hình, xác thực nguồn và tạo thư mục run có timestamp UTC.
+Manifest ban đầu mang trạng thái RUNNING; nếu có ngoại lệ, trạng thái đổi
+thành FAILED và lưu lỗi. Chỉ sau khi hoàn tất bảng, hình và mô hình, runner
+ghi COMPLETED. Cách ghi này giúp tránh xuất bản một lần chạy dở như kết
+quả cuối cùng.
+
+Trình tự quan trọng là: tạo fold trên train; fit sáu ứng viên; chọn winner
+theo CV; lưu manifest; chạy chẩn đoán ablation trên train; sau đó mới tính
+metric test. Đoạn mã thực hiện khóa người thắng trước test là:
+\begin{verbatim}
+winner=max(candidates,key=lambda x:x[1]['cv_f1'])[1]['name']
+manifest['selected_by_cv']=winner; persist()
+\end{verbatim}
+Do đó, tree B được gọi là mô hình chọn theo CV, không phải mô hình được
+chọn sau khi xem F1 test. Phân tích lại lỗi test trong báo cáo không tạo
+thêm một lần xác nhận độc lập và không được dùng để chọn lại tham số.
+
+Mỗi mô hình được lưu bằng joblib, nạp lại và kiểm tra dự đoán giống bản
+trước khi lưu. Runner ghi classification report, ma trận nhầm lẫn, thời
+gian, metric xác suất và F1 train. Với mô hình chọn, ví dụ lỗi chỉ giữ các
+trường nghiệp vụ cho phép, không chứa mã đơn, tên, địa chỉ hay timestamp
+chính xác. Việc lọc này giảm thông tin cá nhân trong artifact công bố.
+
+\subsection{Module evaluation.py: ba chẩn đoán bổ sung}
+\code{representativeness} so sánh phân phối danh mục, mean/median trường
+số và kích thước đơn giữa toàn nguồn với mẫu. Các chênh lệch là thống kê
+mô tả. Hàm không thực hiện kiểm định đầy đủ cho mọi quan hệ hay chứng minh
+mẫu không chệch. Có cùng phân phối biên vẫn có thể khác quan hệ điều kiện
+giữa đặc trưng và nhãn.
+
+\code{order_metrics} nhóm xác suất theo mã đơn, kiểm tra nhãn nhất quán,
+lấy trung bình rồi dùng ngưỡng 0,5. Nếu có nhãn mâu thuẫn, hàm ghi BLOCKED
+thay vì tùy ý chọn nhãn đầu tiên. Bước này làm rõ tiền đề để mỗi đơn có
+trọng số bằng nhau, khác với metric mặc định tính theo số dòng.
+
+\code{time_ablation} lấy tham số của ứng viên A đã chọn, tạo lại A và B
+với cùng tham số, rồi dùng cùng fold train để đánh giá. Tên cột
+\code{test_f1} là quy ước trả về của \code{cross_validate}; trong tệp
+ablation nó chỉ điểm validation của CV, không phải test holdout.
+Phân biệt này ngăn so sánh nhầm 0,6904 của ablation cây B với 0,7098 của
+test cây B có cấu hình được chọn riêng.
+
+\subsection{Module audit.py và reporting.py}
+\code{audit.py} xuất từ điển dữ liệu với kiểu, số thiếu, cardinality và mô
+tả từ tệp nguồn. Nó còn xuất thống kê số, số outlier IQR, số đơn nhiều dòng
+và độ nhất quán nhãn. Hàm plots nhận train sau split, tạo tám hình khảo
+sát. Biểu đồ vùng biểu diễn tỷ lệ giao trễ, kèm bảng số lượng vùng; không
+được nhầm chiều cao cột với số lượng đơn ở vùng đó.
+
+\code{reporting.py} chỉ nhận run COMPLETED, đọc comparison và manifest để
+chọn đúng hàng của winner. Hàm tạo summary tiếng Việt, bảng LaTeX và bản
+nguồn tổng hợp tự động. Nó sao chép bảng công bố nhưng loại split.csv;
+không sao chép model hoặc dữ liệu thô. Bản báo cáo hoàn chỉnh này dùng
+nguồn biên tập ở \code{report/sections}, còn các nguồn tự động cũ được
+giữ để truy vết, không chèn lặp toàn bộ hình và kết quả.
+
+\subsection{Notebook, môi trường và thực thi}
+Bốn notebook lần lượt là \code{01_eda.ipynb},
+\code{02_preprocessing.ipynb}, \code{03_model_experiments.ipynb} và
+\code{04_error_analysis.ipynb}. Chúng sử dụng module chung để hạn chế
+sai khác giữa quá trình khám phá và runner. Notebook giúp trình bày từng
+bước nhưng một ô hiển thị thành công không thay thế manifest, hash và
+bảng metric của lần chạy được sử dụng.
+
+Cấu hình mặc định đặt seed 42, max rows 6.000, test size 0,2, CV ba fold
+và n jobs 1. Người tái lập cần tải đúng hai CSV vào đường dẫn trong config,
+cài requirements rồi chạy \code{py -m src.run --config configs/default.json}
+từ gốc repository. Đây là lệnh tái lập được mô tả, không phải lệnh đã được
+chạy lại để soạn báo cáo này. Kết quả lịch sử vẫn là cơ sở số liệu duy nhất.
+
+Manifest ghi Python 3.13.6, NumPy 2.4.6, pandas 3.0.5, scikit-learn 1.9.0,
+matplotlib 3.10.9, seaborn 0.13.2 và joblib 1.6.0. Đây là phiên bản của lần
+chạy đã lưu, không suy ra phiên bản của mọi môi trường đọc báo cáo. Cùng
+seed nhưng khác phiên bản hoặc thứ tự dòng vẫn có thể khác kết quả.
+
+\subsection{Kiểm thử đã có và giới hạn bằng chứng}
+\begin{table}[!htbp]\centering\small
+\begin{tabular}{p{4.2cm}p{9.1cm}}\toprule
+Nhóm kiểm tra & Điều kiện được kiểm soát\\\midrule
+Schema và dữ liệu lỗi & Thiếu nhãn, nhóm, ngày; kiểu cột số; hợp đồng dữ liệu thật nếu có.\\
+Nhóm và protocol & Không giao đơn train/test, không giao nhóm CV, cùng protocol cho kết quả lặp.\\
+Pipeline và rò rỉ & Danh mục lạ, missing, hình dạng đầu ra, train-only imputation; thay cột cấm không đổi dự đoán.\\
+Lưu trữ và đánh giá & Dự đoán sau nạp model; trọng số đơn bằng nhau; chặn nhãn mâu thuẫn.\\
+Smoke tổng hợp & Runner đi hết quy trình trên fixture nhỏ; không phải thực nghiệm DataCo.\\\bottomrule
+\end{tabular}
+\caption{Phạm vi kiểm thử phần mềm trong repository.}\label{tab:tests}
+\end{table}
+Hồ sơ \code{REPAIR_VERIFICATION.md} ghi lần kiểm thử workspace 14 passed,
+6 warnings và clean export 13 passed, một skip dự kiến, 6 warnings. Tệp
+\code{pytest_output.txt} cũ ghi 12 passed; các con số khác nhau thuộc các
+mốc kiểm tra khác nhau, không được gọi tất cả là cùng một lần chạy.
+Bảng~\ref{tab:tests} mô tả nội dung test hiện hữu; báo cáo không coi fixture
+tổng hợp là bằng chứng hiệu quả mô hình và không tuyên bố chạy mới bộ test
+ML trong lần biên tập này.
+
+Kiểm thử phần mềm không xác nhận ngữ nghĩa nghiệp vụ, tính ổn định của
+dữ liệu tương lai hoặc lợi ích can thiệp. Những vấn đề này cần đánh giá
+độc lập ngoài unit test.

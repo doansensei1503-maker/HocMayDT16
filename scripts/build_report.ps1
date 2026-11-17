@@ -10,59 +10,36 @@ $xelatexPath = if ($xelatexCommand) {
     $xelatexCommand.Source
 }
 else {
-    Join-Path $env:LOCALAPPDATA 'Programs\MiKTeX\miktex\bin\x64\xelatex.exe'
-}
-
-if (-not (Test-Path -LiteralPath $xelatexPath -PathType Leaf)) {
-    throw 'XeLaTeX was not found on PATH or in the standard MiKTeX user-install path. Install/configure MiKTeX or TeX Live and retry.'
-}
-
-$kpsewhichCommand = Get-Command 'kpsewhich' -ErrorAction SilentlyContinue
-$kpsewhichPath = if ($kpsewhichCommand) {
-    $kpsewhichCommand.Source
-}
-else {
-    Join-Path (Split-Path -Parent $xelatexPath) 'kpsewhich.exe'
-}
-if (-not (Test-Path -LiteralPath $kpsewhichPath -PathType Leaf)) {
-    throw 'kpsewhich was not found; cannot safely preflight TeX packages without triggering an on-demand installer.'
-}
-
-$requiredTexFiles = @(
-    'fontspec.sty',
-    'babel.sty',
-    'vietnamese.ldf',
-    'geometry.sty',
-    'graphicx.sty',
-    'booktabs.sty',
-    'hyperref.sty',
-    'infwarerr.sty'
-)
-$missingTexFiles = @()
-$previousErrorPreference = $ErrorActionPreference
-try {
-    $ErrorActionPreference = 'Continue'
-    foreach ($texFile in $requiredTexFiles) {
-        $resolvedTexFile = & $kpsewhichPath $texFile 2>$null
-        $lookupExitCode = $LASTEXITCODE
-        if ($lookupExitCode -ne 0 -or -not $resolvedTexFile) {
-            $missingTexFiles += $texFile
+    $programsDirectory = Join-Path $env:LOCALAPPDATA 'Programs'
+    if (Test-Path -LiteralPath $programsDirectory -PathType Container) {
+        $miKTeXDirectories = Get-ChildItem -LiteralPath $programsDirectory -Directory -Filter 'MiKTeX*'
+        foreach ($miKTeXDirectory in $miKTeXDirectories) {
+            $candidate = Join-Path $miKTeXDirectory.FullName 'miktex\bin\x64\xelatex.exe'
+            if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+                $candidate
+                break
+            }
         }
     }
 }
-finally {
-    $ErrorActionPreference = $previousErrorPreference
-}
-if ($missingTexFiles.Count -gt 0) {
-    throw "Required TeX files are not installed: $($missingTexFiles -join ', '). Install them manually in the user-level TeX distribution. This script never opens the MiKTeX Console or installs packages."
+
+if (-not $xelatexPath -or -not (Test-Path -LiteralPath $xelatexPath -PathType Leaf)) {
+    throw 'XeLaTeX was not found on PATH or under the current user MiKTeX program folders. Install/configure MiKTeX or TeX Live and retry.'
 }
 
 $requiredReportFiles = @(
     'report\main.tex',
-    'report\generated.tex',
-    'report\analysis.tex',
-    'report\repair_analysis.tex',
-    'results\tables\comparison.tex',
+    'report\cover.tex',
+    'report\frontmatter.tex',
+    'report\references.tex',
+    'report\sections\01_problem.tex',
+    'report\sections\02_method.tex',
+    'report\sections\03_implementation.tex',
+    'report\sections\04_results.tex',
+    'report\sections\05_discussion.tex',
+    'report\sections\06_conclusion.tex',
+    'report\tables\model_metrics.tex',
+    'report\assets\dainam_logo.png',
     'results\tables\tree_B_order_metrics.json',
     'results\tables\dummy_A_order_metrics.json',
     'results\tables\time_ablation_cv.csv',
@@ -106,7 +83,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot 'docs\fit4013_extrac
     Write-Warning 'The official instructions text is missing; template compliance cannot be checked.'
 }
 else {
-    Write-Warning 'This build uses the provisional article source, not a verified official course template.'
+    Write-Warning 'The report follows the supplied requirements; official course template compliance is still unverified.'
 }
 
 function Invoke-XeLatexBuild {
@@ -124,9 +101,10 @@ function Invoke-XeLatexBuild {
 
     Push-Location $SourceDirectory
     try {
-        for ($pass = 1; $pass -le 2; $pass++) {
-            Write-Host "Building $SourceFile (pass $pass/2)..."
+        for ($pass = 1; $pass -le 3; $pass++) {
+            Write-Host "Building $SourceFile (pass $pass/3)..."
             $arguments = @(
+                '--disable-installer',
                 '-interaction=nonstopmode',
                 '-halt-on-error',
                 '-file-line-error',
@@ -190,3 +168,4 @@ if ($BuildSlides) {
 }
 
 Write-Host 'Build completed. PDF visual inspection and official-template compliance must be verified separately.'
+exit 0

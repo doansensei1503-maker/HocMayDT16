@@ -1,35 +1,35 @@
-# FIT4013 — checklist trước khi nộp
+﻿# FIT4013 — checklist bàn giao và trước nộp
 
-Trạng thái hiện tại: **CHƯA SẴN SÀNG NỘP**. Bản PDF được build từ nguồn tạm
-thời (nếu có) không phải template chính thức và không thay thế các mục còn thiếu.
+## Đã kiểm tra trong lần hoàn thiện báo cáo
 
-## Nhóm phải cung cấp/xác nhận
+- [x] PDF thật 36 trang A4: `report/final_report.pdf`; XeLaTeX ba lượt.
+- [x] Đủ sáu phần bắt buộc theo thứ tự trong hướng dẫn FIT4013.
+- [x] Hai bìa, logo trích nguyên từ Word, không đánh số trang bìa.
+- [x] FIT4013, đề tài 16; tên đề tài đầy đủ; trường/khoa đúng.
+- [x] Giảng viên ThS. Lê Thị Thùy Trang khớp tài liệu học phần.
+- [x] Vũ Quốc Đoàn / 1871020143; Trần Đại Hiệp / 1871020223 khớp yêu cầu và Word.
+- [x] Lớp CNTT18-10, khóa K18, năm học 2026–2027 theo yêu cầu người dùng.
+- [x] Phân công ghi rõ đề xuất, chưa phải đóng góp đã xác nhận.
+- [x] Số liệu đối chiếu sáu ma trận CSV, comparison, order JSON, ablation và lỗi nhóm.
+- [x] 15 ảnh thực nghiệm, sơ đồ pipeline và 13 bảng có diễn giải; không dùng hình
+      chuyên môn hoặc nội dung các chương của tài liệu Word.
+- [x] Render và kiểm tra trực quan mọi trang; kiểm tra font, hình/bảng, mục lục,
+      tham chiếu và trang tài liệu tham khảo. Không còn tràn hộp hoặc tham chiếu thiếu.
+- [x] Khai báo AI được giữ và bổ sung trung thực trong `AI_USAGE.md`.
+- [x] Không thay thuật toán, không huấn luyện lại, không coi holdout cũ là test mới.
+- [x] Không đưa Word, raw CSV, model, split riêng hoặc file build vào commit báo cáo.
 
-- [ ] Tên đầy đủ và mã số sinh viên của từng thành viên (2–4 người).
-- [ ] Phân công và mô tả đóng góp thực tế của từng thành viên, được cả nhóm xác
-      nhận; không suy ra phân công chỉ từ tên tác giả Git.
-- [ ] Xác nhận repository GitHub này là repository được giảng viên chấp thuận.
-- [ ] Đảm bảo mọi thành viên hiểu và giải thích được pipeline, mã nguồn, số liệu,
-      giới hạn và các quyết định phương pháp.
+## Nhóm cần xác nhận trước nộp
 
-## Yêu cầu định dạng và tệp nộp
+- [ ] Cung cấp template LaTeX FIT4013 chính thức hoặc xác nhận giảng viên chấp thuận
+      định dạng hiện tại. Chưa có template để kiểm chứng; không đánh dấu đã đạt.
+- [ ] Sau đối chiếu template, nếu phải sửa thì build và kiểm tra mọi trang lại.
+- [ ] Hai thành viên xác nhận/điều chỉnh nhiệm vụ và ghi đóng góp thực tế có bằng chứng.
+- [ ] Xác nhận GitHub `doansensei1503-maker/HocMayDT16` được giảng viên chấp thuận.
+- [ ] Cả hai tự đọc và giải thích pipeline, số liệu, Standard Class, Dummy và giới hạn.
+- [ ] Rà soát cuối, xác nhận khai báo AI và bản PDF chính thức sẽ nộp.
+- [ ] Nếu cần slide: cập nhật nhận diện nhóm trong deck cũ và kiểm tra toàn bộ deck.
 
-- [ ] Xin đúng template LaTeX FIT4013 và hướng dẫn phiên bản hiện hành.
-- [ ] Chuyển nội dung vào template chính thức; kiểm tra trang bìa, lề, header,
-      footer, đánh số trang, typography và trích dẫn theo yêu cầu.
-- [ ] Build lại PDF và kiểm tra thủ công từng trang: tiếng Việt, bảng, hình,
-      chú thích, đường dẫn, tham chiếu, số trang, trang cuối và không có nội dung
-      tràn/che khuất.
-- [ ] Chỉ nộp PDF đã kiểm tra và xác nhận chính là bản được build từ nguồn cuối.
-- [ ] Hoàn thiện slide nếu cần; xác nhận bản PDF trình chiếu được render đúng.
-
-## Liêm chính và bằng chứng
-
-- [ ] Đối chiếu số liệu với `results/tables/` và giữ rõ ranh giới giữa kết quả
-      lịch sử, kiểm thử phần mềm mới và validation độc lập.
-- [ ] Không tinh chỉnh theo holdout đã quan sát; không gọi kết quả tái lập là
-      đánh giá độc lập mới.
-- [ ] Kiểm tra khai báo AI trong `AI_USAGE.md` và cập nhật nếu nhóm có sử dụng
-      hoặc chỉnh sửa thêm.
-- [ ] Xác nhận lịch sử commit thể hiện đóng góp thực tế; không tạo commit giả
-      cho thành viên.
+Cảnh báo không chặn build: Babel chưa nạp mẫu ngắt từ tiếng Việt; MiKTeX nhắc
+kiểm tra cập nhật. Không có lỗi LaTeX làm dừng biên dịch trong bản cuối.
+Commit SHA và đối chiếu origin/main ghi trong phản hồi bàn giao sau push.
