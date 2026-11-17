@@ -1,10 +1,10 @@
-﻿# FIT4013 — checklist bàn giao và trước nộp
+# FIT4013 — checklist bàn giao và trước nộp
 
 ## Đã kiểm tra trong lần hoàn thiện báo cáo
 
-- [x] PDF thật 36 trang A4: `report/final_report.pdf`; XeLaTeX ba lượt.
+- [x] PDF thật 37 trang A4: `report/final_report.pdf`; XeLaTeX ba lượt.
 - [x] Đủ sáu phần bắt buộc theo thứ tự trong hướng dẫn FIT4013.
-- [x] Hai bìa, logo trích nguyên từ Word, không đánh số trang bìa.
+- [x] Hai bìa đối chiếu trực quan với trang 1–2 Word, logo nguyên bản, không đánh số.
 - [x] FIT4013, đề tài 16; tên đề tài đầy đủ; trường/khoa đúng.
 - [x] Giảng viên ThS. Lê Thị Thùy Trang khớp tài liệu học phần.
 - [x] Vũ Quốc Đoàn / 1871020143; Trần Đại Hiệp / 1871020223 khớp yêu cầu và Word.
@@ -18,6 +18,12 @@
 - [x] Khai báo AI được giữ và bổ sung trung thực trong `AI_USAGE.md`.
 - [x] Không thay thuật toán, không huấn luyện lại, không coi holdout cũ là test mới.
 - [x] Không đưa Word, raw CSV, model, split riêng hoặc file build vào commit báo cáo.
+
+- [x] Bìa Times New Roman: tiêu đề/tên đề tài 15 pt đậm; chữ khác tối thiểu 14 pt;
+      bảng nhóm cả tiêu đề lẫn nội dung 14 pt. Kiểm tra trực tiếp trên PDF.
+- [x] H1 14 pt đậm; H2 13 pt đậm; H3 định nghĩa 13 pt đậm nghiêng;
+      thân, bảng và chú thích 13 pt. Bìa không tràn sang trang ba.
+- [x] Sáu phần không đổi nội dung; thuật toán, artifact và bảng số liệu không đổi.
 
 ## Nhóm cần xác nhận trước nộp
 

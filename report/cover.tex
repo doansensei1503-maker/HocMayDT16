@@ -1,41 +1,61 @@
-% Logo extracted unchanged from the user-provided Word cover.
-\newcommand{\coverframe}{\AddToHookNext{shipout/background}{%
-\setlength{\unitlength}{1mm}\put(15,-282){\framebox(180,267){}}%
-\put(16,-281){\framebox(178,265){}}}}
-\newcommand{\school}{\textbf{\large TRƯỜNG ĐẠI HỌC ĐẠI NAM}\\[5pt]
-\textbf{KHOA CÔNG NGHỆ THÔNG TIN}\\[12pt]
-\includegraphics[height=3.3cm]{assets/dainam_logo.png}}
-\newcommand{\topic}{\textbf{\large DỰ ĐOÁN ĐƠN HÀNG CÓ NGUY CƠ\\[4pt]
+﻿% Only the first two pages of the supplied Word are used as cover references.
+% bp = Word/PDF points (72/in): exported text is exactly 14 or 15 points.
+\newcommand{\covertext}{\normalfont\rmfamily\fontsize{14bp}{17bp}\selectfont}
+\newcommand{\covertitle}[1]{{\normalfont\rmfamily\fontsize{15bp}{18bp}\selectfont\bfseries #1\par}}
+\newcommand{\coverblock}[4]{\put(#1,-#2){\makebox(0,0)[lt]{%
+\begin{minipage}[t]{#3mm}\covertext\setlength{\parskip}{0pt}%
+\centering #4\end{minipage}}}}
+\newcommand{\coverframe}[3]{\AddToHookNext{shipout/background}{%
+\setlength{\unitlength}{1mm}% x, bottom, height from Word's page rectangles.
+\linethickness{2.2pt}\put(#1,-#2){\framebox(159,#3){}}%
+\linethickness{.5pt}%
+\put(\dimexpr#1mm+1mm\relax,\dimexpr-#2mm+1mm\relax){%
+\framebox(157,\dimexpr#3mm-2mm\relax){}}}}
+\newcommand{\topic}{\covertitle{DỰ ĐOÁN ĐƠN HÀNG CÓ NGUY CƠ\\
 GIAO TRỄ TRONG CHUỖI CUNG ỨNG}}
-\begin{titlepage}\thispagestyle{empty}\coverframe
-\centering\school\par\vspace{1cm}
-{\LARGE\bfseries BÁO CÁO HỌC PHẦN}\par\vspace{.6cm}
-{\large\bfseries NHẬP MÔN HỌC MÁY}\par\vspace{.2cm}
-MÃ HỌC PHẦN: FIT4013\par\vspace{.6cm}
-{\large\bfseries ĐỀ TÀI 16}\par\vspace{.4cm}\topic\par\vspace{1cm}
-\begin{tabular}{ll}
-Giảng viên hướng dẫn: & ThS. Lê Thị Thùy Trang\\[9pt]
-Sinh viên thực hiện: & Vũ Quốc Đoàn — 1871020143\\[5pt]
- & Trần Đại Hiệp — 1871020223\\[9pt]
-Lớp: & CNTT18-10\\[5pt]
-Khóa: & K18\\[5pt]
+\begin{titlepage}\thispagestyle{empty}\null
+\coverframe{22.5}{278.1}{260.1}
+\AddToHookNext{shipout/foreground}{\setlength{\unitlength}{1mm}%
+\coverblock{31}{27.5}{153}{\covertitle{TRƯỜNG ĐẠI HỌC ĐẠI NAM}}
+\coverblock{31}{33.6}{153}{\covertitle{KHOA CÔNG NGHỆ THÔNG TIN}}
+\put(74.2,-39.5){\line(1,0){66.7}}
+\put(76.5,-100.7){\includegraphics[height=62mm]{assets/dainam_logo.png}}
+\coverblock{31}{108}{153}{\covertitle{BÁO CÁO HỌC PHẦN}}
+\coverblock{31}{124}{153}{\covertitle{NHẬP MÔN HỌC MÁY — FIT4013}}
+\coverblock{31}{135}{153}{\covertitle{ĐỀ TÀI 16}}
+\coverblock{31}{145}{153}{\topic}
+\coverblock{47}{174}{135}{%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5cm}>{\raggedright\arraybackslash}p{7.7cm}@{}}
+Giảng viên hướng dẫn: & ThS. Lê Thị Thùy Trang\\[7pt]
+Sinh viên thực hiện: & Vũ Quốc Đoàn — MSV: 1871020143\\[5pt]
+ & Trần Đại Hiệp — MSV: 1871020223\\[7pt]
+Lớp: & CNTT18-10\\[4pt]
+Khóa: & K18\\[4pt]
 Năm học: & 2026–2027
-\end{tabular}
-\vfill\textbf{Hà Nội, 2026}\par\vspace{.3cm}
+\end{tabular}}
+\coverblock{31}{266}{153}{Hà Nội, 2026}}
 \end{titlepage}
-\begin{titlepage}\thispagestyle{empty}\coverframe
-\centering\school\par\vspace{.7cm}
-{\LARGE\bfseries BÁO CÁO HỌC PHẦN}\par\vspace{.4cm}
-{\large NHẬP MÔN HỌC MÁY}\par\vspace{.25cm}
-\textbf{FIT4013 — ĐỀ TÀI 16}\par\vspace{.5cm}\topic\par\vspace{.7cm}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{|p{4.3cm}|p{8cm}|}\hline
-Sinh viên / MSSV & Vũ Quốc Đoàn / 1871020143\\\hline
-Sinh viên / MSSV & Trần Đại Hiệp / 1871020223\\\hline
-Lớp / Khóa & CNTT18-10 / K18\\\hline
+\begin{titlepage}\thispagestyle{empty}\null
+\coverframe{28.55}{275.5}{257.4}
+\AddToHookNext{shipout/foreground}{\setlength{\unitlength}{1mm}%
+\coverblock{31}{31.3}{153}{\covertitle{TRƯỜNG ĐẠI HỌC ĐẠI NAM}}
+\coverblock{31}{43.1}{153}{\covertitle{KHOA CÔNG NGHỆ THÔNG TIN}}
+% Display rectangle follows Word page 2; the original logo bytes are unchanged.
+\put(70.35,-99.7){\includegraphics[width=74.3mm,height=46.5mm]{assets/dainam_logo.png}}
+\coverblock{31}{106}{153}{\covertitle{BÁO CÁO HỌC PHẦN}}
+\coverblock{31}{121}{153}{\covertitle{NHẬP MÔN HỌC MÁY — FIT4013}}
+\coverblock{31}{134}{153}{\covertitle{ĐỀ TÀI 16}}
+\coverblock{31}{146}{153}{\topic}
+\coverblock{34}{185}{147}{%
+\renewcommand{\arraystretch}{1.15}%
+\begin{tabular}{|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{8.6cm}|}\hline
+\textbf{Hạng mục} & \textbf{Thông tin}\\\hline
+Sinh viên / Nhóm & Vũ Quốc Đoàn — MSV: 1871020143\newline
+Trần Đại Hiệp — MSV: 1871020223\\\hline
+Lớp & CNTT18-10\\\hline
+Khóa & K18\\\hline
 Giảng viên hướng dẫn & ThS. Lê Thị Thùy Trang\\\hline
 Năm học & 2026–2027\\\hline
-\end{tabular}
-\renewcommand{\arraystretch}{1}
-\vfill\textbf{Hà Nội, 2026}\par\vspace{.3cm}
+\end{tabular}}
+\coverblock{31}{248}{153}{Hà Nội, 2026}}
 \end{titlepage}

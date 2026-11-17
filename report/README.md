@@ -1,7 +1,7 @@
 # Biên dịch báo cáo FIT4013
 
-Nguồn chính: `main.tex`, `cover.tex`, `frontmatter.tex`, `sections/01_...06_...`
-và `references.tex`. Sáu phần nội dung dùng kết quả lịch sử đã lưu, không cần
+Nguồn chính: `main.tex`, `cover.tex`, `frontmatter.tex`, `sections/01_...06_...`,
+`references.tex` và `typography.tex`. Sáu phần nội dung dùng kết quả lịch sử đã lưu, không cần
 huấn luyện lại mô hình để build PDF.
 
 Từ gốc repository, với XeLaTeX/MiKTeX và Times New Roman:
@@ -36,3 +36,24 @@ Hiện chưa có template LaTeX chính thức FIT4013 trong workspace. Hai bìa 
 thông tin người dùng, cấu trúc sáu phần theo `docs/fit4013_extracted.txt`;
 không tự nhận đã tuân thủ template chưa được cung cấp. Sau khi có template,
 cần đối chiếu, build và kiểm tra từng trang lại.
+
+## Quy chuẩn font hiện hành
+
+- Bìa: Times New Roman; mọi tiêu đề và tên đề tài 15 pt đậm; chữ khác 14 pt;
+  cả tiêu đề cột và nội dung bảng nhóm 14 pt. Không dùng lệnh giảm font trên bìa.
+- Thân: Times New Roman 13 pt; H1 14 pt đậm, H2 13 pt đậm, H3 13 pt đậm nghiêng;
+  bảng và chú thích 13 pt. Cỡ chỉ số toán theo quy tắc toán học thông thường.
+- Cỡ được định nghĩa bằng `bp` (72 điểm/inch, tương ứng điểm Word/PDF), để kết
+  quả trích trực tiếp trong PDF là 14,0/15,0 pt trên bìa và 13,0 pt trong thân.
+- `cover.tex` đặt các thành phần theo tọa độ tham chiếu riêng của trang Word 1/2.
+  `typography.tex` áp dụng sau hai bìa, giữ độc lập quy chuẩn bìa với phần thân.
+
+Kiểm tra font thực trong PDF, nếu có PyMuPDF (hoặc bản cục bộ trong
+`report/build/tools`, không commit):
+
+```powershell
+py scripts/verify_report_typography.py
+```
+
+Lệnh tạo `docs/COVER_TYPOGRAPHY_AUDIT.json`. Nó không thay PDF, dữ liệu hoặc mô hình.
+Cần biên dịch xong rồi mới chạy kiểm tra; không đọc PDF khi compiler đang ghi tệp.

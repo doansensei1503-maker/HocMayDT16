@@ -19,3 +19,11 @@ không chạy lại mô hình/notebook/ML tests, không điều chỉnh theo tes
 Phân công ghi là đề xuất chưa xác nhận; không giả danh commit của sinh viên.
 Nguồn Mendeley và tài liệu scikit-learn được tra cứu để kiểm tra dẫn nguồn.
 Nhóm vẫn phải kiểm chứng, hiểu, giải trình và xác nhận đóng góp thật trước nộp.
+
+2026-11-17 — Cập nhật theo quy chuẩn bìa mới: Codex dùng Word ở chế độ chỉ đọc
+để xuất riêng hai bìa tham chiếu, căn lại khung/logo/khối thông tin, đặt tiêu đề
+15 pt và chữ còn lại 14 pt. Phần thân áp dụng Times New Roman 13 pt và H1/H2/H3
+14/13/13 theo yêu cầu. Hỗ trợ biên dịch, rà hình ảnh và kiểm tra font thực trong
+PDF bằng PyMuPDF. Không thay nội dung chuyên môn, thuật toán hoặc số liệu; một
+đoạn liệt kê notebook chỉ được đổi cách căn lề. Không chạy lại mô hình hay tạo
+kết quả thực nghiệm mới. Phân công vẫn là đề xuất chưa được hai sinh viên xác nhận.

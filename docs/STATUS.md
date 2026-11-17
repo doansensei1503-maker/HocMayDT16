@@ -1,6 +1,6 @@
-﻿# Trạng thái báo cáo FIT4013 — 17/11/2026
+# Trạng thái báo cáo FIT4013 — 17/11/2026
 
-**PDF: 36 trang A4, đã biên dịch và kiểm tra trực quan.**
+**PDF: 37 trang A4, đã biên dịch và kiểm tra trực quan.**
 **Template chính thức: chưa có để xác minh. Đóng góp thực tế: cần nhóm xác nhận.**
 
 - Đầu ra: `report/final_report.pdf`; nguồn chính `report/main.tex` và sáu tệp
@@ -19,7 +19,9 @@
   metric, gap CV, cấp đơn, ablation, lỗi nhóm và importance. Năm bảng số liệu
   được sinh từ CSV/JSON bằng `scripts/report_tables.py`, không nhập metric bằng tay.
 - Phân công: **đề xuất, chưa xác nhận** cả ở PDF lẫn `TEAM_ASSIGNMENT_PROPOSED.md`.
-- Trình bày: A4, Times New Roman thân bài 12 pt; bảng/mã có cỡ nhỏ phù hợp.
+- Trình bày: A4, Times New Roman; thân bài, bảng và chú thích 13 pt; H1 14 pt đậm,
+  H2 13 pt đậm, H3 13 pt đậm nghiêng. Bìa dùng riêng tiêu đề 15 pt đậm,
+  chữ khác 14 pt, bảng nhóm 14 pt.
   PDF có font nhúng, tiếng Việt hiển thị; các trang đã được render để kiểm tra.
 - Build: XeLaTeX ba lượt; không còn lỗi LaTeX, overfull/underfull box hoặc
   citation/reference chưa giải quyết. Còn cảnh báo Babel chưa nạp mẫu ngắt từ
@@ -46,3 +48,12 @@ Các kết quả kiểm thử lịch sử được ghi riêng trong `REPAIR_VERI
 
 Commit/push cuối và SHA origin/main được xác minh sau khi hoàn tất kiểm tra;
 SHA được báo ở phản hồi bàn giao, không tự ghi SHA của một commit vào chính nó.
+
+## Cập nhật quy chuẩn hai bìa theo Word
+
+Đã dùng Microsoft Word xuất đúng trang 1–2 của mẫu để đối chiếu trực quan,
+đặt riêng tọa độ khung/logo/khối thông tin cho mỗi bìa. Kiểm tra font trực tiếp
+trong PDF thành công: bìa chỉ có 14,0 và 15,0 pt; tiêu đề 15 pt đậm, bảng bìa hai
+14 pt, không đánh số hoặc tràn sang trang ba. Xem `COVER_UPDATE_VERIFICATION.md`
+và `COVER_TYPOGRAPHY_AUDIT.json`. Word mẫu bìa đã được đối chiếu; điều này không
+thay thế template LaTeX chính thức của học phần vẫn chưa được cung cấp.

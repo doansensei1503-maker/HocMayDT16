@@ -146,6 +146,7 @@ nguồn biên tập ở \code{report/sections}, còn các nguồn tự động c
 giữ để truy vết, không chèn lặp toàn bộ hình và kết quả.
 
 \subsection{Notebook, môi trường và thực thi}
+\begingroup\raggedright
 Bốn notebook lần lượt là \code{01_eda.ipynb},
 \code{02_preprocessing.ipynb}, \code{03_model_experiments.ipynb} và
 \code{04_error_analysis.ipynb}. Chúng sử dụng module chung để hạn chế
@@ -153,6 +154,7 @@ sai khác giữa quá trình khám phá và runner. Notebook giúp trình bày t
 bước nhưng một ô hiển thị thành công không thay thế manifest, hash và
 bảng metric của lần chạy được sử dụng.
 
+\par\endgroup
 Cấu hình mặc định đặt seed 42, max rows 6.000, test size 0,2, CV ba fold
 và n jobs 1. Người tái lập cần tải đúng hai CSV vào đường dẫn trong config,
 cài requirements rồi chạy \code{py -m src.run --config configs/default.json}

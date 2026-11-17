@@ -11,3 +11,7 @@
 - Không đưa tệp Word vào Git; không trích hình/bảng/nội dung chuyên môn khác.
 - Không có template LaTeX FIT4013 chính thức trong workspace để xác nhận
   mức độ khớp template. Khung bìa dùng LaTeX shipout hook có sẵn.
+
+Cập nhật bìa: đã xuất riêng trang 1–2 của Word bằng Word ở chế độ chỉ đọc và
+đối chiếu hình ảnh. Kích thước/vị trí hiển thị logo mỗi bìa theo trang mẫu tương
+ứng; tệp PNG giữ nguyên byte. PDF/ảnh tham chiếu ở thư mục build, không đưa vào Git.

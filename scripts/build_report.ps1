@@ -31,6 +31,7 @@ $requiredReportFiles = @(
     'report\main.tex',
     'report\cover.tex',
     'report\frontmatter.tex',
+    'report\typography.tex',
     'report\references.tex',
     'report\sections\01_problem.tex',
     'report\sections\02_method.tex',

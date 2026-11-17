@@ -1,3 +1,7 @@
+> Hồ sơ lịch sử cho bản 36 trang trước khi cập nhật font. Bản hiện tại có 37
+> trang, bìa 14/15 pt và thân bài 13 pt. Kiểm chứng hiện hành nằm tại
+> `COVER_UPDATE_VERIFICATION.md` và `COVER_TYPOGRAPHY_AUDIT.json`.
+
 # Kiểm chứng báo cáo hoàn thiện — 17/11/2026
 
 ## Phạm vi

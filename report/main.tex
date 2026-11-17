@@ -1,19 +1,20 @@
 ﻿\documentclass[12pt,a4paper]{article}
+\usepackage{fix-cm}
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
-\setsansfont{Arial}
-\setmonofont{Consolas}[Scale=0.85]
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
 \usepackage[vietnamese]{babel}
 \usepackage[left=3cm,right=2.3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{graphicx,booktabs,array,amsmath,amssymb}
 \usepackage[hidelinks,unicode]{hyperref}
 \hypersetup{pdftitle={FIT4013 – Đề tài 16: Dự đoán nguy cơ giao trễ},pdfauthor={Vũ Quốc Đoàn; Trần Đại Hiệp}}
-\linespread{1.12}
-\setlength{\parskip}{4pt}
+\linespread{1}
+\setlength{\parskip}{3pt}
 \setlength{\parindent}{1.2em}
 \setlength{\emergencystretch}{3em}
 \setcounter{tocdepth}{2}
-\renewcommand{\UrlFont}{\small\ttfamily}
+\renewcommand{\UrlFont}{\normalfont\rmfamily\fontsize{13bp}{15.6bp}\selectfont}
 \newcommand{\code}[1]{\nolinkurl{#1}}
 \newcommand{\fig}[4][.80]{\begin{figure}[!htbp]\centering
 \includegraphics[width=#1\textwidth,height=.34\textheight,keepaspectratio]{../results/figures/#2}
@@ -24,6 +25,7 @@
 \renewcommand{\listfigurename}{Danh mục hình}
 \renewcommand{\listtablename}{Danh mục bảng}
 \input{cover.tex}
+\input{typography.tex}
 \pagenumbering{roman}
 \input{frontmatter.tex}
 \clearpage\tableofcontents

@@ -1,0 +1,46 @@
+{
+  "pages": 37,
+  "pdf_sha256": "b6ec668f59e83dba6d01338c4d5119521100af6df9a757e14293267ac555a78b",
+  "covers": [
+    {
+      "page": 1,
+      "sizes_pt": [
+        14.0,
+        15.0
+      ],
+      "min_pt": 14.0,
+      "titles_15pt_bold": true,
+      "all_text_times_new_roman": true,
+      "inside_word_frame": true,
+      "page_number": false
+    },
+    {
+      "page": 2,
+      "sizes_pt": [
+        14.0,
+        15.0
+      ],
+      "min_pt": 14.0,
+      "titles_15pt_bold": true,
+      "all_text_times_new_roman": true,
+      "inside_word_frame": true,
+      "page_number": false,
+      "table_all_14pt": true
+    }
+  ],
+  "body": {
+    "h1_14pt_bold": true,
+    "times_text_sizes_pt": [
+      13.0,
+      14.0
+    ],
+    "normal_tables_captions_13pt": true,
+    "h2_13pt_bold": true,
+    "h3": "13pt bold italic configured; no H3 heading in current content",
+    "page3_starts_abstract": true,
+    "math_script_spans_9pt1": 1,
+    "h2_count": 48,
+    "caption_count": 27
+  },
+  "note": "Cover audit includes every typeset text span. Body normal text, tables and captions are 13pt; mathematical subscripts use their natural script size. Raster logos/plots retain source artwork."
+}

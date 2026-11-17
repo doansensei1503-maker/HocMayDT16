@@ -19,7 +19,7 @@ Chỉ chạy lệnh cuối khi có đủ CSV và mô tả trong data/raw. Đọc
 - Baseline Decision Tree mặc định + A và Dummy most_frequent. Grid nhỏ cho K-NN (k, weights, metric) và cây (depth, leaf, criterion), không thay bằng mô hình nâng cao.
 
 Các notebook gọi code trong src. Báo cáo hoàn chỉnh ở `report/final_report.pdf`
-(36 trang A4), nguồn tại `report/main.tex` và `report/sections/`. Hai bìa có logo
+(37 trang A4), nguồn tại `report/main.tex` và `report/sections/`. Hai bìa có logo
 trích nguyên từ Word và thông tin nhóm do người dùng cung cấp. Chưa có template
 LaTeX chính thức để đối chiếu; phân công là đề xuất chưa xác nhận đóng góp thực tế.
 Không huấn luyện lại khi biên tập báo cáo. Dữ liệu thô/model/split riêng được gitignore.
@@ -57,7 +57,7 @@ Helper chạy XeLaTeX ba lượt. Xem [hướng dẫn báo cáo](report/README.m
 
 ## Submission readiness
 
-**PDF = BUILT, 36 pages; Team identity = SUPPLIED; Contributions = PROPOSED;
+**PDF = BUILT, 37 pages; Team identity = SUPPLIED; Contributions = PROPOSED;
 Official Template = UNVERIFIED.**
 
 Sáu phần đã hoàn thiện từ kết quả lịch sử. Phải xác nhận phân công/đóng góp thực

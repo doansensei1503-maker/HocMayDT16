@@ -1,0 +1,23 @@
+% Body text, tables and captions: 13 Word/PDF points. Headings: 14/13/13.
+% Local to the report body: cover.tex defines independent 14/15-point styles.
+\makeatletter
+\renewcommand\normalsize{\@setfontsize\normalsize{13bp}{15.6bp}%
+  \abovedisplayskip 10pt plus 2pt minus 5pt
+  \abovedisplayshortskip 0pt plus 3pt
+  \belowdisplayshortskip 6pt plus 3pt minus 3pt
+  \belowdisplayskip \abovedisplayskip}
+\renewcommand\small{\normalsize}
+\renewcommand\footnotesize{\normalsize}
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-3ex \@plus -1ex \@minus -.2ex}{1.75ex \@plus .2ex}%
+  {\normalfont\fontsize{14bp}{16.8bp}\selectfont\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-2.5ex \@plus -1ex \@minus -.2ex}{1.25ex \@plus .2ex}%
+  {\normalfont\fontsize{13bp}{15.6bp}\selectfont\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-2.5ex \@plus -1ex \@minus -.2ex}{1.25ex \@plus .2ex}%
+  {\normalfont\fontsize{13bp}{15.6bp}\selectfont\bfseries\itshape}}
+\let\reportarrayparboxrestore\@arrayparboxrestore
+\def\@arrayparboxrestore{\reportarrayparboxrestore\raggedright\arraybackslash}
+\makeatother
+\normalsize

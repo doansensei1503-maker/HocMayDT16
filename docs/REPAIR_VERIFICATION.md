@@ -123,3 +123,10 @@ Bản hiện tại có PDF 36 trang và danh tính do người dùng cung cấp;
 mở rộng theo artifact thực. Xem `REPORT_VERIFICATION.md` cho kiểm tra số liệu,
 font, bố cục từng trang và tài liệu tham khảo. Template chính thức vẫn chưa có;
 phân công vẫn là đề xuất chưa xác nhận. Không huấn luyện lại hoặc tạo metric mới.
+
+## Cập nhật hai bìa theo quy chuẩn mới — 17/11/2026
+
+Bản hiện tại 37 trang, tiêu đề bìa 15 pt đậm, chữ còn lại/bảng nhóm 14 pt;
+phần thân Times New Roman 13 pt, H1/H2/H3 14/13/13. Đối chiếu Word trang 1–2,
+kiểm tra font PDF và hình ảnh ghi ở `COVER_UPDATE_VERIFICATION.md` cùng
+`COVER_TYPOGRAPHY_AUDIT.json`. Không đổi nội dung sáu phần hoặc kết quả thực nghiệm.
