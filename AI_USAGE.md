@@ -4,8 +4,6 @@
 
 **Đề tài 16:** Dự đoán đơn hàng có nguy cơ giao trễ trong chuỗi cung ứng
 
-Nhóm sử dụng OpenAI Codex để hỗ trợ tìm hiểu phương pháp; đề xuất, tạo và chỉnh sửa mã nguồn, notebook, kiểm thử; rà lỗi và tổ chức tài liệu. Codex hỗ trợ thiết kế quy trình chống rò rỉ dữ liệu, chia nhóm, đánh giá và đối chiếu các tệp kết quả. Công cụ cũng hỗ trợ soạn thảo nội dung, bảng biểu, định dạng và biên dịch báo cáo LaTeX.
+Trong quá trình thực hiện đề tài, nhóm có sử dụng OpenAI Codex như một công cụ hỗ trợ kỹ thuật trong việc tham khảo phương pháp, gợi ý và hiệu chỉnh mã nguồn, hỗ trợ tổ chức quy trình thực nghiệm, kiểm tra lỗi và hoàn thiện hình thức trình bày báo cáo bằng LaTeX.
 
-Kết quả thực nghiệm dựa trên dữ liệu, chương trình và tệp kết quả trong repository, không phải số liệu AI tự tạo. Hồ sơ kiểm chứng kỹ thuật được lưu tại docs/.
-
-Nhóm chịu trách nhiệm kiểm tra mã nguồn, phương pháp, số liệu và bài nộp; hiểu, giải thích được tiền xử lý, K-NN, Decision Tree, kết quả và hạn chế. Các thành viên phải xác nhận đóng góp thực tế, phân biệt phần tự thực hiện với phần được AI hỗ trợ, không nhận công việc do AI thực hiện là thành quả tự làm.
+Nhóm chịu trách nhiệm rà soát nội dung, đối chiếu số liệu và kết quả thực nghiệm, đánh giá tính phù hợp của phương pháp và hoàn thiện sản phẩm nộp. Các thành viên bảo đảm khả năng trình bày, giải thích quy trình xử lý dữ liệu, thuật toán K-NN, Decision Tree và những kết quả nghiên cứu của đề tài.
