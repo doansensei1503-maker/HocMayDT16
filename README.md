@@ -90,3 +90,7 @@ The controlled ablation fixes each algorithm's A-selected parameters for A/B on
 the same training CV folds. Its scores are descriptive, with selection optimism;
 they do not establish causal calendar benefits or generalization to future orders.
 See `docs/RUBRIC_EVIDENCE.md` and `docs/DEFENSE_GUIDE.md`.
+
+Hệ thống 13 bảng đã được chuẩn hóa với header nền nhẹ, chữ đậm, số căn phải và
+font 13 pt. Bảng được kiểm tra trực tiếp trong PDF; dữ liệu thực nghiệm giữ nguyên.
+Xem [kiểm chứng bảng biểu](docs/TABLE_STYLE_VERIFICATION.md).

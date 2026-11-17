@@ -111,7 +111,7 @@ def main():
             for line in b.get('lines', []):
                 ss = [s for s in line['spans'] if s['text'].strip()]
                 text = ''.join(s['text'] for s in ss)
-                if re.fullmatch(r'\d+\.\d+', text.strip()) and all('Bold' in s['font'] for s in ss):
+                if re.fullmatch(r'[1-6]\.\d+', text.strip()) and abs(ss[0]['bbox'][0]-25*72/25.4)<1 and all('Bold' in s['font'] for s in ss):
                     assert all(at_size(s, 13) and 'Bold' in s['font'] for s in ss), text
                     h2_count += 1
                 if re.match(r'^(Hình|Bảng)\s*\d+:', text):

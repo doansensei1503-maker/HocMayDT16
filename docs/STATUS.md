@@ -40,6 +40,19 @@
 - Đã kiểm tra 12 H1, 49 H2, 27 chú thích; H3 được cấu hình nhưng chưa có trong nội dung.
 - Bản hiện hành: xem `HEADING_VERIFICATION.md` và các JSON audit gắn SHA-256 PDF.
 
+## Cập nhật hệ thống bảng
+
+- Đã thiết kế lại toàn bộ 13 bảng phần thân bằng `tabularx`, `booktabs`, `array`
+  và `xcolor/colortbl`: header nền xám xanh nhạt, đậm, arraystretch 1,22;
+  không viền dọc, số căn phải, chữ dài xuống dòng tự nhiên.
+- Tất cả chữ trong ô bảng đo trực tiếp là Times New Roman 13 pt; caption 13 pt.
+  Hai bìa giữ nguyên định dạng riêng, gồm bảng bìa 14 pt.
+- Bảng dữ liệu có nhóm/biến/kiểu/vai trò/ghi chú; bảng thiếu có kiểu lưu và hướng xử lý
+  dựa trên metadata đã lưu, không thay dữ liệu. Metric tách mô hình/luồng, nhóm CV/Test,
+  in đậm cực đại từng cột với giải thích; không đổi tiêu chí chọn mô hình.
+- Kiểm chứng mới: `TABLE_STYLE_VERIFICATION.md`, `TABLE_LAYOUT_AUDIT.json`;
+  đã xem 40 trang và 13 ảnh chi tiết bảng, mở PDF mới trong VS Code.
+
 ## Bằng chứng thực nghiệm được giữ nguyên
 
 Mẫu 5.999/180.519 dòng, 2.113/65.752 đơn; train 4.823 dòng/1.690 đơn,

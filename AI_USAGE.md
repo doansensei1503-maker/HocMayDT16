@@ -44,3 +44,13 @@ nguồn ngoài danh sách được thay bằng dẫn chứng vị trí mã ngu�
 font, liên kết và toàn bộ 40 trang sau XeLaTeX; hai bìa không đổi. Không chạy lại
 training/notebook, không sửa thuật toán, dữ liệu hay số liệu thực nghiệm. Phân công
 vẫn là đề xuất chờ xác nhận, không được coi là lịch sử đóng góp thực tế.
+
+2026-11-17 — Chuẩn hóa toàn bộ 13 bảng phần thân: Codex thiết kế style chung,
+chuyển sang tabularx, header nền nhẹ/đậm, đệm hàng và căn số; sửa cả script sinh
+năm bảng. Bổ sung kiểu lưu/hướng xử lý dựa trên data_dictionary.csv, feature_audit.csv
+và hợp đồng src/data.py đã có; không tự tạo dữ liệu. In đậm cực đại theo cột ở
+hai bảng metric và giải thích cách đọc; không thay tiêu chí chọn mô hình.
+Kiểm tra lại metric từ sáu confusion matrices, kiểm tra đầu ra sinh lặp ổn định,
+đối chiếu các số thập phân với bản trước, biên dịch XeLaTeX, xem 40 trang và
+13 ảnh chi tiết bảng, mở PDF mới trong VS Code. Không chạy lại ML/notebook hoặc
+sửa thuật toán, nhãn, mẫu và số liệu. Phân công tiếp tục chờ nhóm xác nhận.

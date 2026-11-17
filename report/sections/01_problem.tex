@@ -60,13 +60,14 @@ kiểm tra bản ghi, còn nhất quán nhãn kiểm tra khả năng tổng hợ
 
 \begin{table}[!htbp]\centering
 \caption{Các nhóm thông tin trong bộ dữ liệu và cách sử dụng.}\label{tab:data-groups}
-\begin{tabular}{p{5.1cm}p{8.2cm}}\toprule
-Nhóm trường & Ví dụ và vai trò\\\midrule
-Nhãn và kết quả & Late delivery risk; trạng thái giao; số ngày giao thực tế. Chỉ nhãn dùng làm đích, trường kết quả bị loại khỏi đầu vào.\\
-Đơn và sản phẩm & Số lượng, giá sản phẩm, tỷ lệ chiết khấu, nhóm sản phẩm. Một đơn có thể chứa nhiều mặt hàng.\\
-Vận chuyển và thị trường & Phương thức giao, số ngày kế hoạch, vùng và quốc gia nhận đơn.\\
-Định danh và cá nhân & Mã đơn, mã khách, tên, địa chỉ, email. Mã đơn chỉ dùng gom nhóm, thông tin cá nhân không dùng để dự đoán.\\\bottomrule
-\end{tabular}
+\begin{tabularx}{\linewidth}{p{2.1cm}p{3.3cm}p{1.5cm}p{2.1cm}Y}\toprule
+\rowcolor{reportheader}
+\theadcell{Nhóm thông tin} & \theadcell{Biến minh họa} & \theadcell{Kiểu dữ liệu} & \theadcell{Vai trò} & \theadcell{Ghi chú sử dụng}\\\midrule
+Nhãn và kết quả & Late\_\allowbreak delivery\_\allowbreak risk; Delivery Status; Days for shipping (real) & Số nguyên; chuỗi & Đích dự đoán; trường kết quả & Chỉ nhãn dùng làm đích; trạng thái và số ngày thực tế bị loại khỏi đầu vào.\\[3pt]
+Đơn và sản phẩm & Order Item Quantity; Order Item Product Price; Category Name & Số; chuỗi & Đặc trưng số và phân loại & Có cả chiết khấu và nhóm sản phẩm; một đơn có thể chứa nhiều mặt hàng.\\[3pt]
+Vận chuyển và thị trường & Shipping Mode; Days for shipment (scheduled); Order Region & Chuỗi; số nguyên & Đặc trưng đầu vào & Gồm vùng và quốc gia nhận đơn; dùng thời hạn kế hoạch, không dùng kết quả giao.\\[3pt]
+Định danh và cá nhân & Order Id; mã khách; tên, địa chỉ, email & Mã số; chuỗi & Gom nhóm; loại khỏi dự đoán & Mã đơn chỉ phục vụ chia nhóm; thông tin cá nhân không đưa vào mô hình.\\\bottomrule
+\end{tabularx}
 
 \end{table}
 Bảng~\ref{tab:data-groups} cho thấy cùng một CSV có thể chứa cả thông tin
@@ -98,13 +99,16 @@ protocol đã lưu.
 \subsection{Chất lượng dữ liệu: thiếu, bất thường và trùng lặp}
 \begin{table}[!htbp]\centering
 \caption{Giá trị thiếu trên toàn nguồn theo từ điển dữ liệu đã lưu.}\label{tab:missing}
-\begin{tabular}{lrr}\toprule
-Trường & Số thiếu & Tỷ lệ xấp xỉ\\\midrule
-Customer Lname & 8 & 0,004\%\\
-Customer Zipcode & 3 & 0,002\%\\
-Order Zipcode & 155.679 & 86,24\%\\
-Product Description & 180.519 & 100,00\%\\\bottomrule
-\end{tabular}
+\begin{tabularx}{\linewidth}{p{3.1cm}p{1.7cm}rrY}\toprule
+\rowcolor{reportheader}
+\theadcell{Thuộc tính} & \theadcell{Kiểu lưu} & \theadcell{Số thiếu} & \theadcell{Tỷ lệ thiếu} & \theadcell{Hướng xử lý}\\\midrule
+Customer Lname & \code{str} & 8 & 0,004\% & Loại thông tin cá nhân khỏi đầu vào.\\[3pt]
+Customer Zipcode & \code{float64} & 3 & 0,002\% & Không nằm trong danh sách đặc trưng cho phép.\\[3pt]
+Order Zipcode & \code{float64} & 155.679 & 86,24\% & Loại khỏi đầu vào; không suy diễn mã bưu chính từ giá trị thiếu.\\[3pt]
+Product Description & \code{float64} & 180.519 & 100,00\% & Loại cột thiếu toàn bộ; không khai thác như văn bản.\\\bottomrule
+\end{tabularx}
+\par\smallskip\raggedright
+Kiểu lưu theo \code{data_dictionary.csv}; \code{float64} của cột mô tả hoàn toàn thiếu không hàm ý đây là biến số có thể sử dụng.
 
 \end{table}
 Bảng~\ref{tab:missing} chỉ liệt kê các cột có thiếu. Tất cả đều bị loại khỏi

@@ -1,9 +1,9 @@
 {
-  "pdf_sha256": "99cf01aa7350de63afe5901a47f2b91488d8523c5c75457fa4c4a7d20640f61d",
+  "pdf_sha256": "7471bfb7c1d6f324688a8a262b6d69928906b3424733b205a1b510e665cce191",
   "pages": 40,
   "all_pages_rendered": true,
   "all_pages_visually_reviewed": true,
-  "review_method": "40 pages rendered at 1.4x; all ten four-page contact sheets viewed; text/font/bounds/navigation audits run separately.",
+  "review_method": "All ten four-page contact sheets viewed, plus all 13 table detail crops at 1.8x; font/header/bounds audits performed separately.",
   "cover_pages_pixel_identical_to_previous_review": [
     1,
     2
@@ -12,5 +12,5 @@
   "fonts_embedded": true,
   "replacement_characters": false,
   "typeset_text_outside_page": [],
-  "visual_findings": "No clipped chapter titles, broken table rows, overlapping captions or third cover page. Chapter starts are on new pages; floating tables and figures remain readable."
+  "visual_findings": "13 body tables use bold shaded headers, padded rows, full text width and right-aligned numeric columns. No clipped cells or captions. Covers retain their separate style."
 }

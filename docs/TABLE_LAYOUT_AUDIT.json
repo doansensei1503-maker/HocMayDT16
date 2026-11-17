@@ -1,0 +1,178 @@
+{
+  "pdf_sha256": "7471bfb7c1d6f324688a8a262b6d69928906b3424733b205a1b510e665cce191",
+  "pages": 40,
+  "tables_checked": 13,
+  "arraystretch": 1.22,
+  "cover_tables": "unchanged 14pt exception",
+  "tables": [
+    {
+      "table": 1,
+      "pdf_page": 3,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        434.032,
+        538.583,
+        570.687
+      ]
+    },
+    {
+      "table": 2,
+      "pdf_page": 8,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        335.483,
+        538.583,
+        684.718
+      ]
+    },
+    {
+      "table": 3,
+      "pdf_page": 10,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        82.52,
+        538.583,
+        291.356
+      ]
+    },
+    {
+      "table": 4,
+      "pdf_page": 12,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        130.094,
+        538.583,
+        333.11
+      ]
+    },
+    {
+      "table": 5,
+      "pdf_page": 17,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        252.144,
+        538.583,
+        511.742
+      ]
+    },
+    {
+      "table": 6,
+      "pdf_page": 21,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        82.52,
+        538.583,
+        296.246
+      ]
+    },
+    {
+      "table": 7,
+      "pdf_page": 22,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        232.2,
+        538.583,
+        347.436
+      ]
+    },
+    {
+      "table": 8,
+      "pdf_page": 23,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        142.875,
+        538.583,
+        319.582
+      ]
+    },
+    {
+      "table": 9,
+      "pdf_page": 27,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        79.962,
+        538.583,
+        236.179
+      ]
+    },
+    {
+      "table": 10,
+      "pdf_page": 31,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        526.385,
+        538.583,
+        600.64
+      ]
+    },
+    {
+      "table": 11,
+      "pdf_page": 32,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        123.236,
+        538.583,
+        197.49
+      ]
+    },
+    {
+      "table": 12,
+      "pdf_page": 32,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        346.121,
+        538.583,
+        461.357
+      ]
+    },
+    {
+      "table": 13,
+      "pdf_page": 35,
+      "all_cell_text_13pt_times_new_roman": true,
+      "header_bold_light_fill": true,
+      "inside_text_margins": true,
+      "bounds_pt": [
+        70.866,
+        604.814,
+        538.583,
+        720.049
+      ]
+    }
+  ]
+}

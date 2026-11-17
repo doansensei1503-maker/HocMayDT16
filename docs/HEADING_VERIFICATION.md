@@ -1,3 +1,5 @@
+> Hồ sơ lần chuẩn hóa heading. PDF hiện hành sau chỉnh bảng: `TABLE_STYLE_VERIFICATION.md`; các JSON audit đã cập nhật theo PDF mới.
+
 # Kiểm chứng heading và hoàn thiện báo cáo — 17/11/2026
 
 PDF hiện hành: `report/final_report.pdf`, 40 trang A4.

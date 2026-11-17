@@ -123,13 +123,13 @@ trên train/validation trước một test độc lập, tránh học lại từ
 \subsection{Diễn giải đặc trưng và quy tắc cây}
 \begin{table}[!htbp]\centering
 \caption{Bốn importance lớn nhất trong cây B theo artifact đã lưu.}\label{tab:importance}
-\begin{tabular}{lr}\toprule
-Đặc trưng sau tiền xử lý & Importance\\\midrule
+\begin{tabularx}{\linewidth}{Yr}\toprule
+\rowcolor{reportheader} \theadcell{Đặc trưng sau tiền xử lý} & \theadcell{Importance}\\\midrule
 Shipping Mode: Standard Class & 0,5735\\
 Giờ tạo đơn & 0,1758\\
 Shipping Mode: Same Day & 0,1356\\
 Shipping Mode: First Class & 0,0624\\\bottomrule
-\end{tabular}
+\end{tabularx}
 
 \end{table}
 Bảng~\ref{tab:importance} cho thấy phần lớn mức giảm impurity gắn với

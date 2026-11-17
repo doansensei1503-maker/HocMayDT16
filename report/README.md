@@ -66,7 +66,7 @@ hình ở dưới, giữa và nghiêng 13 pt. Bìa không chịu thay đổi l�
 riêng theo Word. APA-style dùng natbib với tác giả–năm, năm chưa rõ ghi n.d.;
 không cần BibTeX/Biber vì các mục nguồn được quản lý trong `references.tex`.
 
-Build cần thêm gói natbib, fix-cm và titlesec. Helper tắt cài tự động; nếu thiếu gói thì
+Build cần thêm gói natbib, fix-cm, titlesec, tools (tabularx), xcolor và colortbl. Helper tắt cài tự động; nếu thiếu gói thì
 cài bằng CLI MiKTeX được phép rồi chạy lại. Không huấn luyện lại để build.
 Sau khi build xong, chạy:
 
@@ -86,3 +86,16 @@ với tiện ích `tomoki1207.pdf` (PDF Preview). Tệp được mở là PDF th
 Heading được quản lý tập trung trong `typography.tex`; `partstart` tạo số chương
 và nhãn tham chiếu tự động. Sáu chương giữ nguyên nội dung; có 5 nguồn tham khảo.
 Xem [kiểm chứng heading](../docs/HEADING_VERIFICATION.md) cho bản hiện hành.
+
+## Style bảng dùng chung
+
+13 bảng phần thân dùng `tabularx` với cột Y co giãn; `ReportTableSetup` trong
+`typography.tex` đặt Times New Roman 13 pt, arraystretch 1,22, đệm cột 6 pt và
+header xám xanh nhạt. `theadcell` dùng chữ đậm. `booktabs` tạo quy tắc ngang,
+không dùng viền dọc. Style được nạp sau bìa nên không đổi bảng bìa 14 pt.
+
+Năm bảng metric được sinh bởi `scripts/report_tables.py`; không sửa riêng đầu ra
+rồi để script ghi đè. Luồng A/B là cột riêng; cực đại theo cột chỉ được in đậm
+ở bảng metric theo dòng/đơn, không đánh đồng mức khớp train cao với mô hình tốt.
+Chạy thêm `py scripts/verify_report_tables.py` để kiểm tra 13 bảng trong PDF thật.
+Xem [kiểm chứng bảng](../docs/TABLE_STYLE_VERIFICATION.md).

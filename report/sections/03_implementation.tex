@@ -9,8 +9,8 @@ nhất của metric khi CSV/JSON đã lưu có thể đối chiếu trực tiế
 
 \begin{table}[!htbp]\centering\small
 \caption{Cấu trúc và trách nhiệm của các thành phần chính.}\label{tab:repo}
-\begin{tabular}{p{3.4cm}p{9.9cm}}\toprule
-Đường dẫn & Vai trò và sản phẩm\\\midrule
+\begin{tabularx}{\linewidth}{p{3.3cm}Y}\toprule
+\rowcolor{reportheader} \theadcell{Đường dẫn} & \theadcell{Vai trò và sản phẩm}\\\midrule
 \code{data/raw} & CSV nguồn cục bộ, có hướng dẫn tải; dữ liệu lớn không đưa vào Git.\\
 \raggedright\code{configs/}\newline\code{default.json} & Đường dẫn nguồn, seed, ngân sách dòng, test size, số fold và số tiến trình.\\
 \code{src} & Đọc dữ liệu, pipeline, runner, kiểm toán, đánh giá, xuất báo cáo.\\
@@ -19,7 +19,7 @@ nhất của metric khi CSV/JSON đã lưu có thể đối chiếu trực tiế
 \code{results/tables} & Bảng tổng hợp đã lọc, metric, audit, sampling và phân tích lỗi.\\
 \code{results/figures} & Hình EDA và đánh giá dùng trong báo cáo.\\
 \code{tests} và \code{docs} & Kiểm thử phần mềm; yêu cầu học phần, bằng chứng và hướng dẫn.\\\bottomrule
-\end{tabular}
+\end{tabularx}
 
 \end{table}
 Bảng~\ref{tab:repo} cũng cho thấy ranh giới công bố: split chứa chỉ số
@@ -176,14 +176,14 @@ seed nhưng khác phiên bản hoặc thứ tự dòng vẫn có thể khác k�
 \subsection{Kiểm thử đã có và giới hạn bằng chứng}
 \begin{table}[!htbp]\centering\small
 \caption{Phạm vi kiểm thử phần mềm trong repository.}\label{tab:tests}
-\begin{tabular}{p{4.2cm}p{9.1cm}}\toprule
-Nhóm kiểm tra & Điều kiện được kiểm soát\\\midrule
+\begin{tabularx}{\linewidth}{p{4cm}Y}\toprule
+\rowcolor{reportheader} \theadcell{Nhóm kiểm tra} & \theadcell{Điều kiện được kiểm soát}\\\midrule
 Schema và dữ liệu lỗi & Thiếu nhãn, nhóm, ngày; kiểu cột số; hợp đồng dữ liệu thật nếu có.\\
 Nhóm và protocol & Không giao đơn train/test, không giao nhóm CV, cùng protocol cho kết quả lặp.\\
 Pipeline và rò rỉ & Danh mục lạ, missing, hình dạng đầu ra, train-only imputation; thay cột cấm không đổi dự đoán.\\
 Lưu trữ và đánh giá & Dự đoán sau nạp model; trọng số đơn bằng nhau; chặn nhãn mâu thuẫn.\\
 Smoke tổng hợp & Runner đi hết quy trình trên fixture nhỏ; không phải thực nghiệm DataCo.\\\bottomrule
-\end{tabular}
+\end{tabularx}
 
 \end{table}
 Hồ sơ \code{REPAIR_VERIFICATION.md} ghi lần kiểm thử workspace 14 passed,

@@ -1,5 +1,5 @@
 {
-  "pdf_sha256": "99cf01aa7350de63afe5901a47f2b91488d8523c5c75457fa4c4a7d20640f61d",
+  "pdf_sha256": "7471bfb7c1d6f324688a8a262b6d69928906b3424733b205a1b510e665cce191",
   "pages": 40,
   "a4": true,
   "margins_cm": {
@@ -25,7 +25,7 @@
     },
     {
       "number": 3,
-      "pdf_page": 9,
+      "pdf_page": 10,
       "caption_above_table": true
     },
     {
@@ -50,12 +50,12 @@
     },
     {
       "number": 8,
-      "pdf_page": 22,
+      "pdf_page": 23,
       "caption_above_table": true
     },
     {
       "number": 9,
-      "pdf_page": 26,
+      "pdf_page": 27,
       "caption_above_table": true
     },
     {
@@ -65,7 +65,7 @@
     },
     {
       "number": 11,
-      "pdf_page": 31,
+      "pdf_page": 32,
       "caption_above_table": true
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "number": 5,
-      "pdf_page": 24,
+      "pdf_page": 25,
       "caption_below_image": true
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "number": 10,
-      "pdf_page": 28,
+      "pdf_page": 29,
       "caption_below_image": true
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "number": 12,
-      "pdf_page": 29,
+      "pdf_page": 30,
       "caption_below_image": true
     },
     {

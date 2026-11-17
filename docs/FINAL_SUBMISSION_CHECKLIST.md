@@ -56,3 +56,11 @@ Commit SHA và đối chiếu origin/main ghi trong phản hồi bàn giao sau p
 - [x] GitHub đầy đủ, nhấp được trong Chương 3; đúng năm nguồn, không cite hỏng.
 - [x] PDF 40 trang được rà trực quan; hai bìa giữ nguyên, font đạt 14/15 pt.
 - [x] Thuật toán, dữ liệu và kết quả giữ nguyên; khai báo AI_USAGE được cập nhật.
+
+## Kiểm tra bảng biểu — 17/11/2026
+
+- [x] Đủ 13 bảng phần thân; header đậm nền nhẹ, hàng thoáng, số căn phải.
+- [x] Toàn bộ chữ ô bảng TNR 13 pt; caption 13 pt; không tràn lề.
+- [x] Giữ nguyên các số metric, thiếu dữ liệu, quy mô mẫu và phân tích lỗi.
+- [x] Đã sửa script sinh bảng, kiểm tra tính lặp ổn định, không chạy ML.
+- [x] Đã xem 40 trang và 13 ảnh bảng; PDF mới mở trong VS Code.

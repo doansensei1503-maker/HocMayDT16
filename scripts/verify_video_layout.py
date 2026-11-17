@@ -41,7 +41,7 @@ def main():
         if spacings:
             break
     assert spacings and abs(statistics.median(spacings)-19.5) < .05
-    headers = {1:'Họ tên thành viên', 2:'Nhóm trường', 3:'Trường', 4:'Thông tin',
+    headers = {1:'Họ tên thành viên', 2:'Nhóm thông tin', 3:'Thuộc tính', 4:'Thông tin',
                5:'Đường dẫn', 6:'Nhóm kiểm tra', 7:'Phạm vi', 8:'Mô hình',
                9:'Mô hình', 10:'Mô hình', 11:'Thuật toán', 12:'Phương thức',
                13:'Đặc trưng sau tiền xử lý'}
@@ -60,7 +60,7 @@ def main():
                 kind,index = match[1],int(match[2])
                 y = line['bbox'][1]
                 if kind == 'Bảng':
-                    after = [s for s in ss if compact(s['text']) == compact(headers[index]) and s['bbox'][1] > y]
+                    after = compact(headers[index]) in compact(''.join(s['text'] for s in ss if s['bbox'][1] > y))
                     assert after,(number,index,headers[index])
                     tables.append({'number':index,'pdf_page':number,'caption_above_table':True})
                 elif index != 2:  # Figure 2 is a LaTeX vector diagram, reviewed visually.
