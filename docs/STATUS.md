@@ -11,7 +11,7 @@
 - Giảng viên: ThS. Lê Thị Thùy Trang, khớp `fit4013_extracted.txt`.
 - Sinh viên: Vũ Quốc Đoàn — 1871020143; Trần Đại Hiệp — 1871020223. Khớp
   yêu cầu người dùng và bìa Word. Lớp CNTT18-10, khóa K18, năm học 2026–2027.
-- Sáu phần: hoàn thiện nội dung học thuật, công thức, phân tích mã và thực nghiệm;
+- Sáu chương: hoàn thiện nội dung học thuật, công thức, phân tích mã và thực nghiệm;
   dựa trên artifact đã lưu, không tạo số liệu hoặc huấn luyện lại.
 - Hình: toàn bộ 15 ảnh kết quả cũ (8 EDA train, 6 confusion matrices, 1 comparison),
   cộng sơ đồ pipeline LaTeX, trong 14 mục hình. Có phân tích văn bản đi kèm.
@@ -19,7 +19,7 @@
   metric, gap CV, cấp đơn, ablation, lỗi nhóm và importance. Năm bảng số liệu
   được sinh từ CSV/JSON bằng `scripts/report_tables.py`, không nhập metric bằng tay.
 - Phân công: **đề xuất, chưa xác nhận** cả ở PDF lẫn `TEAM_ASSIGNMENT_PROPOSED.md`.
-- Trình bày: A4, Times New Roman; thân bài, bảng và chú thích 13 pt; H1 14 pt đậm,
+- Trình bày: A4, Times New Roman; thân bài, bảng và chú thích 13 pt; H1 14 pt đậm, căn giữa, viết hoa,
   H2 13 pt đậm, H3 13 pt đậm nghiêng. Bìa dùng riêng tiêu đề 15 pt đậm,
   chữ khác 14 pt, bảng nhóm 14 pt.
   PDF có font nhúng, tiếng Việt hiển thị; các trang đã được render để kiểm tra.
@@ -29,6 +29,16 @@
 - Template: yêu cầu mục 2.3 nói nộp theo template học phần nhưng workspace chỉ có
   hướng dẫn trích xuất, không có template LaTeX chính thức. Bìa được dựng theo
   thông tin người dùng, chưa tự nhận đạt template chưa được cung cấp.
+
+## Cập nhật heading và nguồn tham khảo
+
+- Sáu chương đánh số tự động CHƯƠNG 1–6; mục lục và tham chiếu chéo đồng bộ.
+- LỜI MỞ ĐẦU thay Tóm tắt; bảng phân công hai cột, hai thành viên, vẫn chờ xác nhận.
+- Chương 3 có URL GitHub đầy đủ, nhấp được, không tràn lề.
+- Đúng năm nguồn tham khảo; bỏ ba nguồn ngoài danh sách yêu cầu, thay dẫn chứng
+  tương ứng bằng vị trí mã nguồn, không gán sang nguồn khác.
+- Đã kiểm tra 12 H1, 49 H2, 27 chú thích; H3 được cấu hình nhưng chưa có trong nội dung.
+- Bản hiện hành: xem `HEADING_VERIFICATION.md` và các JSON audit gắn SHA-256 PDF.
 
 ## Bằng chứng thực nghiệm được giữ nguyên
 

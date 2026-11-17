@@ -48,3 +48,11 @@
 Cảnh báo không chặn build: Babel chưa nạp mẫu ngắt từ tiếng Việt; MiKTeX nhắc
 kiểm tra cập nhật. Không có lỗi LaTeX làm dừng biên dịch trong bản cuối.
 Commit SHA và đối chiếu origin/main ghi trong phản hồi bàn giao sau push.
+
+## Cập nhật heading — 17/11/2026
+
+- [x] H1 14 pt, đậm, giữa, viết hoa; sáu chương đánh số tự động, mục lục đúng.
+- [x] Lời mở đầu và bảng phân công hai cột; không xác nhận thay nhóm.
+- [x] GitHub đầy đủ, nhấp được trong Chương 3; đúng năm nguồn, không cite hỏng.
+- [x] PDF 40 trang được rà trực quan; hai bìa giữ nguyên, font đạt 14/15 pt.
+- [x] Thuật toán, dữ liệu và kết quả giữ nguyên; khai báo AI_USAGE được cập nhật.

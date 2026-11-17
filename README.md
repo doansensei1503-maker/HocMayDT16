@@ -58,6 +58,9 @@ Helper chạy XeLaTeX ba lượt. Xem [hướng dẫn báo cáo](report/README.m
 Video hướng dẫn đã được đối chiếu tại các trang quy định đọc rõ, xem
 [đối chiếu video](docs/VIDEO_REVIEW.md). Bản 40 trang giữ sáu phần FIT4013,
 áp dụng lề/giãn dòng/chú thích phù hợp và APA-style, không đổi thuật toán/số liệu.
+Bản hiện hành có sáu chương tự động, H1 căn giữa viết hoa 14 pt, lời mở đầu,
+bảng phân công hai cột và đúng năm nguồn tham khảo. Xem
+[kiểm chứng heading](docs/HEADING_VERIFICATION.md).
 
 ## Submission readiness
 

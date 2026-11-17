@@ -41,7 +41,7 @@ def main():
         if spacings:
             break
     assert spacings and abs(statistics.median(spacings)-19.5) < .05
-    headers = {1:'Thành viên', 2:'Nhóm trường', 3:'Trường', 4:'Thông tin',
+    headers = {1:'Họ tên thành viên', 2:'Nhóm trường', 3:'Trường', 4:'Thông tin',
                5:'Đường dẫn', 6:'Nhóm kiểm tra', 7:'Phạm vi', 8:'Mô hình',
                9:'Mô hình', 10:'Mô hình', 11:'Thuật toán', 12:'Phương thức',
                13:'Đặc trưng sau tiền xử lý'}
@@ -69,7 +69,7 @@ def main():
                     figures.append({'number':index,'pdf_page':number,'caption_below_image':True})
     assert len(tables) == 13 and len(figures) == 13,(len(tables),len(figures))
     bibliography = pdf[-1].get_text()
-    assert bibliography.startswith('Tài liệu tham khảo')
+    assert bibliography.startswith('TÀI LIỆU THAM KHẢO')
     assert all(author in bibliography for author in ['Constante','Thùy Trang','scikit-learn','Tiwari'])
     all_text = compact(''.join(page.get_text() for page in pdf))
     assert 'Constante,2019' in all_text

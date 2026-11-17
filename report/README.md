@@ -41,7 +41,7 @@ cần đối chiếu, build và kiểm tra từng trang lại.
 
 - Bìa: Times New Roman; mọi tiêu đề và tên đề tài 15 pt đậm; chữ khác 14 pt;
   cả tiêu đề cột và nội dung bảng nhóm 14 pt. Không dùng lệnh giảm font trên bìa.
-- Thân: Times New Roman 13 pt; H1 14 pt đậm, H2 13 pt đậm, H3 13 pt đậm nghiêng;
+- Thân: Times New Roman 13 pt; H1 14 pt đậm, căn giữa, viết hoa, H2 13 pt đậm, H3 13 pt đậm nghiêng;
   bảng và chú thích 13 pt. Cỡ chỉ số toán theo quy tắc toán học thông thường.
 - Cỡ được định nghĩa bằng `bp` (72 điểm/inch, tương ứng điểm Word/PDF), để kết
   quả trích trực tiếp trong PDF là 14,0/15,0 pt trên bìa và 13,0 pt trong thân.
@@ -66,7 +66,7 @@ hình ở dưới, giữa và nghiêng 13 pt. Bìa không chịu thay đổi l�
 riêng theo Word. APA-style dùng natbib với tác giả–năm, năm chưa rõ ghi n.d.;
 không cần BibTeX/Biber vì các mục nguồn được quản lý trong `references.tex`.
 
-Build cần thêm gói natbib và fix-cm. Helper tắt cài tự động; nếu thiếu gói thì
+Build cần thêm gói natbib, fix-cm và titlesec. Helper tắt cài tự động; nếu thiếu gói thì
 cài bằng CLI MiKTeX được phép rồi chạy lại. Không huấn luyện lại để build.
 Sau khi build xong, chạy:
 
@@ -82,3 +82,7 @@ thay thế cấu trúc sáu phần, quy chuẩn font người dùng hoặc templ
 
 Có thể mở trực tiếp PDF trong VS Code bằng `code --reuse-window report/final_report.pdf`
 với tiện ích `tomoki1207.pdf` (PDF Preview). Tệp được mở là PDF thật, không phải ảnh preview.
+
+Heading được quản lý tập trung trong `typography.tex`; `partstart` tạo số chương
+và nhãn tham chiếu tự động. Sáu chương giữ nguyên nội dung; có 5 nguồn tham khảo.
+Xem [kiểm chứng heading](../docs/HEADING_VERIFICATION.md) cho bản hiện hành.

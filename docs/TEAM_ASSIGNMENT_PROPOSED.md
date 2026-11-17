@@ -4,11 +4,10 @@ Nhận diện theo yêu cầu người dùng và bìa Word: Vũ Quốc Đoàn, 1
 Trần Đại Hiệp, 1871020223; lớp CNTT18-10, khóa K18, năm học 2026–2027.
 Giảng viên FIT4013 theo tài liệu học phần: ThS. Lê Thị Thùy Trang.
 
-| Thành viên | Nhiệm vụ dự kiến |
+| Họ tên thành viên | Nhiệm vụ được phân công (dự kiến) |
 |---|---|
-| Vũ Quốc Đoàn | Bài toán, dataset, kiểm toán chất lượng, EDA, tiền xử lý, lựa chọn đặc trưng, phân tích A/B và trình bày phần liên quan. |
-| Trần Đại Hiệp | K-NN, Decision Tree, pipeline, CV theo nhóm, kết quả mô hình, confusion matrix, error analysis, thực nghiệm, thảo luận và kết luận. |
-| Cả hai | Kiểm tra GitHub, kiểm thử tái lập, rà soát báo cáo, slide và bảo vệ. |
+| Vũ Quốc Đoàn — 1871020143 | Nghiên cứu bài toán, dataset; phân tích EDA; tiền xử lý và lựa chọn đặc trưng; phân tích luồng A/B; tham gia hoàn thiện báo cáo. |
+| Trần Đại Hiệp — 1871020223 | Nghiên cứu K-NN và Decision Tree; xây dựng pipeline huấn luyện; cross-validation và đánh giá; phân tích kết quả, ma trận nhầm lẫn và lỗi; tham gia hoàn thiện báo cáo. |
 
 Đây không phải xác nhận nhiệm vụ đã hoàn thành. Hai thành viên cần đối chiếu
 sản phẩm và lịch sử làm việc thật trước khi xác nhận đóng góp thực tế. Không

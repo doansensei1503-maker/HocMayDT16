@@ -1,4 +1,4 @@
-﻿\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage{fix-cm}
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
@@ -8,6 +8,7 @@
 \usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{graphicx,booktabs,array,amsmath,amssymb}
 \usepackage[authoryear,round]{natbib}
+\usepackage{titlesec}
 \let\cite\citep
 \usepackage[hidelinks,unicode]{hyperref}
 \hypersetup{pdftitle={FIT4013 – Đề tài 16: Dự đoán nguy cơ giao trễ},pdfauthor={Vũ Quốc Đoàn; Trần Đại Hiệp}}
@@ -21,21 +22,25 @@
 \newcommand{\fig}[4][.80]{\begin{figure}[!htbp]\centering
 \includegraphics[width=#1\textwidth,height=.34\textheight,keepaspectratio]{../results/figures/#2}
 \caption{#3}\label{#4}\end{figure}}
-\newcommand{\partstart}[1]{\clearpage\section{#1}}
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\reportuppercase}{m}{\text_uppercase:n{#1}}
+\ExplSyntaxOff
+\newcommand{\partstart}[1]{\clearpage\section{\reportuppercase{#1}}\label{chap:\thesection}}
 \begin{document}
-\renewcommand{\refname}{Tài liệu tham khảo}
-\renewcommand{\listfigurename}{Danh mục hình}
-\renewcommand{\listtablename}{Danh mục bảng}
+\renewcommand{\contentsname}{MỤC LỤC}
+\renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
+\renewcommand{\listfigurename}{DANH MỤC HÌNH ẢNH}
+\renewcommand{\listtablename}{DANH MỤC BẢNG BIỂU}
 \input{cover.tex}
 \input{typography.tex}
 \pagenumbering{roman}
 \input{frontmatter.tex}
-\clearpage\pdfbookmark[0]{Mục lục}{report-toc}\tableofcontents
+\clearpage\pdfbookmark[1]{MỤC LỤC}{report-toc}\tableofcontents
 \clearpage\phantomsection
-\addcontentsline{toc}{section}{Danh mục hình}
+\addcontentsline{toc}{section}{DANH MỤC HÌNH ẢNH}
 \listoffigures
 \phantomsection
-\addcontentsline{toc}{section}{Danh mục bảng}
+\addcontentsline{toc}{section}{DANH MỤC BẢNG BIỂU}
 \listoftables
 \clearpage\pagenumbering{arabic}
 \input{sections/01_problem.tex}
@@ -45,6 +50,6 @@
 \input{sections/05_discussion.tex}
 \input{sections/06_conclusion.tex}
 \clearpage\phantomsection
-\addcontentsline{toc}{section}{Tài liệu tham khảo}
+\addcontentsline{toc}{section}{TÀI LIỆU THAM KHẢO}
 \input{references.tex}
 \end{document}

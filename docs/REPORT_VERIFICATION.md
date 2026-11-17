@@ -1,3 +1,5 @@
+> Cập nhật hiện hành về sáu chương, H1 và năm nguồn: `HEADING_VERIFICATION.md`.
+
 > Hồ sơ lịch sử cho bản 36 trang. Lần chuẩn hóa bìa ở bản 37 trang được ghi
 > trong `COVER_UPDATE_VERIFICATION.md`. Bản 40 trang hiện hành và kiểm chứng
 > theo video nằm tại `VIDEO_REVIEW.md`; các JSON audit được cập nhật cho PDF mới.

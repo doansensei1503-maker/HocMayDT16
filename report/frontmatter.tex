@@ -1,32 +1,33 @@
-\section*{Tóm tắt}
-\addcontentsline{toc}{section}{Tóm tắt và phân công đề xuất}
-Báo cáo nghiên cứu phân loại nguy cơ giao trễ trên dữ liệu DataCo Smart Supply
-Chain bằng K-Nearest Neighbors và cây quyết định. Thời điểm dự đoán được đặt
-sau khi tạo đơn và chọn phương thức vận chuyển, trước khi biết kết quả giao
-thực tế. Quy trình sử dụng danh sách đặc trưng cho phép, chia dữ liệu theo mã
-đơn và kiểm định chéo theo nhóm để hạn chế rò rỉ thông tin.
+\phantomsection
+\section*{LỜI MỞ ĐẦU}
+\addcontentsline{toc}{section}{LỜI MỞ ĐẦU}
+Giao hàng đúng hẹn là một yêu cầu quan trọng trong chuỗi cung ứng. Việc
+nhận diện sớm đơn có nguy cơ giao trễ có thể hỗ trợ theo dõi và phân bổ
+nguồn lực, nhưng cảnh báo sai hoặc bỏ sót đều cần được xem xét. Từ bối
+cảnh đó, nhóm lựa chọn đề tài dự đoán nguy cơ giao trễ để vận dụng kiến
+thức học phần vào một bài toán phân loại dữ liệu bảng.
 
-Thực nghiệm đã lưu sử dụng 5.999 dòng thuộc 2.113 đơn trong tổng số 180.519
-dòng. Hai luồng đặc trưng được đối chiếu: A sử dụng thuộc tính đơn hàng và B
-bổ sung tháng, thứ, giờ tạo đơn. Cây B được chọn theo F1 kiểm định chéo
-0,7058; F1 trên tập kiểm tra lịch sử theo dòng là 0,7098. Tuy nhiên, mô hình
-bỏ sót 248 trong 254 dòng giao trễ thuộc Standard Class. Do đó, kết quả chỉ
-hỗ trợ đánh giá phương pháp trong phạm vi một tập con, chưa chứng minh khả
-năng triển khai thực tế. Các kết luận giữ nguyên định nghĩa nhãn của nguồn
-và phân biệt rõ đánh giá theo dòng hàng với đánh giá theo đơn.
+Báo cáo sử dụng DataCo Smart Supply Chain, với K-Nearest Neighbors và
+Decision Tree là hai thuật toán chính. Quy trình gồm kiểm toán dữ liệu,
+lựa chọn đặc trưng, tiền xử lý, chia nhóm theo mã đơn, kiểm định chéo và
+đánh giá. Hai luồng A/B cùng các baseline được đối chiếu bằng kết quả
+đã lưu trong repository. Các kết luận phân biệt rõ dòng hàng với đơn
+hàng và giới hạn của tập con thực nghiệm, không suy rộng thành hiệu quả
+vận hành đã được chứng minh.
 
-\section*{Phân công đề xuất — chưa xác nhận đóng góp thực tế}
+Báo cáo gồm sáu chương theo thứ tự: đặt vấn đề và phân tích yêu cầu;
+thiết kế giải pháp; phân tích mã nguồn; thử nghiệm và kết quả; thảo luận
+và so sánh; tổng kết và hướng phát triển.
+
+\phantomsection
+\section*{PHÂN CÔNG NHIỆM VỤ}
+\addcontentsline{toc}{section}{PHÂN CÔNG NHIỆM VỤ}
 \begin{table}[!htbp]\centering\small
-\caption{Phương án phân công FIT4013 cần hai thành viên xác nhận.}\label{tab:team-assignment}
-\begin{tabular}{p{3.1cm}p{10.2cm}}\toprule
-Thành viên & Nhiệm vụ dự kiến\\\midrule
-Vũ Quốc Đoàn\newline 1871020143 & Tìm hiểu bài toán và dataset; kiểm toán chất lượng; EDA; tiền xử lý, lựa chọn đặc trưng; phân tích A/B; trình bày các phần tương ứng.\\[7pt]
-Trần Đại Hiệp\newline 1871020223 & Nghiên cứu K-NN và cây quyết định; pipeline huấn luyện; cross-validation; phân tích mô hình, ma trận nhầm lẫn và lỗi; trình bày thực nghiệm, thảo luận, kết luận.\\[7pt]
-Trách nhiệm chung & Kiểm tra GitHub; kiểm thử tính tái lập; rà soát báo cáo; chuẩn bị slide và bảo vệ.\\\bottomrule
+\caption{Phân công nhiệm vụ dự kiến, chờ hai thành viên xác nhận.}\label{tab:team-assignment}
+\begin{tabular}{p{3.9cm}p{10.8cm}}\toprule
+\textbf{Họ tên thành viên} & \textbf{Nhiệm vụ được phân công}\\\midrule
+Vũ Quốc Đoàn\newline 1871020143 & Nghiên cứu bài toán, dataset; phân tích EDA; tiền xử lý và lựa chọn đặc trưng; phân tích luồng A/B; tham gia hoàn thiện báo cáo.\\[7pt]
+Trần Đại Hiệp\newline 1871020223 & Nghiên cứu K-NN và Decision Tree; xây dựng pipeline huấn luyện; cross-validation và đánh giá; phân tích kết quả, ma trận nhầm lẫn và lỗi; tham gia hoàn thiện báo cáo.\\\bottomrule
 \end{tabular}
-
 \end{table}
-Bảng~\ref{tab:team-assignment} là đề xuất tổ chức công việc, không phải bằng chứng các nhiệm vụ đã hoàn
-thành. Đóng góp thực tế cần được thành viên đối chiếu và xác nhận bằng sản
-phẩm cùng lịch sử làm việc có thật. Hồ sơ sử dụng công cụ hỗ trợ được lưu
-riêng tại \code{AI_USAGE.md} theo hướng dẫn học phần.
+Bảng~\ref{tab:team-assignment} là phân công dự kiến, chờ hai thành viên xác nhận.

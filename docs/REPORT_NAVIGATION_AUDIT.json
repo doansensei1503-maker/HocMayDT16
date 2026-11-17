@@ -1,32 +1,74 @@
 {
-  "pdf_sha256": "9d97072f77ad6c5f9c56cfcc9f301b2b799dfced60e87d1204eed68a1e1dfe66",
+  "pdf_sha256": "99cf01aa7350de63afe5901a47f2b91488d8523c5c75457fa4c4a7d20640f61d",
   "pages": 40,
   "bookmarks": [
     {
-      "title": "Mục lục",
+      "title": "MỤC LỤC",
       "pdf_page": 4,
       "bookmark_correct": true
     },
     {
-      "title": "Danh mục hình",
+      "title": "DANH MỤC HÌNH ẢNH",
       "pdf_page": 6,
       "bookmark_correct": true
     },
     {
-      "title": "Danh mục bảng",
+      "title": "DANH MỤC BẢNG BIỂU",
       "pdf_page": 6,
       "bookmark_correct": true
     },
     {
-      "title": "Tài liệu tham khảo",
+      "title": "TÀI LIỆU THAM KHẢO",
       "pdf_page": 40,
       "bookmark_correct": true
     }
   ],
+  "chapters": [
+    {
+      "title": "CHƯƠNG 1. ĐẶT VẤN ĐỀ VÀ PHÂN TÍCH YÊU CẦU",
+      "pdf_page": 7,
+      "toc_title_and_target_correct": true
+    },
+    {
+      "title": "CHƯƠNG 2. THIẾT KẾ GIẢI PHÁP VÀ QUY TRÌNH HỌC MÁY",
+      "pdf_page": 11,
+      "toc_title_and_target_correct": true
+    },
+    {
+      "title": "CHƯƠNG 3. PHÂN TÍCH MÃ NGUỒN VÀ CHỨC NĂNG",
+      "pdf_page": 17,
+      "toc_title_and_target_correct": true
+    },
+    {
+      "title": "CHƯƠNG 4. THỬ NGHIỆM VÀ KẾT QUẢ",
+      "pdf_page": 22,
+      "toc_title_and_target_correct": true
+    },
+    {
+      "title": "CHƯƠNG 5. THẢO LUẬN VÀ SO SÁNH",
+      "pdf_page": 33,
+      "toc_title_and_target_correct": true
+    },
+    {
+      "title": "CHƯƠNG 6. TỔNG KẾT VÀ HƯỚNG PHÁT TRIỂN",
+      "pdf_page": 38,
+      "toc_title_and_target_correct": true
+    }
+  ],
+  "front_matter_targets_correct": true,
+  "github_clickable_full_url_within_margins": true,
+  "bibliography_keys": [
+    "dataco",
+    "fit",
+    "kaggle",
+    "knn",
+    "tree"
+  ],
+  "citations_resolved_exact_five_sources": true,
   "toc_links_correct": {
-    "Danh mục hình": true,
-    "Danh mục bảng": true,
-    "Tài liệu tham khảo": true
+    "DANH MỤC HÌNH ẢNH": true,
+    "DANH MỤC BẢNG BIỂU": true,
+    "TÀI LIỆU THAM KHẢO": true
   },
-  "internal_links_with_valid_page": 129
+  "internal_links_with_valid_page": 128
 }

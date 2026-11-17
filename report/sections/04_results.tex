@@ -24,7 +24,7 @@ trung bình mỗi đơn là 2,839 trong mẫu và 2,745 trong toàn nguồn; kí
 đơn tối đa ở cả hai là năm dòng.
 
 Cấu hình seed 42, ba fold nhóm và một tiến trình được giữ chung cho sáu
-ứng viên. Môi trường phiên bản lấy từ manifest đã trình bày ở Phần 3;
+ứng viên. Môi trường phiên bản lấy từ manifest đã trình bày ở Chương~\ref{chap:3};
 manifest không ghi đủ CPU/RAM để đưa ra kết luận benchmark phần cứng.
 Thời gian được lưu là thời gian đo của lần chạy, không phải cam kết độ
 trễ của dịch vụ triển khai. Tất cả mô hình dùng cùng split và cùng fold.
@@ -122,7 +122,7 @@ sai và một bỏ sót. Đây là ví dụ cụ thể cho thấy F1 cao hơn kh
 nghĩa mọi loại lỗi đều ít hơn.
 
 \begin{samepage}
-Theo định nghĩa từ Phần 2, kiểm tra lại cây B cho
+Theo định nghĩa từ Chương~\ref{chap:2}, kiểm tra lại cây B cho
 $P=384/(384+66)=0{,}8533$ và $R=384/(384+248)=0{,}6076$.
 Công thức F1 theo số đếm cho $768/(768+66+248)=0{,}7098$.
 Như vậy, metric trong bảng phù hợp trực tiếp với ma trận nhầm lẫn, không
@@ -237,5 +237,5 @@ Bảng~\ref{tab:shipping-errors} ghi toàn bộ 248 FN ở Standard Class: sáu 
 trên 254 dòng dương (Recall 0,0236), 16 FP trên 450 dòng âm. First Class
 có 10 FP/10 dòng âm, Second Class 40 FP/40 dòng âm. Same Day không lỗi
 trên 71 dòng, chưa đủ khẳng định ổn định. Các lỗi nhóm là chẩn đoán,
-không dùng để tinh chỉnh lại trên test; Phần 5 phân tích giới hạn này.
+không dùng để tinh chỉnh lại trên test; Chương~\ref{chap:5} phân tích giới hạn này.
 \par\end{samepage}

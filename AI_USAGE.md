@@ -1,4 +1,4 @@
-﻿# AI_USAGE
+# AI_USAGE
 AI (OpenAI Codex) hỗ trợ đọc tài liệu PDF, thiết kế phương pháp chống leakage, tạo mã nguồn, kiểm thử, notebook và bản thảo báo cáo trong phiên làm việc này theo yêu cầu người dùng. Các lệnh chạy và kết quả thực được lưu/ghi nhận trong docs/STATUS.md và results; không coi code được tạo là bằng chứng đã chạy dữ liệu thật. Không tạo tên thành viên, đóng góp hay lịch sử commit. Nhóm phải tự đọc, kiểm chứng và giải thích toàn bộ sản phẩm; bổ sung tên công cụ/phiên bản sử dụng thực tế và sửa đổi do người học thực hiện khi nộp bài. Không dùng AI để sinh nhãn, dữ liệu hay metric giả.
 
 2026-11-16: Codex repaired Git remote synchronization, unified the split protocol, added aggregate sampling/order evaluation and a fixed-parameter training-CV ablation, preserved historical evidence, and ran verification. No team contributions or empirical scores were invented. See docs/REPAIR_VERIFICATION.md for actual execution results and limitations.
@@ -36,3 +36,11 @@ giữ các cỡ chữ đã chốt và sáu phần FIT4013. Ba đoạn mở đầ
 biên tập gọn, không xóa hay sửa kết quả/hạn chế. Cập nhật tham chiếu, kiểm tra
 font/điều hướng/PDF, mở bản mới trong VS Code. Không chạy lại hoặc sửa thuật toán,
 không sinh dữ liệu/nhãn/metric và không biến phân công dự kiến thành đóng góp thật.
+
+2026-11-17 — Cập nhật heading theo yêu cầu mới: Codex cấu hình titlesec tập trung,
+đánh số sáu chương và đồng bộ mục lục/tham chiếu, biên tập lời mở đầu, bảng phân công
+và thêm URL repository. Thu gọn danh mục còn năm nguồn được chỉ định; ba trích dẫn
+nguồn ngoài danh sách được thay bằng dẫn chứng vị trí mã nguồn tương ứng. Kiểm tra
+font, liên kết và toàn bộ 40 trang sau XeLaTeX; hai bìa không đổi. Không chạy lại
+training/notebook, không sửa thuật toán, dữ liệu hay số liệu thực nghiệm. Phân công
+vẫn là đề xuất chờ xác nhận, không được coi là lịch sử đóng góp thực tế.

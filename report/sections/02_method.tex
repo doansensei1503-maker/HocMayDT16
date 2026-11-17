@@ -63,7 +63,7 @@ Ngoài rò rỉ từ cột, các dòng cùng đơn xuất hiện ở hai phía s
 liên hệ rất mạnh giữa train và test. Vì vậy, thiết kế chống leakage phải
 kiểm soát đồng thời nội dung đặc trưng, đơn vị nhóm và nơi fit tiền xử lý.
 Pipeline hỗ trợ kiểm soát phép biến đổi, nhưng không tự sửa một cách chia
-nhóm sai hoặc hợp đồng thời điểm sai \cite{pitfalls}.
+nhóm sai hoặc hợp đồng thời điểm sai (xem \code{src/data.py} và \code{src/pipeline.py}).
 
 \subsection{Lấy mẫu và chia train/test theo đơn}
 Protocol \code{group-subset-v1} tính số dòng từng đơn, xáo trộn thứ tự đơn
@@ -80,7 +80,7 @@ G_{tr}\cap G_{te}=\varnothing.
 Kết quả là 1.690 đơn/4.823 dòng train và 423 đơn/1.176 dòng test. Tỷ lệ
 20\% áp dụng ở cấp nhóm; số dòng phụ thuộc kích thước từng đơn nên không
 bắt buộc chia đúng 80/20 theo dòng. Chương trình kiểm tra giao nhóm bằng
-tập hợp, thay vì chỉ dựa vào tên bộ chia \cite{cv}.
+tập hợp, thay vì chỉ dựa vào tên bộ chia (xem \code{src/data.py}).
 
 Những đơn mới trong test vẫn có thể chia sẻ khách hàng hoặc sản phẩm với
 train. Vì thế, split này trả lời câu hỏi dự đoán đơn chưa thấy trong cùng
@@ -222,7 +222,7 @@ Ngoài metric nhị phân, ROC-AUC đánh giá khả năng xếp hạng trên nh
 cột \code{pr_auc} trong code thực tế dùng \code{average_precision_score}.
 Average precision là tổng precision có trọng số theo mức tăng recall,
 khác với việc tích phân hình thang đường PR. Báo cáo giữ tên cột artifact
-nhưng diễn giải đúng phép tính để không nhầm hai đại lượng \cite{metrics}.
+nhưng diễn giải đúng phép tính để không nhầm hai đại lượng (hàm \code{metrics} trong \code{src/run.py}).
 Xác suất mô hình chưa được hiệu chuẩn.
 
 \subsection{Đánh giá theo đơn và giả định thực nghiệm}

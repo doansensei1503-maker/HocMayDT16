@@ -66,7 +66,7 @@ def main():
     for header in ['Hạng mục', 'Thông tin']:
         assert any(compact(header) == compact(s['text']) for s in table_spans)
     result['covers'][1]['table_all_14pt'] = True
-    assert compact(pdf[2].get_text()).startswith(compact('Tóm tắt')), 'Cover overflow onto page 3'
+    assert compact(pdf[2].get_text()).startswith(compact('LỜI MỞ ĐẦU')), 'Cover overflow onto page 3'
 
     body_spans = [s for page in list(pdf)[2:] for s in spans(page)]
     math_scripts = set()
@@ -83,13 +83,26 @@ def main():
     h1 = ['Đặt vấn đề và phân tích yêu cầu', 'Thiết kế giải pháp và quy trình học máy',
           'Phân tích mã nguồn và chức năng', 'Thử nghiệm và kết quả',
           'Thảo luận và so sánh', 'Tổng kết và hướng phát triển']
-    for title in h1:
-        assert any(compact(title) in compact(s['text']) and at_size(s, 14)
-                   and 'Bold' in s['font'] for s in body_spans), title
-    result['body'] = {'h1_14pt_bold': True, 'times_text_sizes_pt': sorted({round(s['size'], 3) for s in body_text}),
+    expected_h1 = [f'CHƯƠNG {i}. {title.upper()}' for i,title in enumerate(h1,1)]
+    expected_h1 += ['LỜI MỞ ĐẦU', 'PHÂN CÔNG NHIỆM VỤ', 'MỤC LỤC',
+                    'DANH MỤC HÌNH ẢNH', 'DANH MỤC BẢNG BIỂU', 'TÀI LIỆU THAM KHẢO']
+    found_h1 = []
+    for page in list(pdf)[2:]:
+        for block in page.get_text('dict')['blocks']:
+            lines = [line for line in block.get('lines', []) if any(at_size(s,14) for s in line['spans'])]
+            if not lines:
+                continue
+            heading = ' '.join(s['text'] for line in lines for s in line['spans'])
+            assert compact(heading) in [compact(x) for x in expected_h1], heading
+            for line in lines:
+                assert all(at_size(s,14) and 'Bold' in s['font'] and 'Italic' not in s['font'] for s in line['spans'])
+                assert abs((line['bbox'][0]+line['bbox'][2])/2 - (25*72/25.4+(595.276-45*72/25.4)/2)) < 1, line
+            found_h1.append(compact(heading))
+    assert sorted(found_h1) == sorted(map(compact,expected_h1)), found_h1
+    result['body'] = {'h1_14pt_bold': True, 'h1_centered_uppercase': True, 'h1_count': len(found_h1), 'times_text_sizes_pt': sorted({round(s['size'], 3) for s in body_text}),
                       'normal_tables_captions_13pt': True, 'h2_13pt_bold': True,
                       'h3': '13pt bold italic configured; no H3 heading in current content',
-                      'page3_starts_abstract': True, 'math_script_spans_9pt1': len(math_scripts)}
+                      'page3_starts_introduction': True, 'math_script_spans_9pt1': len(math_scripts)}
     # H2 headings use numbered text lines; check the entire heading line's fonts.
     h2_count = 0
     caption_count = 0
