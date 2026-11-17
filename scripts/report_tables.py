@@ -19,11 +19,11 @@ def esc(value):
 
 def table(name, headers, rows, caption, label, spec):
     text = [r'\begin{table}[!htbp]\centering\small',
+            r'\caption{' + caption + r'}\label{' + label + '}',
             r'\begin{tabular}{' + spec + r'}\toprule',
             ' & '.join(headers) + r' \\\midrule']
     text.extend(' & '.join(esc(v) for v in row) + r' \\' for row in rows)
-    text += [r'\bottomrule\end{tabular}', r'\caption{' + caption + r'}\label{' + label + '}',
-             r'\end{table}']
+    text += [r'\bottomrule\end{tabular}', r'\end{table}']
     (OUT / name).write_text('\n'.join(text) + '\n', encoding='utf-8')
 
 

@@ -1,23 +1,18 @@
 \partstart{Tổng kết và hướng phát triển}
 \subsection{Các mục tiêu đã thực hiện}
-Đề tài đã xây dựng quy trình phân loại nguy cơ giao trễ trên DataCo theo
-đúng hướng học có giám sát. Dữ liệu được kiểm tra schema, nhãn, missing,
-outlier và cấu trúc đơn nhiều dòng. Danh sách đặc trưng cho phép loại
-thông tin kết quả và định danh khỏi đầu vào. Chia train/test cùng CV theo
-mã đơn hạn chế việc các dòng của cùng một đơn xuất hiện ở cả phần học
-và phần đánh giá.
+Đề tài đã xây dựng quy trình phân loại nguy cơ giao trễ trên DataCo,
+có kiểm toán schema, nhãn, missing, outlier và cấu trúc đơn nhiều dòng.
+Allowlist loại các trường kết quả và định danh; chia train/test và CV
+theo mã đơn hạn chế rò rỉ giữa các dòng chung đơn.
 
-Hai thuật toán K-NN và cây quyết định được so sánh qua luồng A và B, có
-cây mặc định cùng Dummy làm baseline. Phép lựa chọn dựa trên F1 CV, các
-phép học tiền xử lý nằm trong pipeline, test chỉ đánh giá sau khi khóa
-ứng viên. Repository lưu cấu hình, hash, phiên bản, bảng metric và hình
-để người đọc có thể kiểm tra ngược lại các phát biểu trong báo cáo.
+K-NN và cây quyết định được so sánh trên A/B với cây mặc định và Dummy.
+Mô hình được chọn bằng F1 CV; tiền xử lý fit trong từng fold, test chỉ
+đánh giá sau khi khóa lựa chọn. Cấu hình, hash, phiên bản, bảng và hình
+được lưu để truy vết.
 
-Phân tích không dừng ở metric tổng hợp: báo cáo đối chiếu ma trận nhầm
-lẫn, mức khớp train--CV, ablation lịch, đánh giá theo đơn và lỗi theo
-dịch vụ. Những bước này cho thấy một mô hình có điểm tổng thể cao nhất
-vẫn có thể thiếu phù hợp ở nhóm quan trọng. Đây là kết quả phân tích
-phương pháp, không chỉ là một bảng xếp hạng thuật toán.
+Ma trận nhầm lẫn, khoảng cách train--CV, ablation lịch, metric theo đơn
+và lỗi theo dịch vụ bổ sung cho đánh giá tổng thể, chỉ ra điểm yếu
+Standard Class thay vì chỉ xếp hạng thuật toán.
 
 \subsection{Kết quả chính và mức độ kết luận}
 Trên mẫu 5.999 dòng, cây B được chọn với độ sâu 4, tối thiểu 20 mẫu/lá,

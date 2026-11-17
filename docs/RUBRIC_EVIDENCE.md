@@ -15,7 +15,7 @@ independent validation. Source locations are cited for review.
 
 ## Current artifact status — 2026-11-17 completion
 
-- Report: `report/final_report.pdf`, 37 pages A4, three-pass XeLaTeX; full visual
+- Report: `report/final_report.pdf`, 40 pages A4, three-pass XeLaTeX; full visual
   review and artifact checks recorded in `docs/REPORT_VERIFICATION.md`.
 - Final content lives in `report/sections/01_problem.tex` through
   `06_conclusion.tex`; main no longer inputs the older generated/analysis files.

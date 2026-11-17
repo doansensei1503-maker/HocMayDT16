@@ -1,4 +1,8 @@
-﻿# Kiểm chứng cập nhật hai bìa và quy chuẩn font FIT4013
+> Hồ sơ lịch sử cho lần chuẩn hóa bìa ở bản 37 trang. Bìa/font đã chốt vẫn được
+> giữ trong bản 40 trang hiện hành; phần trình bày theo video và kiểm chứng mới
+> nằm tại `VIDEO_REVIEW.md` cùng các JSON audit liên kết trong đó.
+
+# Kiểm chứng cập nhật hai bìa và quy chuẩn font FIT4013
 
 Ngày: 17/11/2026. PDF hiện hành: `report/final_report.pdf`, **37 trang A4**.
 Thay thế trạng thái font/bố cục của bản 36 trang trước; giữ nguyên kết quả nghiên cứu.

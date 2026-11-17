@@ -2,7 +2,7 @@
 
 ## Đã kiểm tra trong lần hoàn thiện báo cáo
 
-- [x] PDF thật 37 trang A4: `report/final_report.pdf`; XeLaTeX ba lượt.
+- [x] PDF thật 40 trang A4: `report/final_report.pdf`; XeLaTeX ba lượt.
 - [x] Đủ sáu phần bắt buộc theo thứ tự trong hướng dẫn FIT4013.
 - [x] Hai bìa đối chiếu trực quan với trang 1–2 Word, logo nguyên bản, không đánh số.
 - [x] FIT4013, đề tài 16; tên đề tài đầy đủ; trường/khoa đúng.
@@ -24,6 +24,15 @@
 - [x] H1 14 pt đậm; H2 13 pt đậm; H3 định nghĩa 13 pt đậm nghiêng;
       thân, bảng và chú thích 13 pt. Bìa không tràn sang trang ba.
 - [x] Sáu phần không đổi nội dung; thuật toán, artifact và bảng số liệu không đổi.
+
+- [x] Đối chiếu các quy định viết rõ trong video; các thao tác Word là minh họa,
+      nội dung chuyên môn và quy mô nhóm môn khác không áp dụng.
+- [x] Lề trái 2,5 cm; trên/dưới/phải 2 cm; baseline văn bản 19,5 pt với chữ 13 pt.
+- [x] Tên bảng trên, hình dưới; chú thích giữa/nghiêng 13 pt theo quy chuẩn người dùng.
+- [x] Tác giả–năm và danh mục APA-style; n.d. cho năm chưa được xác minh.
+- [x] Link mục lục đến tài liệu tham khảo đúng; thêm điều hướng tới hai danh mục.
+- [x] PDF 40 trang mới nhất đã mở trong VS Code; mọi trang đã được kiểm tra lại.
+- [ ] Xác minh thêm lời nói ngoài trang quy định nếu cần: chưa có transcript đầy đủ.
 
 ## Nhóm cần xác nhận trước nộp
 

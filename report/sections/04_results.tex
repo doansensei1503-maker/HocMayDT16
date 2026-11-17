@@ -7,6 +7,7 @@ trong quá trình phát triển; việc biên tập và đối chiếu báo cáo
 ra một lần đánh giá độc lập mới.
 
 \begin{table}[!htbp]\centering
+\caption{Quy mô thực tế của nguồn, mẫu và các tập sau split.}\label{tab:split}
 \begin{tabular}{lrr}\toprule
 Phạm vi & Số dòng & Số đơn\\\midrule
 Toàn nguồn & 180.519 & 65.752\\
@@ -14,7 +15,7 @@ Mẫu thực nghiệm & 5.999 & 2.113\\
 Huấn luyện & 4.823 & 1.690\\
 Kiểm tra & 1.176 & 423\\\bottomrule
 \end{tabular}
-\caption{Quy mô thực tế của nguồn, mẫu và các tập sau split.}\label{tab:split}
+
 \end{table}
 Theo Bảng~\ref{tab:split}, mẫu chỉ chiếm 3,32\% số dòng và 3,21\% số đơn
 nguồn. Giới hạn này được đặt để kiểm soát tài nguyên cho K-NN và tìm kiếm
@@ -114,18 +115,20 @@ So với A, B tăng CV F1 khoảng 0,0316 và test F1 khoảng 0,0410, đồng t
 \includegraphics[width=.47\textwidth]{../results/figures/tree_B_confusion.png}
 \caption{Ma trận nhầm lẫn cây A (trái) và cây B được chọn theo CV (phải).}\label{fig:cm-tree}
 \end{figure}
-Cây A có TN=340, FP=204, FN=212, TP=420. Cây B có TN=478, FP=66, FN=248,
+Hình~\ref{fig:cm-tree} cho thấy cây A có TN=340, FP=204, FN=212, TP=420. Cây B có TN=478, FP=66, FN=248,
 TP=384. Vì vậy, B giảm 138 FP nhưng tăng 36 FN so với A. Từ số đếm này,
 không thể kết luận tổng chi phí giảm khi chưa biết giá của một cảnh báo
 sai và một bỏ sót. Đây là ví dụ cụ thể cho thấy F1 cao hơn không đồng
 nghĩa mọi loại lỗi đều ít hơn.
 
+\begin{samepage}
 Theo định nghĩa từ Phần 2, kiểm tra lại cây B cho
 $P=384/(384+66)=0{,}8533$ và $R=384/(384+248)=0{,}6076$.
 Công thức F1 theo số đếm cho $768/(768+66+248)=0{,}7098$.
 Như vậy, metric trong bảng phù hợp trực tiếp với ma trận nhầm lẫn, không
 lấy từ con số làm tròn trên ảnh. ROC-AUC là 0,7756 và average precision
 là 0,7889; hai chỉ số không xác nhận xác suất đã hiệu chuẩn.
+\par\end{samepage}
 
 \subsection{Cross-validation, dao động và overfitting}
 \input{tables/generalization.tex}
@@ -229,8 +232,10 @@ số. Ablation giúp tách bớt hai yếu tố, nhưng vẫn đánh giá trên 
 dùng chọn tham số A nên chưa loại selection optimism.
 
 \input{tables/shipping_errors.tex}
+\begin{samepage}
 Bảng~\ref{tab:shipping-errors} ghi toàn bộ 248 FN ở Standard Class: sáu TP
 trên 254 dòng dương (Recall 0,0236), 16 FP trên 450 dòng âm. First Class
 có 10 FP/10 dòng âm, Second Class 40 FP/40 dòng âm. Same Day không lỗi
 trên 71 dòng, chưa đủ khẳng định ổn định. Các lỗi nhóm là chẩn đoán,
 không dùng để tinh chỉnh lại trên test; Phần 5 phân tích giới hạn này.
+\par\end{samepage}

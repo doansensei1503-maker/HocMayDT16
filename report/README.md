@@ -57,3 +57,28 @@ py scripts/verify_report_typography.py
 
 Lệnh tạo `docs/COVER_TYPOGRAPHY_AUDIT.json`. Nó không thay PDF, dữ liệu hoặc mô hình.
 Cần biên dịch xong rồi mới chạy kiểm tra; không đọc PDF khi compiler đang ghi tệp.
+
+## Trình bày sau đối chiếu video
+
+Thân A4 có lề trái 2,5 cm, phải/trên/dưới 2 cm; văn bản 13 pt trên baseline
+19,5 pt. Bảng và mã dùng hàng gọn; cỡ chữ vẫn 13 pt. Chú thích bảng ở trên,
+hình ở dưới, giữa và nghiêng 13 pt. Bìa không chịu thay đổi lề/thân vì tọa độ
+riêng theo Word. APA-style dùng natbib với tác giả–năm, năm chưa rõ ghi n.d.;
+không cần BibTeX/Biber vì các mục nguồn được quản lý trong `references.tex`.
+
+Build cần thêm gói natbib và fix-cm. Helper tắt cài tự động; nếu thiếu gói thì
+cài bằng CLI MiKTeX được phép rồi chạy lại. Không huấn luyện lại để build.
+Sau khi build xong, chạy:
+
+```powershell
+py scripts/verify_report_typography.py
+py scripts/verify_report_navigation.py
+py scripts/verify_video_layout.py
+```
+
+Các lệnh chỉ đọc PDF và sinh JSON audit trong docs. Xem `docs/VIDEO_REVIEW.md`
+cho mốc video đã đọc và phân biệt quy định với minh họa. Video môn khác không
+thay thế cấu trúc sáu phần, quy chuẩn font người dùng hoặc template FIT4013.
+
+Có thể mở trực tiếp PDF trong VS Code bằng `code --reuse-window report/final_report.pdf`
+với tiện ích `tomoki1207.pdf` (PDF Preview). Tệp được mở là PDF thật, không phải ảnh preview.

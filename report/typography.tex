@@ -19,5 +19,16 @@
   {\normalfont\fontsize{13bp}{15.6bp}\selectfont\bfseries\itshape}}
 \let\reportarrayparboxrestore\@arrayparboxrestore
 \def\@arrayparboxrestore{\reportarrayparboxrestore\raggedright\arraybackslash}
+% Video's layout rule is adapted to LaTeX; the user-locked caption size is 13pt.
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  {\centering\normalfont\itshape\linespread{1}\fontsize{13bp}{15.6bp}\selectfont
+    #1: #2\par}%
+  \vskip\belowcaptionskip}
 \makeatother
+% 13pt text on a 19.5pt baseline: Word's 1.5 line spacing.
+\linespread{1.25}
 \normalsize
+% Compact table/code rows preserve 13pt type; 1.5 spacing applies to prose.
+\AddToHook{env/tabular/begin}{\linespread{1}\selectfont}
+\AddToHook{env/verbatim/begin}{\linespread{1}\selectfont}

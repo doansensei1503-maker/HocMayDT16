@@ -1,6 +1,6 @@
 # Trạng thái báo cáo FIT4013 — 17/11/2026
 
-**PDF: 37 trang A4, đã biên dịch và kiểm tra trực quan.**
+**PDF: 40 trang A4, đã biên dịch và kiểm tra trực quan.**
 **Template chính thức: chưa có để xác minh. Đóng góp thực tế: cần nhóm xác nhận.**
 
 - Đầu ra: `report/final_report.pdf`; nguồn chính `report/main.tex` và sáu tệp
@@ -57,3 +57,21 @@ trong PDF thành công: bìa chỉ có 14,0 và 15,0 pt; tiêu đề 15 pt đậ
 14 pt, không đánh số hoặc tràn sang trang ba. Xem `COVER_UPDATE_VERIFICATION.md`
 và `COVER_TYPOGRAPHY_AUDIT.json`. Word mẫu bìa đã được đối chiếu; điều này không
 thay thế template LaTeX chính thức của học phần vẫn chưa được cung cấp.
+
+## Đối chiếu video — bản 40 trang hiện hành
+
+Đã đọc trực tiếp trang quy định trong video tại các mốc khoảng 23:15 và
+24:13–24:43, cùng ví dụ bìa và tài liệu tham khảo. Bản đầy đủ các điểm đạt,
+chưa xác minh và khác biệt được chủ động giữ theo người dùng ở `VIDEO_REVIEW.md`.
+Không có transcript đầy đủ; không khẳng định đã nghe trọn mọi lời hướng dẫn.
+
+Đã áp dụng lề trái 2,5 cm, các lề còn lại 2 cm; văn bản 13 pt có baseline thực
+19,5 pt (giãn dòng 1,5), bảng/mã giữ dòng gọn với cùng cỡ 13 pt. Tên bảng trên,
+tên hình dưới; chú thích giữa/nghiêng 13 pt. Trích dẫn và danh mục theo tác giả–năm
+APA-style, năm chưa rõ ghi n.d. Hai bìa và H1/H2/H3 giữ quy chuẩn đã chốt.
+Mục lục/danh mục có bookmark; link tài liệu tham khảo đã sửa tới đúng PDF trang 40.
+
+Cả 40 trang đã được render/kiểm tra; xem `PDF_REVIEW_AUDIT.json`,
+`REPORT_NAVIGATION_AUDIT.json`, `VIDEO_LAYOUT_AUDIT.json` và
+`COVER_TYPOGRAPHY_AUDIT.json`. VS Code đã mở trực tiếp bản PDF mới nhất bằng
+PDF Preview. Không sửa code ML, dataset, notebook hoặc artifact thực nghiệm.

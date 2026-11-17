@@ -8,6 +8,7 @@ kết quả và tài liệu phân tích. Không dùng ảnh chụp notebook làm
 nhất của metric khi CSV/JSON đã lưu có thể đối chiếu trực tiếp.
 
 \begin{table}[!htbp]\centering\small
+\caption{Cấu trúc và trách nhiệm của các thành phần chính.}\label{tab:repo}
 \begin{tabular}{p{3.4cm}p{9.9cm}}\toprule
 Đường dẫn & Vai trò và sản phẩm\\\midrule
 \code{data/raw} & CSV nguồn cục bộ, có hướng dẫn tải; dữ liệu lớn không đưa vào Git.\\
@@ -19,7 +20,7 @@ nhất của metric khi CSV/JSON đã lưu có thể đối chiếu trực tiế
 \code{results/figures} & Hình EDA và đánh giá dùng trong báo cáo.\\
 \code{tests} và \code{docs} & Kiểm thử phần mềm; yêu cầu học phần, bằng chứng và hướng dẫn.\\\bottomrule
 \end{tabular}
-\caption{Cấu trúc và trách nhiệm của các thành phần chính.}\label{tab:repo}
+
 \end{table}
 Bảng~\ref{tab:repo} cũng cho thấy ranh giới công bố: split chứa chỉ số
 nguồn và mô hình nhị phân được giữ cục bộ, còn bảng aggregate có thể được
@@ -146,7 +147,6 @@ nguồn biên tập ở \code{report/sections}, còn các nguồn tự động c
 giữ để truy vết, không chèn lặp toàn bộ hình và kết quả.
 
 \subsection{Notebook, môi trường và thực thi}
-\begingroup\raggedright
 Bốn notebook lần lượt là \code{01_eda.ipynb},
 \code{02_preprocessing.ipynb}, \code{03_model_experiments.ipynb} và
 \code{04_error_analysis.ipynb}. Chúng sử dụng module chung để hạn chế
@@ -154,7 +154,6 @@ sai khác giữa quá trình khám phá và runner. Notebook giúp trình bày t
 bước nhưng một ô hiển thị thành công không thay thế manifest, hash và
 bảng metric của lần chạy được sử dụng.
 
-\par\endgroup
 Cấu hình mặc định đặt seed 42, max rows 6.000, test size 0,2, CV ba fold
 và n jobs 1. Người tái lập cần tải đúng hai CSV vào đường dẫn trong config,
 cài requirements rồi chạy \code{py -m src.run --config configs/default.json}
@@ -168,6 +167,7 @@ seed nhưng khác phiên bản hoặc thứ tự dòng vẫn có thể khác k�
 
 \subsection{Kiểm thử đã có và giới hạn bằng chứng}
 \begin{table}[!htbp]\centering\small
+\caption{Phạm vi kiểm thử phần mềm trong repository.}\label{tab:tests}
 \begin{tabular}{p{4.2cm}p{9.1cm}}\toprule
 Nhóm kiểm tra & Điều kiện được kiểm soát\\\midrule
 Schema và dữ liệu lỗi & Thiếu nhãn, nhóm, ngày; kiểu cột số; hợp đồng dữ liệu thật nếu có.\\
@@ -176,7 +176,7 @@ Pipeline và rò rỉ & Danh mục lạ, missing, hình dạng đầu ra, train-
 Lưu trữ và đánh giá & Dự đoán sau nạp model; trọng số đơn bằng nhau; chặn nhãn mâu thuẫn.\\
 Smoke tổng hợp & Runner đi hết quy trình trên fixture nhỏ; không phải thực nghiệm DataCo.\\\bottomrule
 \end{tabular}
-\caption{Phạm vi kiểm thử phần mềm trong repository.}\label{tab:tests}
+
 \end{table}
 Hồ sơ \code{REPAIR_VERIFICATION.md} ghi lần kiểm thử workspace 14 passed,
 6 warnings và clean export 13 passed, một skip dự kiến, 6 warnings. Tệp

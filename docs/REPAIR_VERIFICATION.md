@@ -130,3 +130,10 @@ Bản hiện tại 37 trang, tiêu đề bìa 15 pt đậm, chữ còn lại/b�
 phần thân Times New Roman 13 pt, H1/H2/H3 14/13/13. Đối chiếu Word trang 1–2,
 kiểm tra font PDF và hình ảnh ghi ở `COVER_UPDATE_VERIFICATION.md` cùng
 `COVER_TYPOGRAPHY_AUDIT.json`. Không đổi nội dung sáu phần hoặc kết quả thực nghiệm.
+
+## Đối chiếu video — bản 40 trang
+
+Kiểm chứng hiện hành nằm ở `VIDEO_REVIEW.md` và bốn JSON audit của PDF cuối.
+Đã đọc các trang quy định từ trình phát, áp dụng phần phù hợp với FIT4013 và
+quy chuẩn người dùng; không khẳng định đã có transcript/lời nói đầy đủ.
+Không thay code ML hay số liệu, không huấn luyện lại. Các mốc PDF trước là lịch sử.

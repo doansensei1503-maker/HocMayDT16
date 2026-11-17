@@ -5,8 +5,10 @@
 \setsansfont{Times New Roman}
 \setmonofont{Times New Roman}
 \usepackage[vietnamese]{babel}
-\usepackage[left=3cm,right=2.3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{graphicx,booktabs,array,amsmath,amssymb}
+\usepackage[authoryear,round]{natbib}
+\let\cite\citep
 \usepackage[hidelinks,unicode]{hyperref}
 \hypersetup{pdftitle={FIT4013 – Đề tài 16: Dự đoán nguy cơ giao trễ},pdfauthor={Vũ Quốc Đoàn; Trần Đại Hiệp}}
 \linespread{1}
@@ -28,8 +30,12 @@
 \input{typography.tex}
 \pagenumbering{roman}
 \input{frontmatter.tex}
-\clearpage\tableofcontents
-\clearpage\listoffigures
+\clearpage\pdfbookmark[0]{Mục lục}{report-toc}\tableofcontents
+\clearpage\phantomsection
+\addcontentsline{toc}{section}{Danh mục hình}
+\listoffigures
+\phantomsection
+\addcontentsline{toc}{section}{Danh mục bảng}
 \listoftables
 \clearpage\pagenumbering{arabic}
 \input{sections/01_problem.tex}
@@ -38,6 +44,7 @@
 \input{sections/04_results.tex}
 \input{sections/05_discussion.tex}
 \input{sections/06_conclusion.tex}
-\clearpage\addcontentsline{toc}{section}{Tài liệu tham khảo}
+\clearpage\phantomsection
+\addcontentsline{toc}{section}{Tài liệu tham khảo}
 \input{references.tex}
 \end{document}

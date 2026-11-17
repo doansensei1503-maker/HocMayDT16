@@ -27,3 +27,12 @@ Nhóm vẫn phải kiểm chứng, hiểu, giải trình và xác nhận đóng 
 PDF bằng PyMuPDF. Không thay nội dung chuyên môn, thuật toán hoặc số liệu; một
 đoạn liệt kê notebook chỉ được đổi cách căn lề. Không chạy lại mô hình hay tạo
 kết quả thực nghiệm mới. Phân công vẫn là đề xuất chưa được hai sinh viên xác nhận.
+
+2026-11-17 — Đối chiếu video người dùng: Codex hỗ trợ truy cập nguồn công khai,
+kiểm tra các khung trình phát tại phần quy định và phân biệt minh họa Word với
+quy tắc có thể dùng trong LaTeX. Không có transcript đầy đủ nên không khai báo
+đã nghe toàn bộ video. Áp dụng lề, giãn dòng, vị trí/kiểu chú thích và APA-style;
+giữ các cỡ chữ đã chốt và sáu phần FIT4013. Ba đoạn mở đầu phần tổng kết được
+biên tập gọn, không xóa hay sửa kết quả/hạn chế. Cập nhật tham chiếu, kiểm tra
+font/điều hướng/PDF, mở bản mới trong VS Code. Không chạy lại hoặc sửa thuật toán,
+không sinh dữ liệu/nhãn/metric và không biến phân công dự kiến thành đóng góp thật.

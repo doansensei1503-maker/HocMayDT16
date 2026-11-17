@@ -41,6 +41,7 @@ và bang của đơn. Ngày tạo đơn chỉ được dùng để trích xuất
 Mã đơn phục vụ chia nhóm, không được đưa vào vector dự đoán.
 
 \begin{table}[!htbp]\centering\small
+\caption{Các quyết định phòng rò rỉ trong danh sách đặc trưng.}\label{tab:leakage}
 \begin{tabular}{p{5.4cm}p{7.9cm}}\toprule
 Thông tin & Quyết định và lý do\\\midrule
 Delivery Status & Loại: trạng thái kết quả có liên hệ trực tiếp với nhãn.\\
@@ -50,7 +51,7 @@ Order Id và định danh cá nhân & Không làm đầu vào; mã đơn chỉ d
 Lợi nhuận, trường không trong allowlist & Loại bảo thủ do thời điểm/ngữ nghĩa chưa được xác nhận hoặc dư thừa.\\
 Ngày tạo đơn & B trích tháng/thứ/giờ; không sử dụng nguyên timestamp.\\\bottomrule
 \end{tabular}
-\caption{Các quyết định phòng rò rỉ trong danh sách đặc trưng.}\label{tab:leakage}
+
 \end{table}
 Bảng~\ref{tab:leakage} phân biệt việc loại trường có kết quả tương lai với
 việc tránh ghi nhớ định danh. Không phải mọi cột bị loại đều đã được chứng

@@ -1,0 +1,32 @@
+{
+  "pdf_sha256": "9d97072f77ad6c5f9c56cfcc9f301b2b799dfced60e87d1204eed68a1e1dfe66",
+  "pages": 40,
+  "bookmarks": [
+    {
+      "title": "Mục lục",
+      "pdf_page": 4,
+      "bookmark_correct": true
+    },
+    {
+      "title": "Danh mục hình",
+      "pdf_page": 6,
+      "bookmark_correct": true
+    },
+    {
+      "title": "Danh mục bảng",
+      "pdf_page": 6,
+      "bookmark_correct": true
+    },
+    {
+      "title": "Tài liệu tham khảo",
+      "pdf_page": 40,
+      "bookmark_correct": true
+    }
+  ],
+  "toc_links_correct": {
+    "Danh mục hình": true,
+    "Danh mục bảng": true,
+    "Tài liệu tham khảo": true
+  },
+  "internal_links_with_valid_page": 129
+}

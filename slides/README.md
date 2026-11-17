@@ -7,7 +7,7 @@ slide chính thức. MiKTeX/XeLaTeX đã biên dịch nguồn hai lượt thành
 đã được kiểm tra trực quan; font Arial được nhúng, nhưng chưa thực hiện rà soát
 thủ công toàn bộ deck.
 
-Tên và MSSV đã được cung cấp và điền trong báo cáo 37 trang. Deck này chưa được
+Tên và MSSV đã được cung cấp và điền trong báo cáo 40 trang. Deck này chưa được
 cập nhật nhận diện nhóm trong lần hoàn thiện báo cáo; đóng góp thực tế vẫn cần
 hai thành viên xác nhận.
 Chuẩn bị trả lời câu hỏi trong `outline.md`. Nếu đổi cấu hình thực nghiệm, cần

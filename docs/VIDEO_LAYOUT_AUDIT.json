@@ -1,0 +1,152 @@
+{
+  "pdf_sha256": "9d97072f77ad6c5f9c56cfcc9f301b2b799dfced60e87d1204eed68a1e1dfe66",
+  "pages": 40,
+  "a4": true,
+  "margins_cm": {
+    "left": 2.5,
+    "right": 2,
+    "top": 2,
+    "bottom": 2
+  },
+  "prose_font_pt": 13,
+  "measured_prose_baseline_pt": 19.5,
+  "line_spacing_multiple_of_font": 1.5,
+  "captions_13pt_italic": true,
+  "table_caption_positions": [
+    {
+      "number": 1,
+      "pdf_page": 3,
+      "caption_above_table": true
+    },
+    {
+      "number": 2,
+      "pdf_page": 8,
+      "caption_above_table": true
+    },
+    {
+      "number": 3,
+      "pdf_page": 9,
+      "caption_above_table": true
+    },
+    {
+      "number": 4,
+      "pdf_page": 12,
+      "caption_above_table": true
+    },
+    {
+      "number": 5,
+      "pdf_page": 17,
+      "caption_above_table": true
+    },
+    {
+      "number": 6,
+      "pdf_page": 21,
+      "caption_above_table": true
+    },
+    {
+      "number": 7,
+      "pdf_page": 22,
+      "caption_above_table": true
+    },
+    {
+      "number": 8,
+      "pdf_page": 22,
+      "caption_above_table": true
+    },
+    {
+      "number": 9,
+      "pdf_page": 26,
+      "caption_above_table": true
+    },
+    {
+      "number": 10,
+      "pdf_page": 31,
+      "caption_above_table": true
+    },
+    {
+      "number": 11,
+      "pdf_page": 31,
+      "caption_above_table": true
+    },
+    {
+      "number": 12,
+      "pdf_page": 32,
+      "caption_above_table": true
+    },
+    {
+      "number": 13,
+      "pdf_page": 35,
+      "caption_above_table": true
+    }
+  ],
+  "raster_figure_caption_positions": [
+    {
+      "number": 1,
+      "pdf_page": 9,
+      "caption_below_image": true
+    },
+    {
+      "number": 3,
+      "pdf_page": 23,
+      "caption_below_image": true
+    },
+    {
+      "number": 4,
+      "pdf_page": 24,
+      "caption_below_image": true
+    },
+    {
+      "number": 5,
+      "pdf_page": 24,
+      "caption_below_image": true
+    },
+    {
+      "number": 6,
+      "pdf_page": 25,
+      "caption_below_image": true
+    },
+    {
+      "number": 7,
+      "pdf_page": 26,
+      "caption_below_image": true
+    },
+    {
+      "number": 8,
+      "pdf_page": 27,
+      "caption_below_image": true
+    },
+    {
+      "number": 9,
+      "pdf_page": 28,
+      "caption_below_image": true
+    },
+    {
+      "number": 10,
+      "pdf_page": 28,
+      "caption_below_image": true
+    },
+    {
+      "number": 11,
+      "pdf_page": 29,
+      "caption_below_image": true
+    },
+    {
+      "number": 12,
+      "pdf_page": 29,
+      "caption_below_image": true
+    },
+    {
+      "number": 13,
+      "pdf_page": 30,
+      "caption_below_image": true
+    },
+    {
+      "number": 14,
+      "pdf_page": 31,
+      "caption_below_image": true
+    }
+  ],
+  "vector_figure_2": "visually reviewed",
+  "citations": "author-year",
+  "references": "APA-style author-date entries; unknown dates marked n.d."
+}
