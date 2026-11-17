@@ -53,9 +53,10 @@
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcommand{\ReportTableSetup}{%
   \normalfont\rmfamily\linespread{1}\fontsize{13bp}{15.6bp}\selectfont
-  \renewcommand{\arraystretch}{1.22}%
-  \setlength{\tabcolsep}{6pt}%
-  \setlength{\extrarowheight}{1.2pt}%
-  \arrayrulecolor{black}\color{black}}
+  \renewcommand{\arraystretch}{1.35}%
+  \setlength{\tabcolsep}{7pt}%
+  \setlength{\extrarowheight}{2pt}%
+  \arrayrulecolor{black}\color{black}
+  \setlength{\arrayrulewidth}{0.7pt}}
 \AddToHook{env/table/begin}{\ReportTableSetup}
 \newcommand{\theadcell}[1]{\textbf{#1}}

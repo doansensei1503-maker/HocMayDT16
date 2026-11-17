@@ -1,14 +1,14 @@
 \begin{table}[!htbp]\centering
 \caption{So sánh sáu ứng viên: CV trên train và metric trên test lịch sử.}\label{tab:metrics}
-\begin{tabularx}{\linewidth}{Ycrrrrr}\toprule
-\multicolumn{2}{c}{\theadcell{Ứng viên}} & \theadcell{CV} & \multicolumn{4}{c}{\theadcell{Test}} \\
-\theadcell{Mô hình} & \theadcell{Luồng} & \theadcell{F1} & \theadcell{Accuracy} & \theadcell{Precision} & \theadcell{Recall} & \theadcell{F1} \\\midrule
+\begin{tabularx}{\linewidth}{|Y|c|r|r|r|r|r|}\hline
+\multicolumn{2}{|c|}{\theadcell{Ứng viên}} & \theadcell{CV} & \multicolumn{4}{|c|}{\theadcell{Test}} \\
+\theadcell{Mô hình} & \theadcell{Luồng} & \theadcell{F1} & \theadcell{Accuracy} & \theadcell{Precision} & \theadcell{Recall} & \theadcell{F1} \\\hline
 Cây cơ sở & A & 0.6691 & 0.6531 & 0.6986 & 0.6234 & 0.6589 \\
 Dummy & A & 0.6944 & 0.5374 & 0.5374 & \textbf{1.0000} & 0.6991 \\
 K-NN & A & 0.6668 & 0.6735 & 0.7230 & 0.6361 & 0.6768 \\
 Cây & A & 0.6741 & 0.6463 & 0.6731 & 0.6646 & 0.6688 \\
 K-NN & B & 0.6714 & 0.6862 & 0.7295 & 0.6614 & 0.6938 \\
 Cây & B & \textbf{0.7058} & \textbf{0.7330} & \textbf{0.8533} & 0.6076 & \textbf{0.7098} \\
-\bottomrule\end{tabularx}
+\hline\end{tabularx}
 \par\smallskip\raggedright In đậm: giá trị lớn nhất từng cột; chọn mô hình bằng CV F1, không theo test. Cây cơ sở là baseline\_tree; Cây là tree đã tìm tham số.
 \end{table}

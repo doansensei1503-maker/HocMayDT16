@@ -20,12 +20,13 @@ def esc(value):
 def table(name, headers, rows, caption, label, spec, *, best_columns=(), groups=None, note=None):
     """Render 13pt tables; bold maxima only for metrics where larger is better."""
     maxima = {col: max(float(row[col]) for row in rows) for col in best_columns}
+    spec = '|' + '|'.join(spec) + '|'
     text = [r'\begin{table}[!htbp]\centering',
             r'\caption{' + caption + r'}\label{' + label + '}',
-            r'\begin{tabularx}{\linewidth}{' + spec + r'}\toprule']
+            r'\begin{tabularx}{\linewidth}{' + spec + r'}\hline']
     if groups:
         text += [groups]
-    text += [' & '.join(r'\theadcell{' + h + '}' for h in headers) + r' \\\midrule']
+    text += [' & '.join(r'\theadcell{' + h + '}' for h in headers) + r' \\\hline']
     for row in rows:
         cells = []
         for col,value in enumerate(row):
@@ -34,7 +35,7 @@ def table(name, headers, rows, caption, label, spec, *, best_columns=(), groups=
                 cell = r'\textbf{' + cell + '}'
             cells.append(cell)
         text.append(' & '.join(cells) + r' \\')
-    text += [r'\bottomrule\end{tabularx}']
+    text += [r'\hline\end{tabularx}']
     if note:
         text += [r'\par\smallskip\raggedright ' + note]
     text += [r'\end{table}']
@@ -68,7 +69,7 @@ def main():
           [model_cells(m['name']) + [f'{float(m[k]):.4f}' for k in metric_keys] for m in models],
           'So sánh sáu ứng viên: CV trên train và metric trên test lịch sử.', 'tab:metrics', 'Ycrrrrr',
           best_columns=range(2,7),
-          groups=r'\multicolumn{2}{c}{\theadcell{Ứng viên}} & \theadcell{CV} & \multicolumn{4}{c}{\theadcell{Test}} \\',
+          groups=r'\multicolumn{2}{|c|}{\theadcell{Ứng viên}} & \theadcell{CV} & \multicolumn{4}{|c|}{\theadcell{Test}} \\',
           note=r'In đậm: giá trị lớn nhất từng cột; chọn mô hình bằng CV F1, không theo test. Cây cơ sở là baseline\_tree; Cây là tree đã tìm tham số.')
     table('generalization.tex', ['Mô hình','Luồng','Train F1','CV F1','SD CV','Train--CV'],
           [model_cells(m['name']) + [f'{float(m[k]):.4f}' for k in ['train_f1','cv_f1','cv_f1_std','train_minus_cv_f1']] for m in models],
