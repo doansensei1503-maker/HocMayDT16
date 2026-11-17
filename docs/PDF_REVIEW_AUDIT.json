@@ -1,17 +1,24 @@
 {
-  "pdf_sha256": "8416805cb04842bac17b78ca0f1d8d4dae948a83c7c276c7a498780c20ec24dd",
+  "pdf_sha256": "82918c63610c7c94c0595a46095bd42ac8970b81f96635eb30b6c4fd4b7ee2b7",
   "pages": 40,
   "all_pages_rendered": true,
-  "review_method": "All 13 table detail crops viewed; pages 20/21 viewed after page-break fix. All other pages pixel-identical to previously reviewed PDF outside masked table bounds.",
+  "all_pages_visually_reviewed": true,
+  "review_method": "All 40 pages viewed in ten contact sheets after final numbered-reference build; covers compared by raster.",
   "cover_pages_pixel_identical_to_previous_review": [
     1,
     2
   ],
-  "tables_visually_reviewed": 13,
-  "outside_tables_pixel_identical_except_reviewed_pages": [
-    20,
-    21
+  "fonts_embedded": true,
+  "replacement_characters": false,
+  "typeset_text_outside_page": [],
+  "ai_disclosure_in_pdf": false,
+  "numbered_references": [
+    1,
+    2,
+    3,
+    4,
+    5
   ],
-  "table_cell_text_identical_to_previous": true,
-  "visual_findings": "White table backgrounds, bold black headers, black booktabs rules, no fill/overflow; tests heading kept with its content."
+  "submission_copy_identical": true,
+  "submission_pdf": "NOP_BAI/FIT4013_DeTai16_VuQuocDoan_TranDaiHiep.pdf"
 }

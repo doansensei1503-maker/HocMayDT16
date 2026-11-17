@@ -102,3 +102,7 @@ PDF Preview. Không sửa code ML, dataset, notebook hoặc artifact thực nghi
 ## Bảng trắng–đen hiện hành
 
 Đã bỏ mọi nền màu ô bảng trong LaTeX và script sinh bảng; chữ/đường kẻ đen, header đậm. Giữ font 13 pt, caption, nhãn và số liệu. Xem `MONOCHROME_TABLE_VERIFICATION.md`; các JSON audit được cập nhật theo PDF mới.
+
+## Bản xuất nộp bài hiện hành
+
+Đã tạo `NOP_BAI/FIT4013_DeTai16_VuQuocDoan_TranDaiHiep.pdf`, 40 trang, giống PDF mới biên dịch. Theo lựa chọn người dùng, trích dẫn và năm nguồn chuyển sang số [1]–[5]. Kiểm chứng: `SUBMISSION_EXPORT_VERIFICATION.md`. AI_USAGE.md không thay đổi.

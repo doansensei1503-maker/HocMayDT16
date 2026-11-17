@@ -72,14 +72,16 @@ def main():
     assert bibliography.startswith('TÀI LIỆU THAM KHẢO')
     assert all(author in bibliography for author in ['Constante','Thùy Trang','scikit-learn','Tiwari'])
     all_text = compact(''.join(page.get_text() for page in pdf))
-    assert 'Constante,2019' in all_text
+    assert re.findall(r'^\[(\d)\]', bibliography, re.M) == list('12345')
+    body_text = compact(''.join(page.get_text() for page in list(pdf)[:-1]))
+    assert all(f'[{i}]' in body_text for i in range(1,6))
     result = {'pdf_sha256':hashlib.sha256(path.read_bytes()).hexdigest(), 'pages':len(pdf),
               'a4':True,'margins_cm':{'left':2.5,'right':2,'top':2,'bottom':2},
               'prose_font_pt':13,'measured_prose_baseline_pt':round(statistics.median(spacings),3),
               'line_spacing_multiple_of_font':1.5,'captions_13pt_italic':True,
               'table_caption_positions':tables,'raster_figure_caption_positions':figures,
-              'vector_figure_2':'visually reviewed','citations':'author-year',
-              'references':'APA-style author-date entries; unknown dates marked n.d.'}
+              'vector_figure_2':'visually reviewed','citations':'numeric [1]-[5]',
+              'references':'five numbered entries; original titles, authors and URLs preserved'}
     (ROOT / 'docs/VIDEO_LAYOUT_AUDIT.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result,ensure_ascii=False,indent=2))
 

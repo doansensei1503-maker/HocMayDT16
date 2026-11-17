@@ -63,7 +63,7 @@ Cần biên dịch xong rồi mới chạy kiểm tra; không đọc PDF khi com
 Thân A4 có lề trái 2,5 cm, phải/trên/dưới 2 cm; văn bản 13 pt trên baseline
 19,5 pt. Bảng và mã dùng hàng gọn; cỡ chữ vẫn 13 pt. Chú thích bảng ở trên,
 hình ở dưới, giữa và nghiêng 13 pt. Bìa không chịu thay đổi lề/thân vì tọa độ
-riêng theo Word. APA-style dùng natbib với tác giả–năm, năm chưa rõ ghi n.d.;
+riêng theo Word. Trích dẫn và danh mục dùng natbib đánh số [1]–[5], năm chưa rõ ghi n.d.;
 không cần BibTeX/Biber vì các mục nguồn được quản lý trong `references.tex`.
 
 Build cần thêm gói natbib, fix-cm, titlesec, tools (tabularx), xcolor và colortbl. Helper tắt cài tự động; nếu thiếu gói thì
@@ -99,3 +99,6 @@ rồi để script ghi đè. Luồng A/B là cột riêng; cực đại theo c�
 ở bảng metric theo dòng/đơn, không đánh đồng mức khớp train cao với mô hình tốt.
 Chạy thêm `py scripts/verify_report_tables.py` để kiểm tra 13 bảng trong PDF thật.
 Xem [kiểm chứng bảng](../docs/MONOCHROME_TABLE_VERIFICATION.md).
+
+Bản nộp cuối tại `../NOP_BAI/FIT4013_DeTai16_VuQuocDoan_TranDaiHiep.pdf`;
+xem `../docs/SUBMISSION_EXPORT_VERIFICATION.md` cho SHA-256 và kiểm chứng.

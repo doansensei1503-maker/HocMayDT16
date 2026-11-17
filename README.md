@@ -94,3 +94,6 @@ See `docs/RUBRIC_EVIDENCE.md` and `docs/DEFENSE_GUIDE.md`.
 Hệ thống 13 bảng đã được chuẩn hóa với header nền trắng, chữ đậm, số căn phải và
 font 13 pt. Bảng được kiểm tra trực tiếp trong PDF; dữ liệu thực nghiệm giữ nguyên.
 Xem [kiểm chứng bảng biểu](docs/TABLE_STYLE_VERIFICATION.md).
+
+Bản PDF nộp bài: [FIT4013 – Đề tài 16](NOP_BAI/FIT4013_DeTai16_VuQuocDoan_TranDaiHiep.pdf),
+40 trang, trích dẫn/danh mục đánh số [1]–[5]. Xem [kiểm chứng xuất bản nộp](docs/SUBMISSION_EXPORT_VERIFICATION.md).
